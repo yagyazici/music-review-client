@@ -1,0 +1,50 @@
+<div class="mx-auto w-75 d-flex flex-column">
+    <div class="w-100 d-grid gap-3">
+        <form *ngIf="reactiveForm" [formGroup]="reactiveForm" class="search">
+            <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput placeholder="Albums, singles, profile" formControlName="query" [spellcheck]="false" [autofocus]="true">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </form>
+        <div *ngIf="users && users.length>0; else show_error">
+            <h3 class="text-white m-0">Profiles</h3>
+            <div class="wrapper gap-3 my-3">
+                <div class="album-box p-3 rounded-3 user-select-none" *ngFor="let user of users">
+                    <a [routerLink]="['/profile', user.Id]" class="text-decoration-none" style="cursor: pointer;">
+                        <img *ngIf="user && user.ProfilePicture; else profileVector"
+                            class="my-auto rounded-circle liked-album"
+                            src="{{createImgPath(user.ProfilePicture)}}">
+                        <ng-template #profileVector>
+                            <img src="/assets/images/profile_vector.jpg" class="rounded-circle liked-album">
+                        </ng-template>
+                        <hr>
+                        <h6 class="m-0 p-0 anchor-color text-truncate"><strong>{{user.Username}}</strong></h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="albums && albums.length>0; else show_error">
+            <h3 class="text-white m-0">Albums</h3>
+            <div class="wrapper gap-3 my-3">
+                <div class="album-box p-3 rounded-3 user-select-none" *ngFor="let album of albums">
+                    <a [routerLink]="['/album', album.id]">
+                        <img src="{{album.images[0].url}}" class="liked-album rounded-3" loading="lazy">
+                        <hr>
+                        <h6 class="m-0 p-0 anchor-color text-truncate" [title]="album.name"><strong>{{album.name}}</strong></h6>
+                        <small class="m-0 p-0">
+                            <span class="year-text">{{album.release_date | getYear}}</span>
+                            <span> &bullet; </span>
+                            <a [routerLink]="['/artist', album.artists[0].id]" class="text-decoration-none artist-name">
+                                {{album.artists[0].name}}
+                            </a>
+                        </small>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <ng-template #show_error>
+            <h3 *ngIf="albumsError">No result found for "{{query}}"</h3>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="uzgun-supurge-color border rounded-3 border-dark p-3" *ngIf="!reviewExists">
+    <form *ngIf="reactiveForm" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" class="review-form">
+        <label for="albumReview">Album rate:</label>
+        <star-rating-control [hoverEnabled]="true" [showHalfStars]="true" [size]="'medium'" [starType]="'svg'"
+            (hoverRatingChange)="onHoverRatingChange($event)" [labelPosition]="'right'"
+            formControlName="albumReview" class="d-flex" [minlength]="1" [maxlength]="5" id="albumReview">
+        </star-rating-control>
+        <bar-rating rate="3" [max]="5"></bar-rating>
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Review</mat-label>
+            <input matInput placeholder="Add your thoughts" formControlName="albumThoughts" [spellcheck]="false">
+        </mat-form-field>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn main-btn btn-sm text-white">Save</button>
+        </div>
+    </form>
+</div>

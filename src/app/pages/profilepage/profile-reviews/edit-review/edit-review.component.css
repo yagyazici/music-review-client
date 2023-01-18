@@ -1,0 +1,80 @@
+.album-image{
+    width: 300px;
+}
+
+::ng-deep .edit-review .mat-form-field{
+    font-family: 'Poppins', sans-serif !important;
+    color: white !important;
+}
+
+::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline {
+    font-family: 'Poppins', sans-serif;
+    color: white!important;
+}
+
+::ng-deep .edit-review .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: white!important;
+}
+
+::ng-deep .edit-review .mat-form-field.mat-focused .mat-form-field-label {
+    color: white!important;
+}
+
+::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline-start{
+    border-width: 1px !important;
+}
+::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline-end{
+    border-width: 1px !important;
+}
+::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline-gap{
+    border-width: 1px !important;
+}
+::ng-deep .edit-review .form-shadow:focus {
+    border: 1px solid white !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+::ng-deep .edit-review .mat-select-value{
+    color: white !important;
+}
+
+::ng-deep .edit-review .mat-form-field-label{
+    color: white;
+}
+
+::ng-deep .edit-review .mat-input-element {
+    caret-color: white;
+}
+
+::ng-deep .edit-review input::placeholder {
+    color: rgb(109, 109, 109);
+}
+
+::ng-deep .mat-select-arrow{
+    color: inherit;
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow{
+    color: inherit;
+}
+
+.text-field{
+    width: 250px;
+}
+
+.cancel-btn{
+    color: white;
+    border: none;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.cancel-btn:hover{
+    transform: scale(1.1);
+}
+
+::ng-deep .edit-dialog .mat-dialog-container{
+    background-color: #64B7FC;
+    color: white;
+}

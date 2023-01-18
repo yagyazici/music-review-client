@@ -1,0 +1,68 @@
+::ng-deep .profile-settings .mat-form-field{
+    font-family: 'Poppins', sans-serif !important;
+    color: white !important;
+}
+
+::ng-deep .profile-settings .mat-form-field-appearance-outline .mat-form-field-outline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem !important;
+    color: white!important;
+}
+
+::ng-deep .profile-settings .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: white!important;
+}
+
+::ng-deep .profile-settings .mat-form-field.mat-focused .mat-form-field-label {
+    color: white!important;
+}
+
+::ng-deep .profile-settings .mat-form-field-appearance-outline .mat-form-field-outline-start{
+    border-width: 1px !important;
+}
+::ng-deep .profile-settings .mat-form-field-appearance-outline .mat-form-field-outline-end{
+    border-width: 1px !important;
+}
+::ng-deep .profile-settings .mat-form-field-appearance-outline .mat-form-field-outline-gap{
+    border-width: 1px !important;
+}
+::ng-deep .profile-settings .form-shadow:focus {
+    border: 1px solid white !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+::ng-deep .profile-settings .mat-select-value{
+    color: white !important;
+}
+
+::ng-deep .profile-settings .mat-form-field-label{
+    color: white;
+}
+
+::ng-deep .profile-settings .mat-input-element {
+    caret-color: white;
+}
+
+::ng-deep .profile-settings input::placeholder {
+    color: rgb(109, 109, 109);
+}
+
+::ng-deep .mat-select-arrow{
+    color: inherit;
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow{
+    color: inherit;
+}
+
+.cancel-btn{
+    color: white;
+    border: none;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.cancel-btn:hover{
+    transform: scale(1.1);
+}

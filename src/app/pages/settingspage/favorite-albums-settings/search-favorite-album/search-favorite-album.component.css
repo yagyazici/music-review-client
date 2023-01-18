@@ -1,0 +1,71 @@
+::ng-deep .favorite-search .mat-form-field{
+    font-family: 'Poppins', sans-serif !important;
+    width: 100%;
+    color: white !important;
+}
+
+::ng-deep .favorite-search .mat-form-field-appearance-outline .mat-form-field-outline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem !important;
+    color: white!important;
+}
+
+::ng-deep .favorite-search .mat-form-field-appearance-outline .mat-focused .mat-form-field-outline-thick {
+    color: white!important;
+}
+
+::ng-deep .favorite-search .mat-form-field-label{
+    color: white !important;
+}
+
+::ng-deep .favorite-search .mat-input-element {
+    caret-color: white;
+}
+
+::ng-deep .favorite-search input::placeholder {
+    color: white;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start{
+    border-width: 1px !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end{
+    border-width: 1px !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap{
+    border-width: 1px !important;
+}
+
+::ng-deep .favorite-search .mat-form-field-wrapper{
+    padding-bottom: unset;
+}
+
+.favorite-album{
+    width: 216px;
+}
+
+.wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+}
+
+.album-box {
+    background-color: #122953;
+}
+
+.search-album{
+    width: 100%;
+}
+
+.text-truncate{
+    width: 150px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+}
+
+::ng-deep .mat-dialog-container{
+    background-color: #64B7FC;
+    color: white;
+}

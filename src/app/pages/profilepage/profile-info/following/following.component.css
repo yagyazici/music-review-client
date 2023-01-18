@@ -1,0 +1,27 @@
+.profile-picture {
+    width: 64px;
+    max-width: 120px;
+    height: auto;
+}
+
+.border-color{
+    border-color: #122953 !important;
+}
+
+.list-group-item{
+    background-color: inherit;
+    border-color: #122953;
+}
+
+.list-group-item:last-child{
+    border-bottom: none !important;
+}
+
+::ng-deep .mat-dialog-container{
+    background-color: #64B7FC;
+    color: white;
+}
+
+.username:hover{
+    text-decoration: underline !important;
+}

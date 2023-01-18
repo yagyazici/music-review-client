@@ -1,0 +1,16 @@
+<div class="d-grid gap-3">
+    <div class="wrapper gap-3">
+        <div class="album-box p-3 rounded-3 user-select-none" *ngFor="let album of albums">
+            <a [routerLink]="['/album', album.id]" class="text-decoration-none" style="cursor: pointer;">
+                <img src="{{album.images[0].url}}" class="liked-album rounded-3">
+                <hr>
+                <h6 class="m-0 p-0 anchor-color text-truncate" [title]="album.name">
+                    <strong>{{album.name}}</strong>
+                </h6>
+                <small class="m-0 p-0 year-text">
+                    {{album.release_date | getYear }} &bullet; {{album.album_type | titlecase}}
+                </small>
+            </a>
+        </div>
+    </div>
+</div>

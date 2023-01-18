@@ -1,0 +1,42 @@
+<div *ngIf="!error && artist; else not_found" class="mx-auto w-75 d-grid gap-3">
+    <div class="uzgun-supurge-color border rounded-3 border-dark p-3">
+        <div class="d-flex justify-content-center gap-2">
+            <img src="{{artist.images[0].url}}" class="artist-img rounded-3">
+            <div class="my-auto">
+                <div class="d-flex justify-content-between align-items-center gap-3">
+                    <h3 class="text-white m-0">{{artist.name}}</h3>
+                        <a href="{{artist.external_urls.spotify}}" class="btn spotify-btn btn-sm text-decoration-none" target="_blank" style="color: #1DB954">
+                            Spotify
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                </div>
+                <small class="text-muted muted-color">{{artist.genres | genres | titlecase}}</small>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div *ngIf="artist" class="d-flex flex-row gap-3 align-items-center">
+            <h5>
+                <a  [ngClass]="!currentUrl.includes('singles') ? 
+                'btn main-btn text-white' : 'btn text-white'
+                " 
+                [routerLink]="['/artist', artistId]" 
+                class="text-decoration-none m-0"
+                >
+                Albums</a>
+            </h5>
+            <h5>
+                <a [ngClass]="currentUrl.includes('singles') ? 
+                'btn main-btn text-white' : 'btn text-white'
+                "  
+                [routerLink]="['/artist', artistId, 'singles']" 
+                class="text-decoration-none m-0">
+                Singles</a>
+            </h5>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<ng-template #not_found>
+    <h3 class="d-flex justify-content-center text-white" *ngIf="error">Could not found the artist.</h3>
+</ng-template>

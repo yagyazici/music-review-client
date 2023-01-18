@@ -1,0 +1,15 @@
+#album_page_img {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+}
+
+::ng-deep .albumReview:focus {
+    border: 1px solid black !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.artist-name:hover{
+    text-decoration: underline !important;
+}

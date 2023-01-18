@@ -1,0 +1,40 @@
+<div class="d-grid gap-3">
+    <div *ngIf="data.favoriteAlbum.id" class="d-flex justify-content-center gap-3">
+        <img src="{{data.favoriteAlbum.images[0].url}}" class="favorite-album rounded-3">
+        <div class="my-auto">
+            <div class="w-100">
+                <h6 class="m-0 p-0"><strong>{{data.favoriteAlbum.name}}</strong></h6>
+                <small class="m-0 p-0">{{data.favoriteAlbum.artists | searchArtistNames}}</small>
+            </div>
+            <p [mat-dialog-close]="removeAlbum()" class="d-flex justify-content-center btn btn-danger btn-sm"
+                style="cursor: pointer;text-decoration: none;">Delete</p>
+        </div>
+    </div>
+    <hr *ngIf="data.favoriteAlbum.id">
+    <form *ngIf="reactiveForm" [formGroup]="reactiveForm" class="favorite-search">
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Albums, singles" formControlName="query" [spellcheck]="false">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </form>
+    <div class="d-grid gap-3" *ngIf="albums && albums.length>0">
+        <h3 class="m-0">Albums</h3>
+        <div class="wrapper gap-3">
+            <div class="album-box p-3 rounded-3 user-select-none border border-dark" *ngFor="let album of albums">
+                <a [mat-dialog-close]="getAlbumId(album)">
+                    <img src="{{album.images[0].url}}" class="search-album rounded-3" loading="lazy">
+                    <hr>
+                    <h6 class="m-0 p-0 text-truncate" [title]="album.name"><strong>{{album.name}}</strong></h6>
+                    <small class="m-0 p-0">
+                        <span class="year-text">{{album.release_date | getYear}}</span>
+                        <span> &bullet; </span>
+                        <a class="text-decoration-none text-white">
+                            {{album.artists[0].name}}
+                        </a>
+                    </small>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

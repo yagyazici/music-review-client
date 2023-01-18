@@ -1,0 +1,47 @@
+<div *ngIf="userAlbumReviews && userAlbumReviews.length>0">
+    <ul class="border border-dark rounded-3 list-group list-group-flush uzgun-supurge-color">
+        <li *ngFor="let albumReview of userAlbumReviews.slice().reverse()" class="border-dark list-group-item uzgun-supurge-color">
+            <div class="d-flex flex-row gap-3">
+                <div>
+                    <img src="{{albumReview.AlbumImage}}" alt="" class="rounded-3 album-picture">
+                </div>
+                <div class="w-100">
+                    <div class="info-buttons">
+                        <div class="d-flex flex-row gap-1">
+                            <h4 class="m-0 p-0">
+                                <a [routerLink]="['/album', albumReview.AlbumId]" class="anchor-color text-decoration-none">
+                                    {{albumReview.AlbumName}}
+                                </a>
+                            </h4>
+                            <small class="my-auto">by  
+                                <a [routerLink]="['/artist', albumReview.ArtistId]" class="text-decoration-none artist-name">
+                                    {{albumReview.ArtistName}}
+                                </a>
+                            </small>
+                        </div>
+                        <div *ngIf="currentUser.Id == userId" class="buttons-div">
+                            <span (click)="editDialog(albumReview.Id)" class="btn main-btn btn-sm text-white" style="cursor: pointer;text-decoration: none;">Edit</span>
+                            <span (click)="deleteDialog(albumReview.Id)" class="btn middle-green-btn btn-sm" style="cursor: pointer;text-decoration: none;">Delete </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex">
+                            <star-rating-control [size]="'medium'" [starType]="'svg'" [readOnly]="true"
+                            [rating]="albumReview.AlbumRate" id="albumReview">
+                            </star-rating-control>
+                            <small *ngIf="albumReview.Edited; else notEdited" class="text-muted muted-color">
+                                {{albumReview.EditedDate | dateAgo }} [edited]
+                            </small>
+                            <ng-template #notEdited>
+                                <small class="text-muted muted-color">
+                                    {{albumReview.PublishedDate | dateAgo }}
+                                </small>
+                            </ng-template>
+                        </div>
+                        <h6>{{albumReview.AlbumThoughts}}</h6>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

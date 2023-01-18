@@ -1,0 +1,23 @@
+<div *ngIf="currentlyPlaying && currentlyPlaying.is_playing" class="d-flex justify-content-center mb-3">
+    <div class="d-flex flex-row uzgun-supurge-color p-1 border border-dark rounded-3">
+        <div class="me-1">
+            <img src="{{currentlyPlaying && currentlyPlaying.item.album.images[0].url}}" alt="" class="my-auto rounded-3" id="home_page_img">
+        </div>
+        <div class="my-auto">
+            <h3 class="text-white">{{currentlyPlaying && currentlyPlaying.item.name}}</h3>
+            <div class="d-flex">
+                <h5 *ngFor="let artist of currentlyPlaying.item.artists">
+                    <a [routerLink]="['/artist', artist.id]" class="text-decoration-none artist-name">
+                        <strong>{{artist.name}}</strong>
+                    </a>
+                    <span class="text-muted muted-color"> &bullet;</span>
+                </h5>
+            </div>
+            <p>
+                <a [routerLink]="['/album',currentlyPlaying.item.album.id]" class="anchor-color text-decoration-none">
+                    {{currentlyPlaying && currentlyPlaying.item.album.name}}
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

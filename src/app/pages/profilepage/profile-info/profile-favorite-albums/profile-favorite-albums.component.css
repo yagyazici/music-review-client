@@ -1,0 +1,38 @@
+.wrapper {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.album-box {
+    border-right: solid 1px #0a1730;
+    display: flex;
+    flex-direction: row;
+    background: #122953;
+    transition: background-color .2s ease;
+}
+
+.album-box:hover{
+    background-color: #103986;
+    transition: background-color .2s ease;
+}
+
+.album-box a {
+    text-decoration: none;
+}
+
+.favorite-album {
+    width: 128px;
+}
+
+.artist-name:hover{
+    text-decoration: underline !important;
+}
+
+.text-truncate{
+    width: 125px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+}

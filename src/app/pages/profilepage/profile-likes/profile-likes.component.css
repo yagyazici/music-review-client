@@ -1,0 +1,38 @@
+.liked-album{
+    width: 200px;
+}
+
+.wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(200px, 1fr));
+}
+
+.album-box {
+    display: flex;
+    justify-content: center;
+    background-color: #64B7FC;
+    transition: background-color .2s ease;
+}
+
+.album-box:hover{
+    background-color: #3d9ddd;
+    transition: background-color .2s ease;
+}
+
+.text-truncate{
+    width: 200px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+}
+
+.artist-name:hover{
+    text-decoration: underline;
+}
+
+@media (max-width: 600px){
+    .wrapper {
+      grid-template-columns: 1fr;
+    }
+}

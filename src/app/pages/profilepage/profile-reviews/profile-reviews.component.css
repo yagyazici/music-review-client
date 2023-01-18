@@ -1,0 +1,22 @@
+.album-picture{
+    width: 128px;
+}
+
+.buttons-div{
+    display: flex;
+    gap: 1rem;
+}
+
+.buttons-div > * {
+    width: 100% !important;
+}
+
+.info-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.artist-name:hover{
+    text-decoration: underline !important;
+}

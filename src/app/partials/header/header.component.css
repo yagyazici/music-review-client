@@ -1,0 +1,71 @@
+::ng-deep .logout-btn {
+    cursor: pointer !important;
+}
+
+::ng-deep .profile-btn {
+    cursor: pointer !important;
+}
+
+.header-bg{
+    background-image: url("/assets/images/waves-bg.svg");
+    background-position-y: 78%;
+    background-size: cover;  
+    background-repeat: no-repeat;
+}
+
+::ng-deep .mat-menu-trigger {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+::ng-deep .mat-menu-item {
+    font-family: 'Poppins', sans-serif;
+    font-size: inherit;
+    color: #dee2e6;
+    background-color: transparent !important;
+    white-space: normal !important;
+    line-height: inherit !important;
+}
+
+::ng-deep .mat-menu-item:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+::ng-deep .mat-menu-panel {
+    color: #dee2e6;
+    text-align: left;
+    list-style: none;
+    background-color: #13346e;
+    background-clip: padding-box;
+}
+
+::ng-deep .notif-count {
+    font-size: 10px;
+}
+
+::ng-deep .notif-menu {
+    max-height: 300px !important;
+    max-width: 300px !important;
+}
+
+::ng-deep .notif-menu-item{
+    padding: revert !important;
+}
+
+::ng-deep .notif-menu::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+::ng-deep .notif-menu::-webkit-scrollbar-track {
+    background: #ddd !important;
+}
+
+::ng-deep .notif-menu::-webkit-scrollbar-thumb {
+    background: #666 !important;
+}
+
+.profile-picture {
+    width: 32px;
+    height: 32px;
+}

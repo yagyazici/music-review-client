@@ -1,0 +1,58 @@
+<app-settings-navbar></app-settings-navbar>
+<div class="mx-auto w-50 h-75 d-flex flex-column gap-3">
+    <div class="uzgun-supurge-color border rounded-3 border-dark container p-3">
+        <h3 class="text-white">Edit Profile</h3>
+        <form *ngIf="reactiveForm" [formGroup]="reactiveForm" (keydown.enter)="updateProfile()" (submit)="updateProfile()" class="profile-settings">
+            <div class="d-grid">
+                <div>
+                    <p *ngFor="let error of errors" class="text-danger m-0 p-0">{{error}}</p>
+                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" formControlName="username"
+                        [value]="loggedUser && loggedUser.Username" [spellcheck]="false">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email"
+                        [value]="loggedUser && loggedUser.Email" [spellcheck]="false">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Bio</mat-label>
+                    <input matInput placeholder="Email" formControlName="bio" 
+                        [value]="loggedUser && loggedUser.Bio" [spellcheck]="false">
+                </mat-form-field>
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col">
+                        <mat-label>Day</mat-label>
+                        <mat-select formControlName="day">
+                            <mat-option *ngFor="let day of days" [value]="day.value">
+                                {{day.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="col-6">
+                        <mat-label>Month</mat-label>
+                        <mat-select formControlName="month">
+                            <mat-option *ngFor="let month of months" [value]="month.value">
+                                {{month.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="col">
+                        <mat-label>Year</mat-label>
+                        <mat-select formControlName="year">
+                            <mat-option *ngFor="let year of years.slice().reverse()" [value]="year.value">
+                                {{year.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between px-3">
+                <button (click)="cancel()" class="btn btn-sm cancel-btn">Cancel</button>
+                <button (submit)="updateProfile()" class="btn main-btn btn-sm text-white">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

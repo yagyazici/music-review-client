@@ -1,0 +1,90 @@
+<div *ngIf="!error && album; else not_found" class="mx-auto w-75 d-flex flex-column gap-3">
+    <div class="uzgun-supurge-color border rounded-3 border-dark">
+        <div class="row p-1">
+            <div class="my-auto col-sm">
+                <img src="{{album.images[0].url}}" title="{{album.name}}" id="album_page_img" class="rounded-3">
+            </div>
+            <div class="my-auto col-sm">
+                <div class="d-flex justify-content-between">
+                    <h2 class="anchor-color my-0">{{album.name}}</h2>
+                    <div class="d-flex justify-content-center align-items-center mx-5">
+                        <button (click)="likeButton()" mat-icon-button>
+                            <h3 *ngIf="liked; else emptyLike" class="m-0">
+                                <i class="fa-solid fa-heart text-danger"></i>
+                            </h3>
+                            <ng-template #emptyLike>
+                                <h3 class="m-0"><i class="fa-regular fa-heart"></i></h3>
+                            </ng-template>
+                        </button>
+                        <p *ngIf="likeCount > 0" class="my-auto">{{likeCount}} likes</p>
+                        <ng-template #noLike>
+                            <p class="my-auto"></p>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="d-flex flex-row gap-3 text-wrap align-items-center">
+                    <h6 *ngFor="let artist of album.artists" class="my-0">
+                        <a [routerLink]="['/artist', artist.id]" class="text-decoration-none artist-name">
+                            <strong>{{artist.name}}</strong>
+                        </a>
+                        <span class="text-muted muted-color"> &bullet;</span>
+                    </h6>
+                    <h6 class="text-muted muted-color my-0">{{album.release_date | getYear }} &bullet;</h6>
+                    <h6 class="text-muted muted-color my-0">{{album.total_tracks}} tracks &bullet;</h6>
+                    <a class="text-decoration-none btn btn-sm spotify-btn" href="{{album.external_urls.spotify}}" target="blank">
+                        {{album.album_type | titlecase}} on Spotify 
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                </div>
+                
+                <hr>
+                <table class="table table-borderless table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let track of album.tracks.items; let i = index">
+                            <th scope="row">{{i + 1}}</th>
+                            <td>
+                                {{track.name}}
+                                <small *ngIf="track.explicit" class="text-muted muted-color" title="Explicit">🅴</small>
+                            </td>
+                            <td>{{track.duration_ms | timehumanize}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul class="list-unstyled">
+                    <li>
+                        <small class="text-muted muted-color">
+                            {{album.release_date | birthDate}}
+                        </small>
+                    </li>
+                    <li *ngFor="let copyright of album?.copyrights">
+                        <small class="text-muted muted-color">{{copyright | copyrightPipe }}</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isAuthenticated;else notAuth" class="position-relative h-100 d-flex flex-column gap-3">
+        <app-reviews-component></app-reviews-component>
+        <app-review-form-component [albumId]="albumId" [albumForm]="album" [currentFormUser]="currentUser"></app-review-form-component>
+    </div>
+    <ng-template #notAuth>
+        <div class="bg-white border rounded-3 border-dark d-flex flex-column align-items-center justify-content-center h-100">
+            <h1>
+                <a routerLink="/login" class="text-decoration-none">Login</a>
+            </h1>
+            <h1>
+                <a routerLink="/register" class="text-decoration-none">Register</a>
+            </h1>
+        </div>
+    </ng-template>
+</div>
+<ng-template #not_found>
+    <h3 class="d-flex justify-content-center" *ngIf="error">Could not found album.</h3>
+</ng-template>

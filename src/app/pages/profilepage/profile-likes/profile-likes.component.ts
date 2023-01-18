@@ -1,0 +1,38 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Album } from 'src/app/models/album';
+import { AuthService } from 'src/app/services/auth.service';
+
+@Component({
+    selector: 'app-profile-likes',
+    templateUrl: './profile-likes.component.html',
+    styleUrls: ['./profile-likes.component.css']
+})
+export class ProfileLikesComponent implements OnInit {
+
+    userId: string;
+    userLikedAlbums: Album[];
+    constructor(
+        private authService: AuthService,
+        private activatedRoute: ActivatedRoute
+    ) { }
+
+    ngOnInit(): void {
+        this.activatedRoute.parent?.paramMap.subscribe(params => {
+            this.userId = params.get("user-id") || "";
+        });
+        this.getUserLikedAlbums(this.userId);
+    }
+
+    getUserLikedAlbums(userId: string){
+        this.authService.getUserLikedAlbums(userId).subscribe({
+            next: (data: any) => {
+                var parsed = <Album[]>JSON.parse(data)
+                this.userLikedAlbums = parsed
+            },
+            error: error => {
+                console.log(error);
+            }
+        })
+    }
+}

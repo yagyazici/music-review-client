@@ -1,0 +1,27 @@
+::ng-deep .mat-form-field{
+    font-family: 'Poppins', sans-serif !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem !important;
+    color: black!important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: black!important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: black!important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start{
+    border-width: 1px !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end{
+    border-width: 1px !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap{
+    border-width: 1px !important;
+}

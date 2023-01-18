@@ -1,0 +1,21 @@
+<div class="w-50 mx-auto bg-white border rounded-3 border-dark p-3">
+    <h1 class="text-center"><u class="p-5">Register</u></h1>
+    <form [formGroup]="reactiveForm" (submit)="register()" class="p-5">
+        <div class="d-grid">
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Username" formControlName="username">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+        </div>
+        <button class="btn middle-green-btn">Register</button>
+    </form>
+</div>

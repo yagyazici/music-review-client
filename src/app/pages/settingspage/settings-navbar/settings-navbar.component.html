@@ -1,0 +1,13 @@
+<div class="mx-auto w-50 h-75 d-flex flex-column mb-3">
+    <div class="d-flex flex-row align-items-center uzgun-supurge-color border rounded-3 border-dark container p-3 gap-3">
+        <h5 class="m-0">
+            <a [ngClass]="currentUrl == '/settings' ? 'btn main-btn text-white' : 'btn text-white'" routerLink="/settings" class="text-decoration-none">Settings</a>
+        </h5>
+        <h5 class="m-0">
+            <a [ngClass]="currentUrl == '/settings/picture' ? 'btn main-btn text-white' : 'btn text-white'" routerLink="/settings/picture" class="text-decoration-none">Picture</a>
+        </h5>
+        <h5 class="m-0">
+            <a [ngClass]="currentUrl == '/settings/favorite-albums' ? 'btn main-btn text-white' : 'btn text-white'" routerLink="/settings/favorite-albums" class="text-decoration-none">Favorite Albums</a>
+        </h5>
+    </div>
+</div>

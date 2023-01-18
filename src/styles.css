@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import '~css-star-rating/css/star-rating.css';
+
+body{
+    background-color: #122953;
+    font-family: 'Poppins', sans-serif;
+}
+
+.uzgun-supurge-color{
+    background-color: #64B7FC !important;
+}
+
+.anchor-color{
+    color: #0043c1;
+}
+
+.middle-green-btn{
+    background-color: rgb(92, 184, 0) !important;
+    color: white !important;
+}
+
+.middle-green{
+    color: #157737 !important;
+}
+
+.main-btn{
+    background-color: #0d59c9 !important;
+}
+
+.main-btn:hover{
+    background-color: #296acb !important;
+}
+
+.spotify-btn{
+    background-color: white !important;
+    color: #3ae47b !important;
+}
+
+.spotify-btn:hover{
+    background-color: white !important;
+    box-shadow: none !important;
+}
+
+.muted-color{
+    color: #404448 !important;
+}
+
+.rating.color-negative .star-container .star svg {
+    border: solid 1px white;
+    fill: #3ae47b !important;
+}
+.rating.color-negative .star-container .star i {
+    color: #3ae47b !important;
+}
+
+.rating.color-ok .star-container .star svg {
+    fill: #3ae47b !important;
+}
+.rating.color-ok .star-container .star i {
+    color: #3ae47b !important;
+}
+
+.rating.color-positive .star-container .star svg {
+    fill: #3ae47b !important;
+}
+.rating.color-positive .star-container .star i {
+    color: #3ae47b !important;
+}
+
+.rating.color-default .star-container .star svg {
+    fill: #3ae47b !important;
+}
+.rating.color-default .star-container .star i {
+    color: #3ae47b !important;
+}
+
+.star-container{
+    margin-left: 0;
+}

@@ -1,0 +1,17 @@
+<div class="d-flex flex-column min-vh-100">
+    <app-header></app-header>
+
+    <div *ngIf="currentRoute.url == '/login' || currentRoute.url == '/register';then not_auth else auth"></div>
+    <ng-template #not_auth>
+        <div class="container my-auto">
+            <router-outlet></router-outlet>
+        </div>
+    </ng-template>
+    <ng-template #auth>
+        <div class="mb-3">
+            <router-outlet></router-outlet>
+        </div>
+    </ng-template>
+    
+    <app-footer class="mt-auto"></app-footer>
+</div>

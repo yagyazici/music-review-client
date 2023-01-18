@@ -1,0 +1,8 @@
+.user-text{
+    color: white;
+    text-decoration: none;
+}
+
+.user-text:hover{
+    text-decoration: underline;
+}

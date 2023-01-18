@@ -1,0 +1,7 @@
+<app-currentsong [toCurrentSong]="isAuthenticated" class="w-50"></app-currentsong>
+<div class="container uzgun-supurge-color border rounded-3 border-dark">
+    <div class="text-center p-5 text-break text-white">
+        <h1>Welcome back <a [routerLink]="['/profile',currentUser.Id]" class="user-text">{{currentUser && currentUser.Username}}</a></h1>
+    </div>
+    <h1>new releases</h1>
+</div>

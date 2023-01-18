@@ -1,0 +1,27 @@
+.album-img {
+    width: 450px;
+}
+
+.wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(350px, 1fr));
+}
+
+.album-box {
+    display: flex;
+    justify-content: center;
+    background-color: #64B7FC;
+}
+
+.profile-picture {
+    width: 32px;
+}
+
+.username:hover {
+    text-decoration: underline !important;
+}
+
+.artist-name:hover {
+    text-decoration: underline !important;
+}

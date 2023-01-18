@@ -1,0 +1,41 @@
+<app-settings-navbar></app-settings-navbar>
+<div class="mx-auto w-50 h-75 d-flex flex-column gap-3">
+    <div class="uzgun-supurge-color border rounded-3 border-dark container p-3 frame">
+        <form>
+            <div (click)="file.click()" [style.display]="showCropper ? 'none' : 'flex'" class=" justify-content-center profile-picture-box position-relative" style="cursor: pointer">
+                <img *ngIf="loggedUser && loggedUser.ProfilePicture; else profileVector" [src]="createImgPath(loggedUser.ProfilePicture)" class="profile-picture rounded-circle">
+                <ng-template #profileVector>
+                    <img class="profile-picture rounded-circle" src="/assets/images/profile_vector.jpg" alt="">
+                </ng-template>
+                <div class="d-flex justify-content-center align-items-center w-100 h-100 position-absolute inner-picture rounded-circle">
+                    <h3><i class="fa-solid fa-camera text-white"></i></h3>
+                </div>
+            </div>
+            <input type="file" #file class="ms-auto btn btn-dark" (change)="fileChangeEvent($event)" class="d-none"/>
+            <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [containWithinAspectRatio]="false"
+            [aspectRatio]="1/1"
+            [resizeToWidth]="256"
+            [cropperMinWidth]="128"
+            [onlyScaleDown]="true"
+            [roundCropper]="true"
+            [canvasRotation]="0"
+            [style.display]="showCropper ? null : 'none'"
+            [transform]="transform"
+            [alignImage]="'center'"
+            format="jpeg"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            (cropperReady)="cropperReady($event)"
+            (loadImageFailed)="loadImageFailed()">
+            </image-cropper>
+        </form>       
+    </div>
+    <div mat-dialog-actions class="d-flex justify-content-evenly">
+        <button [style.display]="showCropper ? null : 'none'" (click)="cancelUploadFile();" class="btn btn-sm cancel-btn">Cancel</button>
+        <button [style.display]="showCropper ? null : 'none'" (click)="uploadFile(croppedImage);" class="btn main-btn btn-sm text-white">Save</button>
+    </div>
+</div>
+

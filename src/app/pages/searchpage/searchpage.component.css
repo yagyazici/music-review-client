@@ -1,0 +1,102 @@
+#search_page_img {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+}
+
+::ng-deep .search .mat-form-field{
+    font-family: 'Poppins', sans-serif !important;
+    width: 100%;
+    color: white !important;
+}
+
+::ng-deep .search .mat-form-field-appearance-outline .mat-form-field-outline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem !important;
+    color: white!important;
+}
+
+::ng-deep .search .mat-form-field-appearance-outline .mat-focused .mat-form-field-outline-thick {
+    color: white!important;
+}
+
+::ng-deep .search .mat-form-field-label{
+    color: white !important;
+}
+
+::ng-deep .search .mat-input-element {
+    caret-color: white !important;
+}
+
+::ng-deep .search input::placeholder {
+    color: rgb(156, 156, 156);
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start{
+    border-width: 1px !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end{
+    border-width: 1px !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap{
+    border-width: 1px !important;
+}
+
+.wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(200px, 1fr));
+}
+
+.liked-album{
+    width: 200px;
+}
+
+.album-box {
+    display: flex;
+    justify-content: center;
+    background-color: #64B7FC;
+    transition: background-color .2s ease;
+}
+
+.album-box:hover{
+    background-color: #3d9ddd;
+    transition: background-color .2s ease;
+}
+
+.album-box a{
+    text-decoration: none;
+}
+
+.album-box a:hover{
+    text-decoration: none;
+}
+
+.text-truncate{
+    width: 200px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+}
+
+.artist-name{
+    text-decoration: none !important;
+}
+
+.artist-name:hover{
+    text-decoration: underline !important;
+}
+
+.year-text{
+    color: #0d6efd !important;
+}
+
+.year-text:hover{
+    color: #0d6efd !important;
+}
+
+@media (max-width: 600px){
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+}

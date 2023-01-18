@@ -1,0 +1,48 @@
+<div *ngIf="albumReviews && albumReviews.length>0;else noAlbumReview">
+    <ul class="border border-dark rounded-3 list-group list-group-flush uzgun-supurge-color">
+        <li *ngFor="let albumReview of albumReviews.slice().reverse()" class="border-dark list-group-item uzgun-supurge-color">
+            <div class="d-flex flex-row gap-3">
+                <div>
+                    <img *ngIf="albumReview && albumReview.Author.ProfilePicture; else profileVector"
+                        class="rounded-circle profile-picture" src="{{createImgPath(albumReview.Author.ProfilePicture)}}">
+                    <ng-template #profileVector>
+                        <img class="rounded-circle profile-picture" src="/assets/images/profile_vector.jpg">
+                    </ng-template>
+                </div>
+                <div class="w-100">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-row gap-1">
+                            <h4 class="m-0 p-0">
+                                Review
+                            </h4>
+                            <small class="my-auto">by  
+                                <a [routerLink]="['/profile', albumReview.Author.Id]" class="text-decoration-none username">
+                                    {{albumReview.Author.Username}}
+                                </a>
+                            </small>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex">
+                            <star-rating-control [size]="'medium'" [starType]="'svg'" [readOnly]="true"
+                            [rating]="albumReview.AlbumRate" id="albumReview">
+                            </star-rating-control>
+                            <small *ngIf="albumReview.Edited; else notEdited" class="text-muted muted-color">
+                                {{albumReview.EditedDate | dateAgo }} [edited]
+                            </small>
+                            <ng-template #notEdited>
+                                <small class="text-muted muted-color">
+                                    {{albumReview.PublishedDate | dateAgo }}
+                                </small>
+                            </ng-template>
+                        </div>
+                        <h6>{{albumReview.AlbumThoughts}}</h6>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<ng-template #noAlbumReview>
+    <h4 class="text-center text-white m-0">There is no review for this album. Be the first one!</h4>
+</ng-template>

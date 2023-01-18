@@ -1,0 +1,36 @@
+::ng-deep :root {
+    --cropper-overlay-color: transparent !important;
+}
+.frame {
+    background-image: 
+        linear-gradient(45deg, rgba(8, 45, 90, 0.363) 25%, transparent 0), 
+        linear-gradient(135deg, rgba(8, 45, 90, 0.363) 25%, transparent 0), 
+        linear-gradient(45deg, transparent 75%, rgba(8, 45, 90, 0.363) 0), 
+        linear-gradient(135deg, transparent 75%, rgba(8, 45, 90, 0.363) 0);
+    background-position: 0 0, 10px 0, 10px -10px, 0 10px;
+    background-size: 20px 20px;
+    width: 100%;
+}
+i{
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+}
+.profile-picture-box:hover i{
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+}
+image-cropper  {
+    display: flex;
+    max-height: 50vh;
+}
+
+.cancel-btn{
+    color: white;
+    border: none;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.cancel-btn:hover{
+    transform: scale(1.1);
+}

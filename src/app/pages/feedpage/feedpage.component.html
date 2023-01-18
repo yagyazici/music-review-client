@@ -1,0 +1,56 @@
+<div class="mx-auto w-75 d-flex flex-column">
+    <div class="wrapper gap-3" *ngIf="reviews">
+        <div class="album-box p-3 rounded-3 user-select-none" *ngFor="let review of reviews.slice().reverse()">
+            <div class="text-decoration-none d-grid gap-3">
+                <img src="{{review.AlbumImage}}" class="album-img rounded-3">
+                <div>
+                    <a [routerLink]="['/album', review.AlbumId]" class="anchor-color m-0 p-0 text-decoration-none">
+                        <h3 class="m-0 p-0 text-truncate" [title]="review.AlbumName">
+                            <strong>{{review.AlbumName}}</strong>
+                        </h3>
+                    </a>
+                    <a [routerLink]="['/artist', review.ArtistId]" class="m-0 p-0 artist-name text-decoration-none">
+                        {{review.ArtistName}}
+                    </a>
+                </div>
+                <hr class="m-0 p-0">
+                <div>
+                    <div class="d-flex justify-content-between">
+                        <a [routerLink]="['/profile', review.Author.Id]" class="d-flex text-decoration-none m-0 p-0 gap-1">
+                            <div class="d-flex align-items-center">
+                                <img *ngIf="review && review.Author.ProfilePicture; else profileVector"
+                                    class="rounded-circle profile-picture"
+                                    src="{{createImgPath(review.Author.ProfilePicture)}}">
+                                <ng-template #profileVector>
+                                    <img class="rounded-circle profile-picture" src="/assets/images/profile_vector.jpg">
+                                </ng-template>
+                            </div>
+                            <div class="d-grid gap-0 w-100">
+                                <h5 class="m-0 p-0 username">{{review.Author.Username}}</h5>
+                                <div class="d-flex user-select-none text-decoration-none">
+                                    <star-rating-control [size]="'medium'" [starType]="'svg'" [readOnly]="true"
+                                        [rating]="review.AlbumRate">
+                                    </star-rating-control>
+                                    <p *ngIf="review.Edited; else notEdited" class="text-muted muted-color m-0 p-0">
+                                        {{review.EditedDate | dateAgo }} [edited]
+                                    </p>
+                                    <ng-template #notEdited>
+                                        <p class=" text-muted muted-color m-0 p-0">
+                                            {{review.PublishedDate | dateAgo }}
+                                        </p>
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </a>
+                        <button mat-icon-button class="m-0 p-0">
+                            <h5 class="m-0 p-0">
+                                <i [ngClass]="review.Likes.includes(currentUser.Id) ? liked : notLiked"></i>
+                            </h5>
+                        </button>
+                    </div>
+                    <h6>{{review.AlbumThoughts}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
