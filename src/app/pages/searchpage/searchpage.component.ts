@@ -62,18 +62,12 @@ export class SearchpageComponent implements OnInit {
     }
 
     userSearchUpdate(query: string){
-        this.authService.SearchUser(query).subscribe({
-            next: (data: any) => {
-                var parsed = JSON.parse(data);
-                this.users = <UserDTO []>parsed;
-            },
-            error: error => {
-                this.usersError = error;
-            }
+        this.authService.SearchUser(query).subscribe(data => {
+            this.users = data;
         })
     }
 
     createImgPath(serverPath: string) {
-        return `https://localhost:7161/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`; 
     }
 }

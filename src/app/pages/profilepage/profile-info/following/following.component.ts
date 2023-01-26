@@ -31,13 +31,12 @@ export class FollowingComponent implements OnInit {
     }
 
     createImgPath(serverPath: string) {
-        return `https://localhost:7161/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`; 
     }
 
     async getUserFollowings(){
         await firstValueFrom(this.authService.getUserFollowings(this.data.userId)).then(data => {
-            var parsed = <UserDTO[]>JSON.parse(data);
-            this.followings = parsed;
+            this.followings = data;
         })
     }
 }

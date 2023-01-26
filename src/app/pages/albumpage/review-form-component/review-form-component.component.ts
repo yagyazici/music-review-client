@@ -36,7 +36,7 @@ export class ReviewFormComponentComponent implements OnInit {
             albumReview: new FormControl("", Validators.required),
             albumThoughts: new FormControl("", Validators.required),
         });
-        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicRateAddedMessageReceiveFunction, message => {
+        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicReviewAddedMessageReceiveFunction, message => {
             if (message.albumId == this.albumId && message.author.id == this.currentFormUser.Id) {
                 this.albumReviewCheck(this.albumId);
             }
@@ -61,11 +61,7 @@ export class ReviewFormComponentComponent implements OnInit {
             Likes: this.likes
         }
         if (this.reactiveForm.valid) {
-            this.reviewService.postReview(review).subscribe({
-                error: error => {
-                    console.log(error);
-                }
-            })
+            this.reviewService.postReview(review).subscribe();
         }
         else {
             return;
@@ -82,13 +78,8 @@ export class ReviewFormComponentComponent implements OnInit {
     };
 
     albumReviewCheck(albumId: string) {
-        this.reviewService.albumReviewCheck(albumId).subscribe({
-            next: (data: any) => {
-                this.reviewExists = data === "true";
-            },
-            error: error => {
-                console.log(error);
-            }
+        this.reviewService.albumReviewCheck(albumId).subscribe(data => {
+            this.reviewExists = data;
         })
     }
 }

@@ -3,8 +3,10 @@
 
     <div *ngIf="currentRoute.url == '/login' || currentRoute.url == '/register';then not_auth else auth"></div>
     <ng-template #not_auth>
-        <div class="container my-auto">
-            <router-outlet></router-outlet>
+        <div class="centered min-vh-100">
+            <div class="flex-1">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </ng-template>
     <ng-template #auth>
@@ -12,6 +14,5 @@
             <router-outlet></router-outlet>
         </div>
     </ng-template>
-    
     <app-footer class="mt-auto"></app-footer>
 </div>

@@ -45,18 +45,14 @@ export class EditReviewComponent implements OnInit{
     onSubmit(){
         var newRate = this.reactiveForm.get("albumRate")?.value;
         var newThoughts = this.reactiveForm.get("albumThoughts")?.value;
-        this.reviewService.UpdateAlbumReview(this.data.reviewId, newRate, newThoughts).subscribe({
-            next: next => {},
-            error: error => console.log(error)
-        });
+        this.reviewService.UpdateAlbumReview(this.data.reviewId, newRate, newThoughts).subscribe();
         this.dialogRef.close();
         this.openSnackBar();
     }
 
     async getAlbumReview(id: string) {
-        await firstValueFrom(this.reviewService.getAlbumReview(id)).then((data) => {
-            var parsed = <Review>JSON.parse(data);
-            this.albumReview = parsed;
+        await firstValueFrom(this.reviewService.getAlbumReview(id)).then(data => {
+            this.albumReview = data;
         });
     }
 

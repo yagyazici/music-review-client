@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as signalR from '@microsoft/signalr';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 
 @Injectable({
@@ -12,9 +13,10 @@ export class SignalRService {
 
         const builder: HubConnectionBuilder = new HubConnectionBuilder();
 
-        const hubConnection: HubConnection = builder.withUrl(hubUrl)
-            .withAutomaticReconnect()
-            .build();
+        const hubConnection: HubConnection = builder.withUrl(hubUrl, {
+            skipNegotiation: true,
+            transport: signalR.HttpTransportType.WebSockets
+            }).withAutomaticReconnect().build();
 
         hubConnection.start()
             .then(() => console.log("Connected"))

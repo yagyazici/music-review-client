@@ -1,17 +1,25 @@
-<div class="w-50 mx-auto bg-white border rounded-3 border-dark">
-    <h1 class="pt-3 text-center"><u>Login</u></h1>
+<div class="d-flex justify-content-center" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="w-50 mx-auto uzgun-supurge-color border rounded-3 border-dark" *ngIf="!isLoading">
+    <h1 class="pt-3 text-center text-white"><u>Login</u></h1>
     <form [formGroup]="reactiveForm" class="p-5" (submit)="login()">
-        <div class="d-grid">
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput placeholder="Email" formControlName="email">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username" formControlName="username" [spellcheck]="false">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="btn middle-green-btn">Login</button>
+            <p class="my-auto text-white">Don't have account?
+                <a class="btn main-btn btn-sm text-white" routerLink="/register" role="button">
+                    Register
+                </a>
+            </p>
         </div>
-        <button class="ms-auto btn middle-green-btn">Login</button>
     </form>
 </div>

@@ -20,7 +20,7 @@
     </form>
     <div class="d-grid gap-3" *ngIf="albums && albums.length>0">
         <h3 class="m-0">Albums</h3>
-        <div class="wrapper gap-3">
+        <div class="wrapper gap-3 content">
             <div class="album-box p-3 rounded-3 user-select-none border border-dark" *ngFor="let album of albums">
                 <a [mat-dialog-close]="getAlbumId(album)">
                     <img src="{{album.images[0].url}}" class="search-album rounded-3" loading="lazy">

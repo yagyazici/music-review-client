@@ -19,48 +19,47 @@ export class LoginpageComponent implements OnInit {
     error: string;
     currentUser: UserDTO;
     hide = true;
+    isLoading: boolean;
 
     constructor(
-        private authService: AuthService, 
-        private router: Router, 
+        private authService: AuthService,
+        private router: Router,
         private data: DataService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.reactiveForm = new FormGroup({
-            email: new FormControl(""),
+            username: new FormControl(""),
             password: new FormControl(""),
         });
         this.data.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
-        if (this.isAuthenticated){
+        if (this.isAuthenticated) {
             this.router.navigate(["/"]);
         }
         this.data.currentUser.subscribe(currentUser => this.currentUser = currentUser);
-        if (localStorage.hasOwnProperty("currentlyPlaying")){
+        if (localStorage.hasOwnProperty("currentlyPlaying")) {
             localStorage.removeItem("currentlyPlaying")
         }
     }
 
     login() {
-        this.user.Email = this.reactiveForm.value.email;
+        this.user.Username = this.reactiveForm.value.username;
         this.user.Password = this.reactiveForm.value.password;
-        this.authService.login(this.user).subscribe({
-            next: (data: any) => {
-                var parsed = JSON.parse(data)
-                localStorage.setItem('authToken', parsed.authToken.jwt);
-                localStorage.setItem("tokenExpires", parsed.authToken.expires)
-                localStorage.setItem("refreshToken", parsed.refreshToken.Token)
+        this.authService.login(this.user).subscribe(response => {
+            if (response.status) {
+                this.isLoading = false;
+                localStorage.setItem('authToken', response.response.authToken.jwt);
+                localStorage.setItem("tokenExpires", response.response.authToken.expires);
+                localStorage.setItem("refreshToken", response.response.refreshToken.Token);
+                var user = <UserDTO>response.response.currentUser;
+                localStorage.setItem("user", JSON.stringify(user));
+                this.data.changeCurrentUser(user);
+                console.log(response);
                 this.data.changeIsAuthenticated(true);
-                this.authService.GetMe().subscribe(data => {
-                    var jsonObject = JSON.parse(data);
-                    var user: UserDTO = <UserDTO>jsonObject;
-                    localStorage.setItem("user", JSON.stringify(user));
-                    this.data.changeCurrentUser(user);
-                });
                 this.router.navigate(["/"]);
-            },
-            error: error => {
-                this.error = error.error;
+            }
+            else {
+                console.log(response);
             }
         });
     }

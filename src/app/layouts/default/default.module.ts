@@ -55,6 +55,7 @@ import {MatLegacyTabsModule as MatTabsModule} from '@angular/material/legacy-tab
 import {MatLegacySnackBarModule as MatSnackBarModule, MAT_LEGACY_SNACK_BAR_DEFAULT_OPTIONS as MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/legacy-snack-bar';
 import { ArtistSinglesComponent } from 'src/app/pages/artistpage/artist-singles/artist-singles.component';
 import { FeedpageComponent } from 'src/app/pages/feedpage/feedpage.component';
+import { ChangePasswordComponent } from 'src/app/pages/settingspage/change-password/change-password.component';
 
 @NgModule({
     declarations: [
@@ -93,6 +94,7 @@ import { FeedpageComponent } from 'src/app/pages/feedpage/feedpage.component';
         SettingsNavbarComponent,
         FavoriteAlbumsSettingsComponent,
         SearchFavoriteAlbumComponent,
+        ChangePasswordComponent,
         // pipes
         ArtistsNamesPipe,
         SearchArtistNamesPipe,

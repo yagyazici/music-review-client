@@ -32,18 +32,13 @@ export class FeedpageComponent implements OnInit {
     }
 
     getUserFeed(){
-        this.reviewService.getUserFeed().subscribe({
-            next: next => {
-                this.reviews = <Review[]>JSON.parse(next);
-            },
-            error: error => {
-                console.log(error);
-            }
+        this.reviewService.getUserFeed().subscribe(data => {
+            this.reviews = data;
         })
     }
 
     createImgPath(serverPath: string) {
-        return `https://localhost:7161/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`; 
     }
 
     likeButton(reviewId: string){

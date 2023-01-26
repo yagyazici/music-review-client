@@ -45,6 +45,7 @@
 }
 
 ::ng-deep .notif-menu {
+    z-index: 1 !important;
     max-height: 300px !important;
     max-width: 300px !important;
 }

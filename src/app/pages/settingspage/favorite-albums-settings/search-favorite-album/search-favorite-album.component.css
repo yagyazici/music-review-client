@@ -69,3 +69,8 @@
     background-color: #64B7FC;
     color: white;
 }
+
+.content {
+    max-height: 350px;
+    overflow: auto;
+}

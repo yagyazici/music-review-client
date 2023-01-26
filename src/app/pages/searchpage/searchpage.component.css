@@ -42,6 +42,10 @@
     border-width: 1px !important;
 }
 
+::ng-deep .mat-form-field.mat-focused mat-form-field-label{
+    color: white !important;
+}
+
 .wrapper {
     width: 100%;
     display: grid;

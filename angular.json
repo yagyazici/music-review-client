@@ -73,6 +73,7 @@
                             "browserTarget": "MusicRate:build:production"
                         },
                         "development": {
+                            "port": 4200,
                             "browserTarget": "MusicRate:build:development"
                         }
                     },

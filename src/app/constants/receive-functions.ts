@@ -1,7 +1,7 @@
 export enum ReceiveFunctions {
-    MusicRateAddedMessageReceiveFunction = "recieveMusicRateAddedMessage",
-    MusicRateUpdatedMessageReceiveFunction = "recieveMusicRateUpdatedMessage",
-    MusicRateDeletedMessageReceiveFunction = "recieveMusicRateDeletedMessage",
+    MusicReviewAddedMessageReceiveFunction = "recieveMusicReviewAddedMessage",
+    MusicReviewUpdatedMessageReceiveFunction = "recieveMusicReviewUpdatedMessage",
+    MusicReviewDeletedMessageReceiveFunction = "recieveMusicReviewDeletedMessage",
     UserFavoriteAlbumsUpdatedMessageFunction = "receiveUserFavoriteAlbumsUpdatedMessage",
     UserFollowedUserMessage = "receiveUserFollowedUserMessage",
     UserSendNotificitionMessage = "receiveUserSendNotificitionMessage"

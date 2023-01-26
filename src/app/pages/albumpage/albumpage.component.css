@@ -13,3 +13,14 @@
 .artist-name:hover{
     text-decoration: underline !important;
 }
+
+.content {
+    max-height: 350px;
+    overflow: auto;
+}
+
+.sticky{
+    position: sticky;
+    top: 0;
+    z-index: 0;
+}

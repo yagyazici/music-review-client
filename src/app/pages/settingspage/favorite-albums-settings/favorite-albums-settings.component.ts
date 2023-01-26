@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { SearchFavoriteAlbumComponent } from './search-favorite-album/search-favorite-album.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { firstValueFrom } from 'rxjs';
@@ -29,6 +30,7 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
         private dataService: DataService,
         private signalRService: SignalRService,
         private router: Router,
+        private snackBar: MatSnackBar,
     ) { }
 
     async ngOnInit() {
@@ -54,7 +56,7 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
             data: { idx: idx, favoriteAlbum: favoriteAlbum },
             autoFocus: true,
             width: "750px",
-            maxHeight: "750px"
+            maxHeight: "500px"
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result){
@@ -64,18 +66,15 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
     }
 
     async getCurrentUserFavoriteAlbums(){
-        await firstValueFrom(this.authService.getCurrentUserFavoriteAlbums()).then((data) => {
-            var parsed = <Album[]>JSON.parse(data);
-            this.favoriteAlbums = parsed;
+        await firstValueFrom(this.authService.getCurrentUserFavoriteAlbums()).then(data => {
+            this.favoriteAlbums = data;
         })
     }
 
     updateUserFavoriteAlbums(favoriteAlbums: Album[]){
         var favoriteAlbums = this.favoriteAlbums.filter(album => album.id != null)
-        this.authService.updateUserFavoriteAlbums(favoriteAlbums).subscribe({
-            next: (data: any) => {},
-            error: error => {}
-        })
+        this.authService.updateUserFavoriteAlbums(favoriteAlbums).subscribe();
+        this.openSnackBar();
     }
 
     threeAlbumRule(){
@@ -89,5 +88,9 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
         this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
             this.router.navigate([currentUrl]);
         });
+    }
+
+    openSnackBar() {
+        this.snackBar.open('Favorite albums edited successfully!', 'Close');
     }
 }

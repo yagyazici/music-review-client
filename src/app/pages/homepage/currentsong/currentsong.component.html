@@ -1,7 +1,7 @@
 <div *ngIf="currentlyPlaying && currentlyPlaying.is_playing" class="d-flex justify-content-center mb-3">
-    <div class="d-flex flex-row uzgun-supurge-color p-1 border border-dark rounded-3">
+    <div class="d-flex flex-row uzgun-supurge-color p-1 border border-dark rounded-3" [ngClass]="loaded == true ? 'loaded' :''">
         <div class="me-1">
-            <img src="{{currentlyPlaying && currentlyPlaying.item.album.images[0].url}}" alt="" class="my-auto rounded-3" id="home_page_img">
+            <img src="{{currentlyPlaying && currentlyPlaying.item.album.images[0].url}}" alt="" class="my-auto rounded-3 album-img">
         </div>
         <div class="my-auto">
             <h3 class="text-white">{{currentlyPlaying && currentlyPlaying.item.name}}</h3>

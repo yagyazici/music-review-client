@@ -41,13 +41,13 @@ export class ProfileReviewsComponent implements OnInit {
         });
         await this.getUserAlbumReviews(this.userId);
         this.data.currentUser.subscribe(currentUser => this.currentUser = currentUser);
-        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicRateUpdatedMessageReceiveFunction, message => {
+        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicReviewUpdatedMessageReceiveFunction, message => {
             var check = this.userAlbumReviews.filter(review => review.Id == message);
             if (check) {
                 this.getUserAlbumReviews(this.userId);
             }
         });
-        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicRateDeletedMessageReceiveFunction, message => {
+        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicReviewDeletedMessageReceiveFunction, message => {
             if (message == this.userId) {
                 this.getUserAlbumReviews(this.userId);
             }
@@ -56,9 +56,8 @@ export class ProfileReviewsComponent implements OnInit {
     }
 
     async getUserAlbumReviews(userId: string) {
-        await firstValueFrom(this.reviewService.getUserAlbumReviews(userId)).then((data) => {
-            var parsed = <Review[]>JSON.parse(data);
-            this.userAlbumReviews = parsed;
+        await firstValueFrom(this.reviewService.getUserAlbumReviews(userId)).then(data => {
+            this.userAlbumReviews = data;
         });
     }
 

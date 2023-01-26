@@ -25,7 +25,7 @@
 }
 ::ng-deep .review-form .mat-form-field-appearance-outline .mat-form-field-outline-gap{
     border-width: 1px !important;
-}
+}   
 ::ng-deep .review-form .form-shadow:focus {
     border: 1px solid white !important;
     outline: none !important;

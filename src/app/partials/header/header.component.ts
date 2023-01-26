@@ -55,15 +55,7 @@ export class HeaderComponent implements OnInit {
     }
 
     logout(){
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("user");
-        localStorage.removeItem("tokenExpires");
-        localStorage.removeItem("refreshToken");
-        if (localStorage.hasOwnProperty("currentlyPlaying")){
-            localStorage.removeItem("currentlyPlaying");
-        }
-        this.router.navigate(["login"]);
-        this.data.changeIsAuthenticated(false);
+        this.authService.logout();
     }
 
     onClose(){
@@ -80,14 +72,8 @@ export class HeaderComponent implements OnInit {
     }
 
     getUserNotifications(){
-        this.authService.getUserNotifications().subscribe({
-            next: next => {
-                var parsed = <Notification[]>JSON.parse(next);
-                this.notifications = parsed.reverse();
-            },
-            error: error => {
-                console.log(error);
-            }
+        this.authService.getUserNotifications().subscribe(data => {
+            this.notifications = data.reverse();
         })
     }
 
@@ -103,6 +89,6 @@ export class HeaderComponent implements OnInit {
     }
     
     createImgPath(serverPath: string) {
-        return `https://localhost:7161/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`; 
     }
 }

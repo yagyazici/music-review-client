@@ -39,7 +39,7 @@ export class ProfileSettingsComponent implements OnInit {
     ) {}
 
     async ngOnInit() {
-        this.authService.refreshToken()
+        this.authService.refreshToken();
         this.dataService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
         await this.getUser();
         this.createDays();
@@ -56,9 +56,8 @@ export class ProfileSettingsComponent implements OnInit {
     }
 
     async getUser() {
-        await firstValueFrom(this.authService.GetUser(this.loggedUser.Id)).then((data) => {
-            var parsed = JSON.parse(data);
-            this.dataService.changeCurrentUser(<UserDTO>parsed);
+        await firstValueFrom(this.authService.GetUser(this.loggedUser.Id)).then(data => {
+            this.dataService.changeCurrentUser(data)
         });
     }
 
@@ -91,7 +90,7 @@ export class ProfileSettingsComponent implements OnInit {
     }
 
     createImgPath(serverPath: string) {
-        return `https://localhost:7161/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`; 
     }
 
     range = (min: number, max: number) => Array.from({ length: max - min + 1 }, (_, i) => min + i);

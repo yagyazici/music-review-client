@@ -24,14 +24,8 @@ export class ProfileFavoriteAlbumsComponent implements OnInit {
     }
 
     getUserFavoriteAlbums(userId: string){
-        this.authService.getUserFavoriteAlbums(userId).subscribe({
-            next: (data: any) => {
-                var parsed = <Album[]>JSON.parse(data)
-                this.userFavoriteAlbums = parsed
-            },
-            error: error => {
-                console.log(error);
-            }
+        this.authService.getUserFavoriteAlbums(userId).subscribe(data => {
+            this.userFavoriteAlbums = data;
         })
     }
 }

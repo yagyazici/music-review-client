@@ -75,12 +75,11 @@ export class ProfilePictureSettingsComponent implements OnInit {
         // show message
     }
     async getUser() {
-        await firstValueFrom(this.authService.GetUser(this.loggedUser.Id)).then((data) => {
-            var parsed = JSON.parse(data);
-            this.dataService.changeCurrentUser(<UserDTO>parsed);
+        await firstValueFrom(this.authService.GetUser(this.loggedUser.Id)).then(data => {
+            this.dataService.changeCurrentUser(data);
         });
     }
     createImgPath(serverPath: string) {
-        return `https://localhost:7161/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`; 
     }
 }

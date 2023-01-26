@@ -77,19 +77,14 @@ export class AlbumpageComponent implements OnInit {
     }
 
     async checkUserLikedAlbum(albumId: string){
-        await firstValueFrom(this.authService.checkUserLikedAlbum(albumId)).then((data) => {
-            this.liked = data === "true";
+        await firstValueFrom(this.authService.checkUserLikedAlbum(albumId)).then(data => {
+            this.liked = data;
         });
     }
 
     getAlbumLikedCount(albumId: string){
-        this.reviewService.getAlbumLikedCount(albumId).subscribe({
-            next: next => {
-                this.likeCount = parseInt(next);
-            },
-            error: error => {
-                console.log(error);
-            }
+        this.reviewService.getAlbumLikedCount(albumId).subscribe(data => {
+            this.likeCount = data;
         })
     }
 }

@@ -22,6 +22,7 @@ import { ArtistpageComponent } from './pages/artistpage/artistpage.component';
 import { ArtistAlbumsComponent } from './pages/artistpage/artist-albums/artist-albums.component';
 import { ArtistSinglesComponent } from './pages/artistpage/artist-singles/artist-singles.component';
 import { FeedpageComponent } from './pages/feedpage/feedpage.component';
+import { ChangePasswordComponent } from './pages/settingspage/change-password/change-password.component';
 
 const routes: Routes = [
 	{
@@ -57,6 +58,7 @@ const routes: Routes = [
 				{ path: "favorite-albums", component: FavoriteAlbumsSettingsComponent, children: [
 					{ path: "", component: SearchFavoriteAlbumComponent }
 				] },
+				{ path: "password", component: ChangePasswordComponent },
 				{ path: "", redirectTo: "", pathMatch: "full" }
 			]}
 		],

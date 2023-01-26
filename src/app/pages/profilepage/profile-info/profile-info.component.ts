@@ -27,7 +27,7 @@ export class ProfileInfoComponent implements OnInit {
     currentUrl: string;
     followed: boolean = false;
     followers: number;
-    following: number;
+    followings: number;
     constructor(
         private authService: AuthService,
         private dataService: DataService,
@@ -35,61 +35,61 @@ export class ProfileInfoComponent implements OnInit {
         private router: Router,
         private signalRService: SignalRService,
         public dialog: MatDialog,
-    ) {}
+    ) { }
 
-    async ngOnInit(){
+    async ngOnInit() {
         this.activatedRoute.paramMap.subscribe(params => {
             this.userId = params.get("user-id") || "";
         });
         await this.getUser(this.userId);
         this.checkUserFollowed(this.userId);
         this.signalRService.on(HubUrls.UserHub, ReceiveFunctions.UserFollowedUserMessage, message => {
-            if (message.followedUserId == this.userId || message.currentUserId == this.userId){
+            if (message.followedUserId == this.userId || message.currentUserId == this.userId) {
                 this.getUserFollingers(this.userId);
             }
         });
+        this.getImageFromService();
         this.getUserFollingers(this.userId);
         this.currentUrl = this.router.url;
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
     }
 
-    async getUser(userId: string){
-        await firstValueFrom(this.authService.GetUser(userId)).then((data) => {
-            var parsed = JSON.parse(data);
-            this.userInfo = <UserDTO>parsed;
+    async getUser(userId: string) {
+        await firstValueFrom(this.authService.GetUser(userId)).then(data => {
+            this.userInfo = data;
         });
     }
 
-    createImgPath(serverPath: string) {
-        return `https://localhost:7161/${serverPath}`; 
-    }
-
-    followButton(followUser: UserDTO){
-        this.followed = !this.followed;
-        this.authService.followUser(followUser).subscribe({
-            next: (data: any) => {},
-            error: error => {
-                console.log(error);
-            }
-        })
-    }
-
-    async checkUserFollowed(userId: string){
-        await firstValueFrom(this.authService.checkUserFollowed(userId)).then((data) => {
-            this.followed = data === "true";
-        })
-    }
-
-    getUserFollingers(userId: string){
-        this.authService.getUserFollingers(userId).subscribe({
-            next: (data: any) => {
-                var parsed = JSON.parse(data);
-                this.followers = parsed.userFollowers;
-                this.following = parsed.userFollowings;
+    getImageFromService() {
+        this.authService.getImage().subscribe(
+            data => {
+                console.log(data);
             },
-            error: error => {
+            error => {
                 console.log(error);
-            }
+            });
+    }
+
+
+    createImgPath(serverPath: string) {
+        return `https://localhost:7172/${serverPath}`;
+    }
+
+    followButton(followUser: UserDTO) {
+        this.followed = !this.followed;
+        this.authService.followUser(followUser).subscribe();
+    }
+
+    async checkUserFollowed(userId: string) {
+        await firstValueFrom(this.authService.checkUserFollowed(userId)).then((data) => {
+            this.followed = data;
+        })
+    }
+
+    getUserFollingers(userId: string) {
+        this.authService.getUserFollingers(userId).subscribe(data => {
+            this.followers = data.followers;
+            this.followings = data.followings
         })
     }
 

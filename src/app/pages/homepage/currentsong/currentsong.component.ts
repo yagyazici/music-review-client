@@ -12,6 +12,7 @@ export class CurrentsongComponent implements OnInit {
     constructor(private spotify: SpotifyserviceService) { }
     currentlyPlaying: any;
     @Input() toCurrentSong: boolean;
+    loaded: boolean = false;
     
     async ngOnInit(){
         await this.spotify.getToken()
@@ -21,6 +22,9 @@ export class CurrentsongComponent implements OnInit {
     currentSong(){
         this.spotify.currentSong().subscribe({
             next: (data: any) => {
+                if (data) {
+                    this.loaded = true;
+                }
                 var parsed = JSON.parse(data);
                 this.currentlyPlaying = parsed;
             },

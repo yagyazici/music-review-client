@@ -1,19 +1,20 @@
 ::ng-deep .mat-form-field{
     font-family: 'Poppins', sans-serif !important;
+    display: inherit !important;
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem !important;
-    color: black!important;
+    color: white!important;
 }
 
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: black!important;
+    color: white!important;
 }
 
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-    color: black!important;
+    color: white!important;
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start{
@@ -24,4 +25,28 @@
 }
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap{
     border-width: 1px !important;
+}
+
+::ng-deep input::placeholder {
+    color: white !important;
+}
+
+::ng-deep input{
+    color: white !important;
+}
+
+::ng-deep .mat-input-element{
+    caret-color: white;
+}
+
+::ng-deep .mat-form-field-empty.mat-form-field-label{
+    color: white;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label{
+    color: white !important;
+}
+
+::ng-deep .mat-icon{
+    color: white;
 }

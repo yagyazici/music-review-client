@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { Review } from 'src/app/models/review';
 import { AuthService } from 'src/app/services/auth.service';
 import { ReviewService } from 'src/app/services/review.service';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 export interface DialogData {
     reviewId: string;
@@ -21,7 +22,8 @@ export class DeleteReviewComponent implements OnInit {
         public dialogRef: MatDialogRef<DeleteReviewComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
         private reviewService: ReviewService,
-        private authService: AuthService
+        private authService: AuthService,
+        private snackBar: MatSnackBar
     ) {}
 
     async ngOnInit() {
@@ -29,9 +31,8 @@ export class DeleteReviewComponent implements OnInit {
     }
 
     async getAlbumReview(id: string) {
-        await firstValueFrom(this.reviewService.getAlbumReview(id)).then((data) => {
-            var parsed = <Review>JSON.parse(data);
-            this.albumReview = parsed;
+        await firstValueFrom(this.reviewService.getAlbumReview(id)).then(data => {
+            this.albumReview = data;
         });
     }
 
@@ -40,14 +41,12 @@ export class DeleteReviewComponent implements OnInit {
     }
 
     onSubmit(){
-        this.reviewService.DeleteAlbumReview(this.data.reviewId).subscribe({
-            next: (data: any) => {
-                
-            },
-            error: error => {
-                
-            }
-        })
+        this.reviewService.DeleteAlbumReview(this.data.reviewId).subscribe();
         this.dialogRef.close();
+        this.openSnackBar();
+    }
+
+    openSnackBar() {
+        this.snackBar.open('Review deleted successfully!', 'Close');
     }
 }

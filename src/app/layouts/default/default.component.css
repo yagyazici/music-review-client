@@ -14,3 +14,13 @@
     --bs-dropdown-link-disabled-color: #adb5bd;
     --bs-dropdown-header-color: #adb5bd;
 }
+
+.centered{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-1{
+    flex: 1;
+}

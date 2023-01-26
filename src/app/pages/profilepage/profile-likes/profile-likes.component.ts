@@ -25,14 +25,8 @@ export class ProfileLikesComponent implements OnInit {
     }
 
     getUserLikedAlbums(userId: string){
-        this.authService.getUserLikedAlbums(userId).subscribe({
-            next: (data: any) => {
-                var parsed = <Album[]>JSON.parse(data)
-                this.userLikedAlbums = parsed
-            },
-            error: error => {
-                console.log(error);
-            }
+        this.authService.getUserLikedAlbums(userId).subscribe(data => {
+            this.userLikedAlbums = data;
         })
     }
 }

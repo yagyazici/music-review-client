@@ -23,7 +23,7 @@ export class ReviewsComponentComponent implements OnInit {
 
     ngOnInit(){
         this.getParams();
-        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicRateAddedMessageReceiveFunction, message => {
+        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicReviewAddedMessageReceiveFunction, message => {
             if (message.albumId == this.albumId) {
                 this.getAlbumReviews(this.albumId);
             }
@@ -32,14 +32,8 @@ export class ReviewsComponentComponent implements OnInit {
     }
 
     getAlbumReviews(albumId: string){
-        this.reviewService.getAlbumReviews(albumId).subscribe({
-            next: (data: any) => {
-                var parsed = JSON.parse(data);
-                this.albumReviews = <Review[]>parsed;
-            },
-            error: error => {
-                console.log(error);
-            }
+        this.reviewService.getAlbumReviews(albumId).subscribe(data => {
+            this.albumReviews = data;
         })
     }
 
@@ -50,6 +44,6 @@ export class ReviewsComponentComponent implements OnInit {
     }
 
     createImgPath(serverPath: string) {
-        return `https://localhost:7161/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`; 
     }
 }

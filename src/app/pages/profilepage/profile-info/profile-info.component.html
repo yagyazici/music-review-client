@@ -20,12 +20,12 @@
                                 <strong>{{followers}}</strong><small> followers</small>
                             </p>
                         </ng-template>
-                        <p class="text-white m-0" *ngIf="following; else noFollowing" style="cursor: pointer;text-decoration: none;" (click)="followingDialog()">
-                            <strong>{{following}}</strong><small> following</small>
+                        <p class="text-white m-0" *ngIf="followings; else noFollowing" style="cursor: pointer;text-decoration: none;" (click)="followingDialog()">
+                            <strong>{{followings}}</strong><small> following</small>
                         </p>
                         <ng-template #noFollowing>
                             <p class="text-white m-0" style="cursor: pointer;text-decoration: none;">
-                                <strong>{{following}}</strong><small> following</small>
+                                <strong>{{followings}}</strong><small> following</small>
                             </p>
                         </ng-template>
                     </div>

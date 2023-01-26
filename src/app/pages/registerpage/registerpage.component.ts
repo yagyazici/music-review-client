@@ -11,12 +11,13 @@ import { DataService } from 'src/app/services/dataservice.service';
     styleUrls: ['./registerpage.component.css']
 })
 export class RegisterpageComponent implements OnInit {
-    
+
     user = new User();
     errors: any;
     isAuthenticated: boolean;
     reactiveForm: FormGroup;
     hide = true;
+    isLoading: boolean;
     constructor(private authService: AuthService, private router: Router, private data: DataService) { }
 
     ngOnInit(): void {
@@ -26,28 +27,28 @@ export class RegisterpageComponent implements OnInit {
             password: new FormControl(""),
         });
         this.data.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
-        if (localStorage.hasOwnProperty("currentlyPlaying")){
+        if (localStorage.hasOwnProperty("currentlyPlaying")) {
             localStorage.removeItem("currentlyPlaying")
         }
-        if (this.isAuthenticated){
+        if (this.isAuthenticated) {
             this.router.navigate(["/"]);
         }
-        else{
+        else {
             return;
         }
     }
 
-    register(){
+    register() {
         this.user.Username = this.reactiveForm.value.username;
         this.user.Email = this.reactiveForm.value.email;
         this.user.Password = this.reactiveForm.value.password;
-        this.authService.register(this.user).subscribe({
-            next: () => {
-                this.router.navigate(["login"])
-            },
-            error: error => {
-                var parsed = JSON.parse(error.error);
-                this.errors = parsed;
+        this.authService.register(this.user).subscribe(response => {
+            if (response.status){
+                this.isLoading = false;
+                this.router.navigate(["login"]);
+            }
+            else{
+                this.errors = response.response;
             }
         });
     }

@@ -1,7 +1,18 @@
-<div *ngIf="userFavoriteAlbums && userFavoriteAlbums.length > 0">
-    <p class="text-center text-white">Favorite Albums
-        <a *ngIf="userInfo && userInfo.Id === currentUser.Id" 
-        class="btn main-btn btn-sm text-white" routerLink="/settings/favorite-albums" role="button">Edit</a></p>
+<div *ngIf="userFavoriteAlbums">
+    <div *ngIf="userInfo && userInfo.Id === currentUser.Id">
+        <p *ngIf="userFavoriteAlbums.length > 0;else add" class="text-center text-white">
+            Favorite Albums
+            <a *ngIf="userInfo && userInfo.Id === currentUser.Id" class="btn main-btn btn-sm text-white"
+                routerLink="/settings/favorite-albums" role="button">
+                Edit
+            </a>
+        </p>
+        <ng-template #add>
+            <a class="btn main-btn btn-sm text-white" routerLink="/settings/favorite-albums" role="button">
+                Add your favorite albums
+            </a>
+        </ng-template>
+    </div>
     <div class="wrapper rounded-3">
         <div *ngFor="let favoriteAlbum of userFavoriteAlbums" class="album-box p-3 user-select-none">
             <a [routerLink]="['/album', favoriteAlbum.id]">
@@ -9,7 +20,8 @@
                 <hr class="text-white">
                 <h6 class="m-0 p-0 text-white text-truncate"><strong>{{favoriteAlbum.name}}</strong></h6>
                 <small class="m-0 p-0 text-white">
-                    <a [routerLink]="['/artist', favoriteAlbum.artists[0].id]" class="text-decoration-none text-white artist-name">
+                    <a [routerLink]="['/artist', favoriteAlbum.artists[0].id]"
+                        class="text-decoration-none text-white artist-name">
                         {{favoriteAlbum.artists[0].name}}
                     </a>
                 </small>
