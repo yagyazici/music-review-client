@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { firstValueFrom } from 'rxjs';
 import { Review } from 'src/app/models/review';
-import { AuthService } from 'src/app/services/auth.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
@@ -22,7 +21,6 @@ export class DeleteReviewComponent implements OnInit {
         public dialogRef: MatDialogRef<DeleteReviewComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
         private reviewService: ReviewService,
-        private authService: AuthService,
         private snackBar: MatSnackBar
     ) {}
 

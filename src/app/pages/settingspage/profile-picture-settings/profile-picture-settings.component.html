@@ -3,7 +3,7 @@
     <div class="uzgun-supurge-color border rounded-3 border-dark container p-3 frame">
         <form>
             <div (click)="file.click()" [style.display]="showCropper ? 'none' : 'flex'" class=" justify-content-center profile-picture-box position-relative" style="cursor: pointer">
-                <img *ngIf="loggedUser && loggedUser.ProfilePicture; else profileVector" [src]="createImgPath(loggedUser.ProfilePicture)" class="profile-picture rounded-circle">
+                <img *ngIf="currentUser && currentUser.ProfilePicture; else profileVector" [src]="createImgPath(currentUser.ProfilePicture)" class="profile-picture rounded-circle">
                 <ng-template #profileVector>
                     <img class="profile-picture rounded-circle" src="/assets/images/profile_vector.jpg" alt="">
                 </ng-template>
@@ -33,7 +33,10 @@
             </image-cropper>
         </form>       
     </div>
-    <div mat-dialog-actions class="d-flex justify-content-evenly">
+    <div *ngIf="!showCropper && currentUser.ProfilePicture" class="d-flex justify-content-end">
+        <span (click)="deleteDialog()" class="btn middle-green-btn btn-sm" style="cursor: pointer;text-decoration: none;">Delete</span>
+    </div>
+    <div mat-dialog-actions class="d-flex justify-content-between">
         <button [style.display]="showCropper ? null : 'none'" (click)="cancelUploadFile();" class="btn btn-sm cancel-btn">Cancel</button>
         <button [style.display]="showCropper ? null : 'none'" (click)="uploadFile(croppedImage);" class="btn main-btn btn-sm text-white">Save</button>
     </div>

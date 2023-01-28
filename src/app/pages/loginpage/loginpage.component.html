@@ -1,9 +1,10 @@
 <div class="d-flex justify-content-center" *ngIf="isLoading">
     <mat-spinner></mat-spinner>
 </div>
-<div class="w-50 mx-auto uzgun-supurge-color border rounded-3 border-dark" *ngIf="!isLoading">
+<div class="w-50 mx-auto uzgun-supurge-color border rounded-3 border-dark p-5" *ngIf="!isLoading">
     <h1 class="pt-3 text-center text-white"><u>Login</u></h1>
-    <form [formGroup]="reactiveForm" class="p-5" (submit)="login()">
+    <small *ngIf="errorText" class="text-danger m-0 p-0">{{errorText}}</small>
+    <form [formGroup]="reactiveForm" (submit)="login()">
         <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
             <input matInput placeholder="Username" formControlName="username" [spellcheck]="false">

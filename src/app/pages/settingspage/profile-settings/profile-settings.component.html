@@ -9,17 +9,17 @@
                 </div>
                 <mat-form-field appearance="outline">
                     <mat-label>Username</mat-label>
-                    <input matInput placeholder="Username" formControlName="username"
+                    <input matInput formControlName="username"
                         [value]="loggedUser && loggedUser.Username" [spellcheck]="false">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input matInput placeholder="Email" formControlName="email"
+                    <input matInput formControlName="email"
                         [value]="loggedUser && loggedUser.Email" [spellcheck]="false">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Bio</mat-label>
-                    <input matInput placeholder="Email" formControlName="bio" 
+                    <input matInput formControlName="bio" 
                         [value]="loggedUser && loggedUser.Bio" [spellcheck]="false">
                 </mat-form-field>
                 <div class="row">

@@ -56,6 +56,8 @@ import {MatLegacySnackBarModule as MatSnackBarModule, MAT_LEGACY_SNACK_BAR_DEFAU
 import { ArtistSinglesComponent } from 'src/app/pages/artistpage/artist-singles/artist-singles.component';
 import { FeedpageComponent } from 'src/app/pages/feedpage/feedpage.component';
 import { ChangePasswordComponent } from 'src/app/pages/settingspage/change-password/change-password.component';
+import { ErrorsPipe } from 'src/app/pipes/errors.pipe';
+import { DeleteImageComponent } from 'src/app/pages/settingspage/profile-picture-settings/delete-image/delete-image.component';
 
 @NgModule({
     declarations: [
@@ -91,6 +93,7 @@ import { ChangePasswordComponent } from 'src/app/pages/settingspage/change-passw
         //settings page
         ProfileSettingsComponent,
         ProfilePictureSettingsComponent,
+        DeleteImageComponent,
         SettingsNavbarComponent,
         FavoriteAlbumsSettingsComponent,
         SearchFavoriteAlbumComponent,
@@ -104,6 +107,7 @@ import { ChangePasswordComponent } from 'src/app/pages/settingspage/change-passw
         BirthDatePipe,
         GenresPipe,
         CopyrightPipe,
+        ErrorsPipe,
         // directives
         AutoFocusDirective
     ],

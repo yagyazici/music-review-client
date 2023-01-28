@@ -1,11 +1,10 @@
 .album-img {
-    width: 450px;
+    width: 15rem;
 }
 
 .wrapper {
-    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, minmax(350px, 1fr));
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
 }
 
 .album-box {

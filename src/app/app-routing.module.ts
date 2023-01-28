@@ -23,50 +23,57 @@ import { ArtistAlbumsComponent } from './pages/artistpage/artist-albums/artist-a
 import { ArtistSinglesComponent } from './pages/artistpage/artist-singles/artist-singles.component';
 import { FeedpageComponent } from './pages/feedpage/feedpage.component';
 import { ChangePasswordComponent } from './pages/settingspage/change-password/change-password.component';
+import { AuthService } from './services/auth.service';
+import { AuthenticationGuard } from './services/authentication.guard';
+import { DeleteImageComponent } from './pages/settingspage/profile-picture-settings/delete-image/delete-image.component';
 
 const routes: Routes = [
 	{
 		path: "", 
 		component: DefaultComponent,
 		children: [
-			{ path : "", component: HomepageComponent, children : [
+			{ path : "", component: HomepageComponent, canActivate: [AuthenticationGuard], children : [
 				{ path: "", component: CurrentsongComponent}
 			]},
-			{ path: "reviews", component: FeedpageComponent },
+			{ path: "reviews", component: FeedpageComponent, canActivate: [AuthenticationGuard] },
 			{ path : "login", component: LoginpageComponent },
 			{ path : "register", component: RegisterpageComponent },
-			{ path : "search", component: SearchpageComponent },
-			{ path : "album/:album-id", component: AlbumpageComponent, children: [
+			{ path : "search", component: SearchpageComponent, canActivate: [AuthenticationGuard]},
+			{ path : "album/:album-id", component: AlbumpageComponent, canActivate: [AuthenticationGuard], children: [
 				{ path: "", component: ReviewFormComponentComponent },
 				{ path: "", component: ReviewsComponentComponent }
 			]},
-			{ path: "artist/:artist-id", component: ArtistpageComponent, children: [
+			{ path: "artist/:artist-id", component: ArtistpageComponent, canActivate: [AuthenticationGuard], children: [
 				{ path: "", component: ArtistAlbumsComponent },
 				{ path: "singles", component: ArtistSinglesComponent },
 				{ path: "", redirectTo: "", pathMatch: "full" }
 			] },
-			{ path: "profile/:user-id", component: ProfilepageComponent, children: [
+			{ path: "profile/:user-id", component: ProfilepageComponent, canActivate: [AuthenticationGuard], children: [
 				{ path: "", component: ProfileReviewsComponent , children: [
 					{ path: "edit-review", component: EditReviewComponent },
 					{ path: "delete-review", component: DeleteReviewComponent }
 				]},
 				{ path: "likes", component: ProfileLikesComponent }
 			]},
-			{ path: "settings", children: [
+			{ path: "settings", canActivate: [AuthenticationGuard], children: [
 				{ path: "", component: ProfileSettingsComponent },
-				{ path: "picture", component: ProfilePictureSettingsComponent },
+				{ path: "picture", component: ProfilePictureSettingsComponent, children: [
+					{ path: "", component: DeleteImageComponent }
+				]},
 				{ path: "favorite-albums", component: FavoriteAlbumsSettingsComponent, children: [
 					{ path: "", component: SearchFavoriteAlbumComponent }
 				] },
 				{ path: "password", component: ChangePasswordComponent },
 				{ path: "", redirectTo: "", pathMatch: "full" }
-			]}
+			]},
+			{ path: "**", redirectTo: ""}
 		],
 	}
 ];
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
+	providers: [AuthenticationGuard]
 })
 export class AppRoutingModule { }

@@ -1,24 +1,24 @@
 <div class="d-flex justify-content-center" *ngIf="isLoading">
     <mat-spinner></mat-spinner>
 </div>
-<div class="w-50 mx-auto uzgun-supurge-color border rounded-3 border-dark p-3" *ngIf="!isLoading">
-    <h1 class="text-center text-white"><u class="p-5">Register</u></h1>
-    <form [formGroup]="reactiveForm" (submit)="register()" class="p-5">
-        <div class="d-grid">
-            <mat-form-field appearance="outline">
-                <mat-label>Username</mat-label>
-                <input matInput placeholder="Username" formControlName="username" [spellcheck]="false">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput placeholder="Email" formControlName="email" [spellcheck]="false">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" [spellcheck]="false">
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </mat-form-field>
-        </div>
+<div class="w-50 mx-auto uzgun-supurge-color border rounded-3 border-dark p-5" *ngIf="!isLoading">
+    <h1 class="text-center text-white"><u>Register</u></h1>
+    <small *ngIf="errorText" class="text-danger m-0 p-0">{{errorText | errors}}</small>
+    <form [formGroup]="reactiveForm" (submit)="register()">
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username" formControlName="username" [spellcheck]="false">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email" [spellcheck]="false">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password"
+                [spellcheck]="false">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
         <div class="d-flex justify-content-between align-items-center">
             <button class="btn middle-green-btn">Register</button>
             <p class="my-auto text-white">Already have account?

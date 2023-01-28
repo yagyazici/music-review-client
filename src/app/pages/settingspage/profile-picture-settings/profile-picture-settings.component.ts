@@ -1,11 +1,13 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Router } from '@angular/router';
 import { base64ToFile, Dimensions, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 import { firstValueFrom } from 'rxjs';
 import { UserDTO } from 'src/app/models/userDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/dataservice.service';
+import { DeleteImageComponent } from './delete-image/delete-image.component';
 
 @Component({
     selector: 'app-profile-picture-settings',
@@ -15,7 +17,7 @@ import { DataService } from 'src/app/services/dataservice.service';
 export class ProfilePictureSettingsComponent implements OnInit {
 
     showCropper = false;
-    loggedUser: UserDTO;
+    currentUser: UserDTO;
     message: string;
     progress: number;
     imageChangedEvent: any = "";
@@ -26,13 +28,14 @@ export class ProfilePictureSettingsComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private dataService: DataService,
-        private router: Router
+        private router: Router,
+        public dialog: MatDialog,
     ) { }
     
 
     async ngOnInit(){
         this.authService.refreshToken()
-        this.dataService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
+        this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
         await this.getUser();
     }
 
@@ -52,6 +55,7 @@ export class ProfilePictureSettingsComponent implements OnInit {
             }
         })
     }
+
     cancelUploadFile(){
         const currentUrl = this.router.url;
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -63,7 +67,7 @@ export class ProfilePictureSettingsComponent implements OnInit {
     }
     imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
-        const imgFile = new File([base64ToFile(this.croppedImage)], `${this.loggedUser.Id}.jpeg`);
+        const imgFile = new File([base64ToFile(this.croppedImage)], `${this.currentUser.Id}.jpeg`);
         this.croppedImage = imgFile
     }
     imageLoaded() {
@@ -74,12 +78,22 @@ export class ProfilePictureSettingsComponent implements OnInit {
     loadImageFailed() {
         // show message
     }
+
     async getUser() {
-        await firstValueFrom(this.authService.GetUser(this.loggedUser.Id)).then(data => {
+        await firstValueFrom(this.authService.GetUser(this.currentUser.Id)).then(data => {
             this.dataService.changeCurrentUser(data);
         });
     }
     createImgPath(serverPath: string) {
         return `https://localhost:7172/${serverPath}`; 
+    }
+
+    deleteDialog() {
+        const dialogRef = this.dialog.open(DeleteImageComponent, {
+            autoFocus: false,
+            width: "450px",
+            maxHeight: "750px",
+            panelClass: "delete-dialog"
+        });
     }
 }

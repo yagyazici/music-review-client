@@ -9,7 +9,7 @@ import { SpotifyrefreshService } from './spotifyrefresh.service';
 export class SpotifyserviceService {
 
     tokenSubject = new BehaviorSubject<string>("");
-    
+    headers: HttpHeaders;
     constructor(
         private http: HttpClient, 
         private refresh_service: SpotifyrefreshService
@@ -20,18 +20,18 @@ export class SpotifyserviceService {
             var access_token = JSON.parse(data);
             this.tokenSubject.next(access_token.access_token)
         });
+        var token = this.tokenSubject.value;
+        this.headers = new HttpHeaders({
+            "Authorization": `Bearer ${token}`
+        });
     }
     
     currentSong(): Observable<any>{
-        var token = this.tokenSubject.value;
-        const headers = new HttpHeaders({
-            "Authorization": `Bearer ${token}`
-        });
         const params = new HttpParams().set("market", "gb")
         return this.http.get(
             "https://api.spotify.com/v1/me/player/currently-playing", 
             {
-                headers: headers,
+                headers: this.headers,
                 params: params,
                 responseType: "text"
             }
@@ -39,15 +39,11 @@ export class SpotifyserviceService {
     }
 
     searchAlbum(query: string): Observable<any>{
-        var token = this.tokenSubject.value;
-        const headers = new HttpHeaders({
-            "Authorization": `Bearer ${token}`
-        });
         const params = new HttpParams().set("q", query).set("type", "album").set("market", "gb")
         return this.http.get(
             "https://api.spotify.com/v1/search",
             {
-                headers: headers,
+                headers: this.headers,
                 params: params,
                 responseType: "text"
             }
@@ -55,15 +51,11 @@ export class SpotifyserviceService {
     }
 
     getAlbum(albumId: string){
-        var token = this.tokenSubject.value;
-        const headers = new HttpHeaders({
-            "Authorization": `Bearer ${token}`
-        });
         const params = new HttpParams().set("market", "gb")
         return this.http.get(
             `https://api.spotify.com/v1/albums/${albumId}`, 
             {
-                headers: headers,
+                headers: this.headers,
                 params: params, 
                 responseType: "text"
             }
@@ -71,15 +63,11 @@ export class SpotifyserviceService {
     }
 
     getArtist(artistId: string){
-        var token = this.tokenSubject.value;
-        const headers = new HttpHeaders({
-            "Authorization": `Bearer ${token}`
-        });
         const params = new HttpParams().set("market", "gb")
         return this.http.get(
             `https://api.spotify.com/v1/artists/${artistId}`, 
             {
-                headers: headers,
+                headers: this.headers,
                 params: params, 
                 responseType: "text"
             }
@@ -87,16 +75,12 @@ export class SpotifyserviceService {
     }
 
     getArtistAlbums(artistId: string, type: string){
-        var token = this.tokenSubject.value;
-        const headers = new HttpHeaders({
-            "Authorization": `Bearer ${token}`
-        });
         const params = new HttpParams().set("market", "gb").set("include_groups", type)
         // "album,single"
         return this.http.get(
             `https://api.spotify.com/v1/artists/${artistId}/albums`,
             {
-                headers: headers,
+                headers: this.headers,
                 params: params,
                 responseType: "text"
             }

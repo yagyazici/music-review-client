@@ -16,12 +16,17 @@ import { DataService } from './dataservice.service';
 export class AuthService {
 	
 	baseUrl = "https://localhost:7172/UserAuth/"
-
+	headers: HttpHeaders;
 	constructor(
 		private http: HttpClient,
 		private router: Router,
         private data: DataService,
-	) { }
+	) { 
+		var token = localStorage.getItem("authToken");
+		this.headers = new HttpHeaders({
+            "Authorization": `bearer ${token}`
+        });
+	}
 	
 	public register(user: User): Observable<CustomResponse> {
 		return this.http.post<CustomResponse>(`${this.baseUrl}Register`, user);
@@ -45,50 +50,37 @@ export class AuthService {
 
 	public GetUser(userId: string): Observable<UserDTO> {
         const params = new HttpParams().set("userId", userId)
-        return this.http.get<UserDTO>(`${this.baseUrl}GetUserProfile`,{params: params});
+        return this.http.get<UserDTO>(`${this.baseUrl}GetUserProfile`, {params: params});
 	}
 
 	public uploadFile(files: any): Observable<any> | undefined{
-		var token = localStorage.getItem("authToken")
 		if (files.length === 0){
 			return ;
 		}
 		let fileToUpload = <File>files;
-		
 		const formData = new FormData();
 		formData.append("file", fileToUpload, fileToUpload.name);
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
-		return this.http.put(`${this.baseUrl}UploadProfileImage`, formData, { headers:headers ,reportProgress: true, observe: "events" })
+		return this.http.put(`${this.baseUrl}UploadProfileImage`, formData, { headers:this.headers ,reportProgress: true, observe: "events" })
 	}
 
 	public updateProfile(username: string, bio: string, birthDate: string, email: string): Observable<CustomResponse>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		const params = new HttpParams()
 		.set("username", username)
 		.set("bio", bio)
 		.set("birthDate", birthDate)
 		.set("email", email)
         return this.http.put<CustomResponse>(`${this.baseUrl}UpdateUser`, null, {
-			headers: headers,
+			headers: this.headers,
 			params: params
 		});
 	}
 
 	public updatePassword(oldPassword: string, newPassword: string): Observable<CustomResponse>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		const params = new HttpParams()
 		.set("currentPassword", oldPassword)
 		.set("newPassword", newPassword);
 		return this.http.put<CustomResponse>(`${this.baseUrl}UpdatePassword`, null, {
-			headers: headers,
+			headers: this.headers,
 			params: params
 		});
 	}
@@ -104,34 +96,22 @@ export class AuthService {
 	}
 
 	public getCurrentUserFavoriteAlbums(): Observable<Album []>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		return this.http.get<Album[]>(`${this.baseUrl}GetCurrentUserFavoriteAlbums`, {
-			headers: headers
+			headers: this.headers
 		});
 	}
 
 	public getUserFavoriteAlbums(userId: string): Observable<Album []> {
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		const params = new HttpParams().set("userId", userId)
 		return this.http.get<Album []>(`${this.baseUrl}GetUsersFavoriteAlbums`, {
 			params: params,
-			headers: headers
+			headers: this.headers
 		});
 	}
 
 	public updateUserFavoriteAlbums(favoriteAlbums: Album[]): Observable<CustomResponse> {
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		return this.http.post<CustomResponse>(`${this.baseUrl}AddUserFavoriteAlbums`, favoriteAlbums, {
-			headers: headers
+			headers: this.headers
 		});
 	}
 
@@ -160,103 +140,67 @@ export class AuthService {
 	}
 
 	public likeAlbum(likeAlbum: Album): Observable<CustomResponse>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		return this.http.post<CustomResponse>(`${this.baseUrl}ToggleUserLikedAlbum`, likeAlbum, {
-			headers: headers
+			headers: this.headers
 		})
 	}
 
 	public checkUserLikedAlbum(albumId: string): Observable<boolean>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		const params = new HttpParams()
 		.set("albumId", albumId)
 		return this.http.get<boolean>(`${this.baseUrl}CheckUserAlbumLiked`, {
-			headers: headers,
+			headers: this.headers,
 			params: params
 		})
 	}
 
 	public getUserLikedAlbums(userId: string): Observable<Album []>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		const params = new HttpParams()
 		.set("userId", userId)
 		return this.http.get<Album[]>(`${this.baseUrl}GetUserLikedAlbums`, {
-			headers: headers,
+			headers: this.headers,
 			params: params
 		})
 	}
 
 	public followUser(followedUser: UserDTO): Observable<CustomResponse> {
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
-		return this.http.post<CustomResponse>(`${this.baseUrl}ToggleUserFollowedUser`, followedUser, {headers: headers});
+		return this.http.post<CustomResponse>(`${this.baseUrl}ToggleUserFollowedUser`, followedUser, {headers: this.headers});
 	}
 
 	public checkUserFollowed(userId: string): Observable<boolean> {
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		const params = new HttpParams().set("userId", userId);
-		return this.http.get<boolean>(`${this.baseUrl}CheckUserFollowed`, {headers: headers, params: params});
+		return this.http.get<boolean>(`${this.baseUrl}CheckUserFollowed`, {headers: this.headers, params: params});
 	}
 
 	public getUserFollingers(userId: string): Observable<Follingers>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		const params = new HttpParams().set("userId", userId);
-		return this.http.get<Follingers>(`${this.baseUrl}GetUserFollingers`, {headers: headers,params: params})
+		return this.http.get<Follingers>(`${this.baseUrl}GetUserFollingers`, {headers: this.headers, params: params})
 	}
 
 	public getUserFollowings(userId: string): Observable<UserDTO[]>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		const params = new HttpParams().set("userId", userId);
-		return this.http.get<UserDTO[]>(`${this.baseUrl}GetUserFollowings`, {headers: headers, params: params});
+		return this.http.get<UserDTO[]>(`${this.baseUrl}GetUserFollowings`, {headers: this.headers, params: params});
 	}
 
 	public getUserFollowers(userId: string): Observable<UserDTO[]>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
 		const params = new HttpParams().set("userId", userId);
-		return this.http.get<UserDTO[]>(`${this.baseUrl}GetUserFollowers`, {headers: headers, params: params});
+		return this.http.get<UserDTO[]>(`${this.baseUrl}GetUserFollowers`, {headers: this.headers, params: params});
 	}
 
 	public getUserNotifications(): Observable<Notification[]>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
-		return this.http.get<Notification[]>(`${this.baseUrl}GetUserNotifications`, {headers: headers});
+		return this.http.get<Notification[]>(`${this.baseUrl}GetUserNotifications`, {headers: this.headers});
 	}
 
 	public getUserNotificationsCount(): Observable<number>{
-		var token = localStorage.getItem("authToken")
-		const headers = new HttpHeaders({
-            "Authorization": `bearer ${token}`
-        });
-		return this.http.get<number>(`${this.baseUrl}GetUserNotificationCount`, {headers: headers});
+		return this.http.get<number>(`${this.baseUrl}GetUserNotificationCount`, {headers: this.headers});
 	}
 
 	public getImage(): Observable<Blob>{
 		return this.http.get("https://localhost:7172/Recourses/Images/63c824cca81836c19713059b.jpeg", {responseType: "blob"})
+	}
+
+	public deleteImage(): Observable<CustomResponse>{
+		return this.http.delete<CustomResponse>(`${this.baseUrl}DeleteProfileImage`, {headers: this.headers})
 	}
 }
 

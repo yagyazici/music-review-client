@@ -1,7 +1,7 @@
-.album-image{
-    width: 300px;
+::ng-deep  .delete-dialog .mat-dialog-container{
+    background-color: #135081;
+    color: white;
 }
-
 .cancel-btn{
     color: white;
     border: none;
@@ -11,9 +11,4 @@
 
 .cancel-btn:hover{
     transform: scale(1.1);
-}
-
-::ng-deep .delete-dialog .mat-dialog-container{
-    background-color: #135081;
-    color: white;
 }

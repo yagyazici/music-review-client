@@ -20,11 +20,7 @@ export class HomepageComponent implements OnInit {
     ) {}
     
     ngOnInit(): void {
-        this.data.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated)
         this.data.currentUser.subscribe(currentUser => this.currentUser = currentUser)
-        if (!this.isAuthenticated){
-            this.router.navigate(["/login"])
-        }
         this.authService.refreshToken();
     }
 }

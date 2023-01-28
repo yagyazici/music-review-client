@@ -13,12 +13,17 @@ import { DataService } from 'src/app/services/dataservice.service';
 export class RegisterpageComponent implements OnInit {
 
     user = new User();
-    errors: any;
     isAuthenticated: boolean;
     reactiveForm: FormGroup;
     hide = true;
     isLoading: boolean;
-    constructor(private authService: AuthService, private router: Router, private data: DataService) { }
+    errorText: string[];
+    
+    constructor(
+        private authService: AuthService, 
+        private router: Router, 
+        private data: DataService
+    ) { }
 
     ngOnInit(): void {
         this.reactiveForm = new FormGroup({
@@ -48,7 +53,7 @@ export class RegisterpageComponent implements OnInit {
                 this.router.navigate(["login"]);
             }
             else{
-                this.errors = response.response;
+                this.errorText = response.response;
             }
         });
     }

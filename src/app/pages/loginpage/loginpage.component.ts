@@ -20,6 +20,7 @@ export class LoginpageComponent implements OnInit {
     currentUser: UserDTO;
     hide = true;
     isLoading: boolean;
+    errorText: string;
 
     constructor(
         private authService: AuthService,
@@ -59,7 +60,7 @@ export class LoginpageComponent implements OnInit {
                 this.router.navigate(["/"]);
             }
             else {
-                console.log(response);
+                this.errorText = response.response;
             }
         });
     }
