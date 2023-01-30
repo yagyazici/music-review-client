@@ -7,21 +7,21 @@
     <form [formGroup]="reactiveForm" (submit)="register()">
         <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
-            <input matInput placeholder="Username" formControlName="username" [spellcheck]="false">
+            <input matInput formControlName="username" [spellcheck]="false">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" formControlName="email" [spellcheck]="false">
+            <input matInput formControlName="email" [spellcheck]="false">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password"
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"
                 [spellcheck]="false">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="register-buttons">
             <button class="btn middle-green-btn">Register</button>
-            <p class="my-auto text-white">Already have account?
+            <p class="text-white m-0">Already have account?
                 <a class="btn main-btn btn-sm text-white" routerLink="/login" role="button">
                     Login
                 </a>

@@ -1,10 +1,8 @@
 <div *ngIf="!error && album; else not_found" class="mx-auto w-75 d-flex flex-column gap-3">
     <div class="uzgun-supurge-color border rounded-3 border-dark">
-        <div class="row p-1">
-            <div class="my-auto col-sm">
-                <img src="{{album.images[0].url}}" title="{{album.name}}" id="album_page_img" class="rounded-3">
-            </div>
-            <div class="d-flex flex-column justify-content-between col-sm">
+        <div class="album-box p-1">
+            <img src="{{album.images[0].url}}" title="{{album.name}}" class="rounded-3 album-img">
+            <div class="d-flex flex-column justify-content-between">
                 <div>
                     <div class="d-flex justify-content-between">
                         <h2 class="anchor-color my-0">{{album.name}}</h2>
@@ -76,22 +74,9 @@
             </div>
         </div>
     </div>
-    <div *ngIf="isAuthenticated;else notAuth" class="position-relative h-100 d-flex flex-column gap-3">
-        <app-review-form-component [albumId]="albumId" [albumForm]="album" [currentFormUser]="currentUser">
-        </app-review-form-component>
-        <app-reviews-component></app-reviews-component>
-    </div>
-    <ng-template #notAuth>
-        <div
-            class="bg-white border rounded-3 border-dark d-flex flex-column align-items-center justify-content-center h-100">
-            <h1>
-                <a routerLink="/login" class="text-decoration-none">Login</a>
-            </h1>
-            <h1>
-                <a routerLink="/register" class="text-decoration-none">Register</a>
-            </h1>
-        </div>
-    </ng-template>
+    <app-review-form-component [albumId]="albumId" [albumForm]="album"
+        [currentFormUser]="currentUser"></app-review-form-component>
+    <app-reviews-component></app-reviews-component>
 </div>
 <ng-template #not_found>
     <h3 class="d-flex justify-content-center" *ngIf="error">Could not found album.</h3>

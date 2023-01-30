@@ -1,16 +1,4 @@
-#album_page_img {
-    width: 100%;
-    max-width: 640px;
-    height: auto;
-}
-
-::ng-deep .albumReview:focus {
-    border: 1px solid black !important;
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-.artist-name:hover{
+.artist-name:hover {
     text-decoration: underline !important;
 }
 
@@ -19,8 +7,81 @@
     overflow: auto;
 }
 
-.sticky{
+.sticky {
     position: sticky;
     top: 0;
     z-index: 0;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .album-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .album-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .album-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .album-box {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 640px;
+        height: auto;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .album-box {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 640px;
+        height: auto;
+    }
 }

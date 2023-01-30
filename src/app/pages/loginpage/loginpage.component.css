@@ -1,4 +1,5 @@
-::ng-deep .mat-form-field{
+/*#region RegionName*/
+::ng-deep .mat-form-field {
     font-family: 'Poppins', sans-serif !important;
     display: inherit !important;
 }
@@ -6,24 +7,26 @@
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem !important;
-    color: white!important;
+    color: white !important;
 }
 
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: white!important;
+    color: white !important;
 }
 
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-    color: white!important;
+    color: white !important;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start{
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
     border-width: 1px !important;
 }
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end{
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
     border-width: 1px !important;
 }
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap{
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
     border-width: 1px !important;
 }
 
@@ -31,22 +34,83 @@
     color: white !important;
 }
 
-::ng-deep input{
+::ng-deep input {
     color: white !important;
 }
 
-::ng-deep .mat-input-element{
+::ng-deep .mat-input-element {
     caret-color: white;
 }
 
-::ng-deep .mat-form-field-empty.mat-form-field-label{
+::ng-deep .mat-form-field-empty.mat-form-field-label {
     color: white;
 }
 
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label{
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+.mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
     color: white !important;
 }
 
-::ng-deep .mat-icon{
+::ng-deep .mat-icon {
     color: white;
+}
+
+/*#endregion */
+
+.login-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .login-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .login-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .login-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .login-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .login-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 }

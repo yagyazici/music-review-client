@@ -29,44 +29,60 @@ import { DeleteImageComponent } from './pages/settingspage/profile-picture-setti
 
 const routes: Routes = [
 	{
-		path: "", 
+		path: "",
 		component: DefaultComponent,
 		children: [
-			{ path : "", component: HomepageComponent, canActivate: [AuthenticationGuard], children : [
-				{ path: "", component: CurrentsongComponent}
-			]},
+			{
+				path: "", component: HomepageComponent, canActivate: [AuthenticationGuard], children: [
+					{ path: "", component: CurrentsongComponent }
+				]
+			},
+			{ path: "login", component: LoginpageComponent },
+			{ path: "register", component: RegisterpageComponent },
+			{ path: "search", component: SearchpageComponent, canActivate: [AuthenticationGuard] },
+			{
+				path: "album/:album-id", component: AlbumpageComponent, canActivate: [AuthenticationGuard], children: [
+					{ path: "", component: ReviewFormComponentComponent },
+					{ path: "", component: ReviewsComponentComponent }
+				]
+			},
+			{
+				path: "artist/:artist-id", component: ArtistpageComponent, canActivate: [AuthenticationGuard], children: [
+					{ path: "", component: ArtistAlbumsComponent },
+					{ path: "singles", component: ArtistSinglesComponent },
+					{ path: "", redirectTo: "", pathMatch: "full" }
+				]
+			},
+			{
+				path: "profile/:user-id", component: ProfilepageComponent, canActivate: [AuthenticationGuard], children: [
+					{
+						path: "", component: ProfileReviewsComponent, children: [
+							{ path: "edit-review", component: EditReviewComponent },
+							{ path: "delete-review", component: DeleteReviewComponent }
+						]
+					},
+					{ path: "likes", component: ProfileLikesComponent }
+				]
+			},
+			{
+				path: "settings", canActivate: [AuthenticationGuard], children: [
+					{ path: "", component: ProfileSettingsComponent },
+					{
+						path: "picture", component: ProfilePictureSettingsComponent, children: [
+							{ path: "", component: DeleteImageComponent }
+						]
+					},
+					{
+						path: "favorite-albums", component: FavoriteAlbumsSettingsComponent, children: [
+							{ path: "", component: SearchFavoriteAlbumComponent }
+						]
+					},
+					{ path: "password", component: ChangePasswordComponent },
+					{ path: "", redirectTo: "", pathMatch: "full" }
+				]
+			},
 			{ path: "reviews", component: FeedpageComponent, canActivate: [AuthenticationGuard] },
-			{ path : "login", component: LoginpageComponent },
-			{ path : "register", component: RegisterpageComponent },
-			{ path : "search", component: SearchpageComponent, canActivate: [AuthenticationGuard]},
-			{ path : "album/:album-id", component: AlbumpageComponent, canActivate: [AuthenticationGuard], children: [
-				{ path: "", component: ReviewFormComponentComponent },
-				{ path: "", component: ReviewsComponentComponent }
-			]},
-			{ path: "artist/:artist-id", component: ArtistpageComponent, canActivate: [AuthenticationGuard], children: [
-				{ path: "", component: ArtistAlbumsComponent },
-				{ path: "singles", component: ArtistSinglesComponent },
-				{ path: "", redirectTo: "", pathMatch: "full" }
-			] },
-			{ path: "profile/:user-id", component: ProfilepageComponent, canActivate: [AuthenticationGuard], children: [
-				{ path: "", component: ProfileReviewsComponent , children: [
-					{ path: "edit-review", component: EditReviewComponent },
-					{ path: "delete-review", component: DeleteReviewComponent }
-				]},
-				{ path: "likes", component: ProfileLikesComponent }
-			]},
-			{ path: "settings", canActivate: [AuthenticationGuard], children: [
-				{ path: "", component: ProfileSettingsComponent },
-				{ path: "picture", component: ProfilePictureSettingsComponent, children: [
-					{ path: "", component: DeleteImageComponent }
-				]},
-				{ path: "favorite-albums", component: FavoriteAlbumsSettingsComponent, children: [
-					{ path: "", component: SearchFavoriteAlbumComponent }
-				] },
-				{ path: "password", component: ChangePasswordComponent },
-				{ path: "", redirectTo: "", pathMatch: "full" }
-			]},
-			{ path: "**", redirectTo: ""}
+			{ path: "**", redirectTo: "" }
 		],
 	}
 ];

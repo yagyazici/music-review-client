@@ -3,44 +3,46 @@
         <form *ngIf="reactiveForm" [formGroup]="reactiveForm" class="search">
             <mat-form-field appearance="outline">
                 <mat-label>Search</mat-label>
-                <input matInput placeholder="Albums, singles, profile" formControlName="query" [spellcheck]="false" [autofocus]="true">
+                <input matInput placeholder="Albums, singles, profile" formControlName="query" [spellcheck]="false"
+                    [autofocus]="true">
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
         </form>
+    </div>
+    <div class="d-grid gap-3">
         <div *ngIf="users && users.length>0; else show_error">
             <h3 class="text-white m-0">Profiles</h3>
-            <div class="wrapper gap-3 my-3">
-                <div class="album-box p-3 rounded-3 user-select-none" *ngFor="let user of users">
-                    <a [routerLink]="['/profile', user.Id]" class="text-decoration-none" style="cursor: pointer;">
-                        <img *ngIf="user && user.ProfilePicture; else profileVector"
-                            class="my-auto rounded-circle liked-album"
-                            src="{{createImgPath(user.ProfilePicture)}}">
-                        <ng-template #profileVector>
-                            <img src="/assets/images/profile_vector.jpg" class="rounded-circle liked-album">
-                        </ng-template>
-                        <hr>
+            <div class="user-wrapper gap-3 my-3">
+                <a class="user-box p-3 rounded-3 user-select-none" *ngFor="let user of users"
+                    [routerLink]="['/profile', user.Id]">
+                    <img *ngIf="user && user.ProfilePicture; else profileVector"
+                        class="my-auto rounded-circle user-img" src="{{createImgPath(user.ProfilePicture)}}">
+                    <ng-template #profileVector>
+                        <img src="/assets/images/profile_vector.jpg" class="rounded-circle user-img">
+                    </ng-template>
+                    <div>
                         <h6 class="m-0 p-0 anchor-color text-truncate"><strong>{{user.Username}}</strong></h6>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div *ngIf="albums && albums.length>0; else show_error">
             <h3 class="text-white m-0">Albums</h3>
-            <div class="wrapper gap-3 my-3">
-                <div class="album-box p-3 rounded-3 user-select-none" *ngFor="let album of albums">
-                    <a [routerLink]="['/album', album.id]">
-                        <img src="{{album.images[0].url}}" class="liked-album rounded-3" loading="lazy">
-                        <hr>
-                        <h6 class="m-0 p-0 anchor-color text-truncate" [title]="album.name"><strong>{{album.name}}</strong></h6>
+            <div class="album-wrapper gap-3 my-3">
+                <a class="album-box p-3 rounded-3 user-select-none" *ngFor="let album of albums"
+                    [routerLink]="['/album', album.id]">
+                    <img src="{{album.images[0].url}}" class="search-img rounded-3" loading="lazy">
+                    <div>
+                        <h6 class="m-0 p-0 anchor-color text-truncate" [title]="album.name">
+                            <strong>{{album.name}}</strong>
+                        </h6>
                         <small class="m-0 p-0">
-                            <span class="year-text">{{album.release_date | getYear}}</span>
-                            <span> &bullet; </span>
-                            <a [routerLink]="['/artist', album.artists[0].id]" class="text-decoration-none artist-name">
-                                {{album.artists[0].name}}
-                            </a>
+                            <span class="year-text">{{album.release_date | getYear}} &bullet;</span>
+                            <a [routerLink]="['/artist', album.artists[0].id]"
+                                class="artist-name">{{album.artists[0].name}}</a>
                         </small>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
         <ng-template #show_error>

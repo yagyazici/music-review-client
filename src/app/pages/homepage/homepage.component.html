@@ -2,5 +2,5 @@
     <h1 class="text-white text-center">Welcome back
         <a [routerLink]="['/profile',currentUser.Id]" class="user-text">{{currentUser && currentUser.Username}}</a>
     </h1>
-    <app-currentsong [toCurrentSong]="isAuthenticated" class="w-50"></app-currentsong>
+    <app-currentsong [toCurrentSong]="isAuthenticated"></app-currentsong>
 </div>
