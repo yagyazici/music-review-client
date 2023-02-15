@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpotifyserviceService } from 'src/app/services/spotifyservice.service';
 import { UserDTO } from 'src/app/models/userDTO';
@@ -22,6 +22,7 @@ export class AlbumpageComponent implements OnInit {
     isAuthenticated: boolean;
     liked: boolean;
     likeCount: number;
+    albumDivHeight: Number;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -32,6 +33,8 @@ export class AlbumpageComponent implements OnInit {
     ) { }
 
     async ngOnInit() {
+        await this.spotifyService.getToken();
+
         this.authService.refreshToken();
 
         this.dataService.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
@@ -40,10 +43,8 @@ export class AlbumpageComponent implements OnInit {
             this.albumId = params.get("album-id") || "";
         });
 
-        await this.spotifyService.getToken()
-
         this.getAlbum(this.albumId);
-        
+
         this.checkUserLikedAlbum(this.albumId)
 
         this.getAlbumLikedCount(this.albumId);
@@ -76,13 +77,13 @@ export class AlbumpageComponent implements OnInit {
         })
     }
 
-    async checkUserLikedAlbum(albumId: string){
+    async checkUserLikedAlbum(albumId: string) {
         await firstValueFrom(this.authService.checkUserLikedAlbum(albumId)).then(data => {
             this.liked = data;
         });
     }
 
-    getAlbumLikedCount(albumId: string){
+    getAlbumLikedCount(albumId: string) {
         this.reviewService.getAlbumLikedCount(albumId).subscribe(data => {
             this.likeCount = data;
         })

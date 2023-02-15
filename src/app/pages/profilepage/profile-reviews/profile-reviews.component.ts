@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 import { firstValueFrom } from 'rxjs';
 import { HubUrls } from 'src/app/constants/hub-urls';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
@@ -24,6 +25,7 @@ export class ProfileReviewsComponent implements OnInit {
     userAlbumReviews: Review[];
     currentUser: UserDTO;
     reviewId: string = "";
+    liked = "full-heart";
 
     constructor(
         private reviewService: ReviewService,
@@ -65,10 +67,7 @@ export class ProfileReviewsComponent implements OnInit {
         const dialogRef = this.dialog.open(EditReviewComponent, {
             data: { reviewId: id },
             autoFocus: false,
-            width: "auto",
-            maxHeight: "750px",
-            panelClass: "edit-dialog"
-            
+            panelClass: "edit-panel"
         });
         dialogRef.afterClosed().subscribe(result => {
             this.reviewId = result;
@@ -86,5 +85,33 @@ export class ProfileReviewsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.reviewId = result;
         });
+    }
+
+    likeReview(event: any, review: Review) {
+        let reviewId = review.Id;
+        this.reviewService.likeReview(reviewId).subscribe({
+            next: next => {
+                next.responseText == "added" ? review.Likes.length += 1 : review.Likes.length -= 1;
+            },
+            error: error => {
+            }
+        })
+        event.target.classList.toggle(this.liked);
+    }
+
+    likeText(likeTotal: number): string {
+        return likeTotal > 0 ? `${likeTotal} likes` : "like"
+    }
+
+    editedText(review: Review): string {
+        if (review.Edited)
+        {
+            return `${moment(review.EditedDate).fromNow()} [edited]`
+        }
+        return `${moment(review.PublishedDate).fromNow()}`
+    }
+
+    checkLiked(likes: string[], userId: string): string {
+        return likes.includes(userId)  ? this.liked : '';
     }
 }

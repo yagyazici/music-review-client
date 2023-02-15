@@ -67,38 +67,47 @@
     color: #0d6efd !important;
 }
 
+.album {
+    background-color: #64B7FC;
+    transition: background-color .2s ease;
+}
+
+.album:hover {
+    background-color: #3d9ddd;
+    transition: background-color .2s ease;
+}
+
 @media (max-width: 600px) {
     .album-wrapper {
         display: grid;
         grid-template-columns: 1fr;
     }
 
-    .search-img {
+    .album-img {
         width: 100%;
         max-width: 100px;
         height: auto;
     }
 
-    .album-box {
+    .album {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        background-color: #64B7FC;
-        transition: background-color .2s ease;
         text-decoration: none;
         align-items: center;
         gap: 0.5em;
     }
 
-    .text-truncate {
-        white-space: break-spaces;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .artist-album-text {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0;
+        flex-wrap: wrap;
     }
-    
+
     .user-wrapper {
         display: grid;
-        grid-template-columns: repeat(2, minmax(75px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
 
     .user-img {
@@ -124,13 +133,13 @@
         grid-template-columns: 1fr;
     }
 
-    .search-img {
+    .album-img {
         width: 100%;
         max-width: 100px;
         height: auto;
     }
 
-    .album-box {
+    .album {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -141,10 +150,11 @@
         gap: 0.5em;
     }
 
-    .text-truncate {
-        white-space: break-spaces;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .artist-album-text {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex: 1 1 0;
     }
 
     .user-wrapper {
@@ -171,31 +181,44 @@
 
 @media only screen and (min-width: 768px) {
     .album-wrapper {
-        width: 100%;
         display: grid;
-        grid-template-columns: repeat(4, minmax(auto, 1fr));
+        grid-template-columns: repeat(4, minmax(150px, 1fr));
     }
 
-    .album-box {
+    .album {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         background-color: #64B7FC;
         transition: background-color .2s ease;
         text-decoration: none;
+        align-items: stretch;
         gap: 0.5em;
-
     }
 
-    .search-img {
+    .inner-album {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .album-img {
         width: 100%;
-        max-width: 200px;
+        max-width: 250px;
         height: auto;
+    }
+
+    .artist-album-text {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        flex: unset;
     }
 
     .user-wrapper {
         display: grid;
-        grid-template-columns: repeat(6, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 
     .user-img {
@@ -211,91 +234,7 @@
         background-color: #64B7FC;
         transition: background-color .2s ease;
         text-decoration: none;
-        align-items: flex;
-        gap: 0.5em;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .album-wrapper {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(auto, 1fr));
-    }
-
-    .album-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: #64B7FC;
-        transition: background-color .2s ease;
-        text-decoration: none;
-        align-items: center;
-        gap: 0.5em;
-    }
-
-    .search-img {
-        width: 100%;
-        max-width: 250px;
-        height: auto;
-    }
-
-    .text-truncate {
-        white-space: nowrap;
-        width: 200px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .album-wrapper {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(auto, 1fr));
-    }
-
-    .album-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: #64B7FC;
-        transition: background-color .2s ease;
-        text-decoration: none;
-        align-items: center;
-        gap: 0.5em;
-    }
-
-    .search-img {
-        width: 100%;
-        max-width: 250px;
-        height: auto;
-    }
-
-    .text-truncate {
-        white-space: nowrap;
-        width: 200px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .user-wrapper {
-        display: grid;
-        grid-template-columns: repeat(6, minmax(150px, 1fr));
-    }
-
-    .user-img {
-        width: 100%;
-        max-width: 150px;
-        height: auto;
-    }
-
-    .user-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: #64B7FC;
-        transition: background-color .2s ease;
-        text-decoration: none;
-        align-items: center;
+        align-items: flex-start;
         gap: 0.5em;
     }
 }

@@ -1,14 +1,4 @@
-.wrapper {
-    max-width: 100%;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-}
-
 .album-box {
-    border-right: solid 1px #0a1730;
-    display: flex;
-    flex-direction: row;
     background: #122953;
     transition: background-color .2s ease;
 }
@@ -22,17 +12,206 @@
     text-decoration: none;
 }
 
-.favorite-album {
-    width: 128px;
-}
-
 .artist-name:hover{
     text-decoration: underline !important;
 }
 
-.text-truncate{
-    width: 125px;
-    overflow:hidden; 
-    white-space:nowrap; 
-    text-overflow: ellipsis;
+@media (max-width: 600px) {
+    .album-page {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .album-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow: hidden;
+        gap: 0.5em;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 100px;
+        height: auto;
+    }
+
+    .album-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        text-decoration: none;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .album-box > * {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .text-truncate {
+        white-space: break-spaces;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .edit-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .album-page {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .album-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow: hidden;
+        gap: 0.5em;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 100px;
+        height: auto;
+    }
+
+    .album-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        text-decoration: none;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .album-box > * {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .text-truncate {
+        white-space: break-spaces;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .edit-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .album-page {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .album-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .album-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-decoration: none;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .album-box > * {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        align-items: flex-start;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 128px;
+        height: auto;
+    }
+
+    .text-truncate{
+        width: 8vw;
+        overflow:hidden; 
+        white-space: nowrap; 
+        text-overflow: ellipsis;
+    }
+
+    .edit-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5em;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .album-page {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .album-wrapper {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .album-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-decoration: none;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .album-box > * {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 128px;
+        height: auto;
+    }
+
+    .text-truncate{
+        width: 8vw;
+        overflow:hidden; 
+        white-space: nowrap; 
+        text-overflow: ellipsis;
+    }
+
+    .edit-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5em;
+    }
 }

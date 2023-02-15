@@ -9,6 +9,10 @@
     color: white!important;
 }
 
+::ng-deep .profile-settings .mat-form-field-infix {
+    width: unset;
+}
+
 ::ng-deep .profile-settings .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: white!important;
 }
@@ -56,13 +60,61 @@
     color: inherit;
 }
 
-.cancel-btn{
-    color: white;
-    border: none;
-    transition: transform 0.2s ease;
-    display: inline-block;
+.settings-buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
-.cancel-btn:hover{
-    transform: scale(1.1);
+.birth-date > * {
+    flex: 1 0 0%;
+}
+
+.inner-settings {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .birth-date {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .birth-date {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .birth-date {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .birth-date {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .birth-date {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
 }

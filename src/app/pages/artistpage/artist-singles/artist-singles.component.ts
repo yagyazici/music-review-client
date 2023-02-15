@@ -12,6 +12,7 @@ export class ArtistSinglesComponent implements OnInit {
 
     artistId: string;
     albums: Album[];
+    panelOpenState = false;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -26,14 +27,22 @@ export class ArtistSinglesComponent implements OnInit {
         
     }
 
-    getArtistAlbums(artistId: string, type: string){
+    getArtistAlbums(artistId: string, type: string) {
         this.spotifyService.getArtistAlbums(artistId, type).subscribe({
             next: next => {
                 var parsed = <Album[]>JSON.parse(next).items;
                 this.albums = parsed;
                 this.albums.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime())
+                this.albums = this.reduceAlbums(this.albums);
             },
             error: error => {}
         })
+    }
+
+    reduceAlbums(arr : Album[]): Album[] {
+        return arr.reduce((albums: Album[], first) => {
+            if(!albums.some(second => second.name === first.name)) albums.push(first)
+            return albums;
+        },[]);
     }
 }

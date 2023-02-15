@@ -1,18 +1,16 @@
 <div class="d-grid gap-3">
-    <div class="w-100 uzgun-supurge-color border rounded-3 border-dark p-3">
-        <div class="d-flex justify-content-sm-between px-3">
-            <div class="d-flex flex-row gap-3 mx-auto">
-                <img *ngIf="userInfo?.ProfilePicture; else profileVector" class="my-auto rounded-circle profile-picture"
-                    src="{{createImgPath(userInfo.ProfilePicture)}}">
-                <ng-template #profileVector><img src="/assets/images/profile_vector.jpg"
-                        class="my-auto rounded-circle profile-picture"></ng-template>
-                <div class="d-flex flex-column justify-content-center">
-                    <div class="d-flex flex-row h-fit-content">
+    <div class="w-100 light-blue border rounded-3 border-dark p-3">
+        <div class="user-info px-3">
+            <div class="inner-user gap-3">
+                <img *ngIf="userInfo" [src]="getImage(userInfo.ProfilePicture)" class="rounded-circle profile-picture">
+                <div class="user-bio">
+                    <div class="username-text">
                         <h2 class="text-white m-0" *ngIf="userInfo?.Username">{{userInfo.Username}}</h2>
-                        <small *ngIf="userInfo?.Bio" class="my-auto text-white">{{userInfo.Bio}}</small>
+                        <small *ngIf="userInfo?.Bio" class="text-white m-0 p-0">{{userInfo.Bio}}</small>
                     </div>
-                    <div class="d-flex justify-content-between gap-3 user-select-none">
-                        <p class="text-white m-0" *ngIf="followers; else noFollowers" style="cursor: pointer;text-decoration: none;" (click)="followersDialog()">
+                    <div class="following-buttons">
+                        <p class="text-white m-0" *ngIf="followers; else noFollowers"
+                            style="cursor: pointer;text-decoration: none;" (click)="followersDialog()">
                             <strong>{{followers}}</strong><small> followers</small>
                         </p>
                         <ng-template #noFollowers>
@@ -20,7 +18,8 @@
                                 <strong>{{followers}}</strong><small> followers</small>
                             </p>
                         </ng-template>
-                        <p class="text-white m-0" *ngIf="followings; else noFollowing" style="cursor: pointer;text-decoration: none;" (click)="followingDialog()">
+                        <p class="text-white m-0" *ngIf="followings; else noFollowing"
+                            style="cursor: pointer;text-decoration: none;" (click)="followingDialog()">
                             <strong>{{followings}}</strong><small> following</small>
                         </p>
                         <ng-template #noFollowing>
@@ -29,33 +28,23 @@
                             </p>
                         </ng-template>
                     </div>
-                    <a *ngIf="userInfo && userInfo.Id === currentUser.Id" class="btn main-btn btn-sm text-white" routerLink="/settings" role="button">Edit Profile</a>
-                    <button *ngIf="userInfo && userInfo.Id !== currentUser.Id && !followed; else unfollow" (click)="followButton(userInfo)" class="btn btn-dark btn-sm">Follow</button>
+                    <a *ngIf="userInfo && userInfo.Id === currentUser.Id" class="main-btn"
+                        routerLink="/settings">Edit Profile</a>
+                    <button *ngIf="userInfo && userInfo.Id !== currentUser.Id && !followed; else unfollow"
+                        (click)="followButton(userInfo)" class="btn btn-dark btn-sm">Follow</button>
                     <ng-template #unfollow>
-                        <button *ngIf="userInfo && userInfo.Id !== currentUser.Id && followed" (click)="followButton(userInfo)" class="btn btn-secondary btn-sm">Unfollow</button>
+                        <button *ngIf="userInfo && userInfo.Id !== currentUser.Id && followed"
+                            (click)="followButton(userInfo)" class="btn btn-secondary btn-sm">Unfollow</button>
                     </ng-template>
                 </div>
             </div>
-            <app-profile-favorite-albums [currentUser]="currentUser" [userInfo]="userInfo" [userId]="userId" class="mx-auto"></app-profile-favorite-albums>
+            <app-profile-favorite-albums [currentUser]="currentUser" [userInfo]="userInfo" [userId]="userId"></app-profile-favorite-albums>
         </div>
     </div>
     <div *ngIf="userInfo" class="d-flex flex-row gap-3 align-items-center">
-        <h5>
-            <a [ngClass]="!currentUrl.includes('likes') ? 
-            'btn main-btn text-white' : 'btn text-white'
-            " 
-            [routerLink]="['/profile', userInfo.Id]" 
-            class="text-decoration-none m-0"
-            >
-            Reviews</a>
-        </h5>
-        <h5>
-            <a [ngClass]="currentUrl.includes('likes') ? 
-            'btn main-btn text-white' : 'btn text-white'
-            " 
-            [routerLink]="['/profile', userInfo.Id, 'likes']" 
-            class="text-decoration-none m-0">
-            Likes</a>
-        </h5>
+        <a [ngClass]="!currentUrl.includes('likes') ? 'main-btn' : 'empty-btn'"
+            [routerLink]="['/profile', userInfo.Id]" class="m-0">Reviews</a>
+        <a [ngClass]="currentUrl.includes('likes') ? 'main-btn' : 'empty-btn'"
+            [routerLink]="['/profile', userInfo.Id, 'likes']" class="m-0">Likes</a>
     </div>
 </div>

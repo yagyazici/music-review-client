@@ -1,13 +1,9 @@
 <div *ngIf="albumReviews && albumReviews.length>0;else noAlbumReview">
-    <ul class="border border-dark rounded-3 list-group list-group-flush uzgun-supurge-color">
-        <li *ngFor="let albumReview of albumReviews.slice().reverse()" class="border-dark list-group-item uzgun-supurge-color">
+    <ul class="border border-dark rounded-3 list-group list-group-flush light-blue">
+        <li *ngFor="let albumReview of albumReviews.slice().reverse()" class="border-dark list-group-item light-blue">
             <div class="d-flex flex-row gap-3">
                 <div>
-                    <img *ngIf="albumReview && albumReview.Author.ProfilePicture; else profileVector"
-                        class="rounded-circle profile-picture" src="{{createImgPath(albumReview.Author.ProfilePicture)}}">
-                    <ng-template #profileVector>
-                        <img class="rounded-circle profile-picture" src="/assets/images/profile_vector.jpg">
-                    </ng-template>
+                    <img *ngIf="albumReview && albumReview.Author" class="rounded-circle profile-picture" [src]="getImage(albumReview.Author.ProfilePicture)">
                 </div>
                 <div class="w-100">
                     <div class="d-flex justify-content-between">
@@ -36,7 +32,7 @@
                                 </small>
                             </ng-template>
                         </div>
-                        <h6>{{albumReview.AlbumThoughts}}</h6>
+                        <h6 class="review-text">{{albumReview.AlbumThoughts}}</h6>
                     </div>
                 </div>
             </div>

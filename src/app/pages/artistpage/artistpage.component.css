@@ -1,5 +1,71 @@
-.artist-img{
+.artist-img {
     width: 100%;
     max-width: 256px;
     height: auto;
+}
+
+.artist-page-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+.artist-spotify {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5vw;
+}
+
+.artist-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .artist-img {
+        width: 100%;
+        max-width: 128px;
+        height: auto;
+    }
+
+    .artist-box {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .artist-img {
+        width: 100%;
+        max-width: 128px;
+        height: auto;
+    }
+
+    .artist-box {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .artist-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5vw;
+    }
+
+    .artist-spotify {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5vw;
+    }
 }

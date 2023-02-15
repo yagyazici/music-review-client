@@ -51,7 +51,7 @@ export class SearchFavoriteAlbumComponent implements OnInit {
         this.spotify.searchAlbum(query).subscribe({
             next: (data: any) => {
                 var items = <Album[]>JSON.parse(data).albums.items
-                this.albums = items;
+                this.albums = this.reduceAlbums(items);
             },
             error: (error: any) => {
                 this.albumsError = error;
@@ -65,5 +65,12 @@ export class SearchFavoriteAlbumComponent implements OnInit {
 
     removeAlbum(): Album{
         return new Album();
+    }
+
+    reduceAlbums(arr : Album[]): Album[] {
+        return arr.reduce((albums: Album[], first) => {
+            if(!albums.some(second => second.name === first.name)) albums.push(first)
+            return albums;
+        },[]);
     }
 }

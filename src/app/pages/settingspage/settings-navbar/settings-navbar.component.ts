@@ -18,4 +18,7 @@ export class SettingsNavbarComponent implements OnInit {
         
     }
 
+    navbarClass(route: string): string {
+        return this.currentUrl == route ? "main-btn" : "empty-btn"
+    }
 }

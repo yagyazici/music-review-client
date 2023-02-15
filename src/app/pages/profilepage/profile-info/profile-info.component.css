@@ -1,7 +1,177 @@
 .profile-picture{
-    width: 128px;
-    height: 128px;
+    width: 100%;
+    max-width: 128px;
+    height: auto;
+    
 }
+
 .h-fit-content{
     height: fit-content;
+}
+
+.following-buttons {
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .user-info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.5em;
+    }
+
+    .inner-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inner-user > div {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+    }
+
+    .username-text {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-bio {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+    }
+
+    .following-buttons {
+        gap: unset;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .user-info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.5em;
+    }
+
+    .inner-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .username-text {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-bio {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+    }
+
+    .following-buttons {
+        gap: unset;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .user-info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.5em;
+    }
+
+    .inner-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .username-text {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-bio {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .user-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 6vw;
+    }
+
+    .inner-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .username-text {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .user-bio {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .following-buttons {
+        gap: unset;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .user-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 6vw;
+    }
+
+    .inner-user {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .username-text {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .user-bio {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .following-buttons {
+        gap: 1rem;
+    }
 }

@@ -39,4 +39,8 @@ export class FollowingComponent implements OnInit {
             this.followings = data;
         })
     }
+    
+    getImage(profilePicture: string): string {
+        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
+    }
 }

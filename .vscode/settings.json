@@ -12,7 +12,18 @@
         "**/.settings": true,
         "**/.factorypath": true,
         "**/.angular": true,
-        "**/dist": true
+        "**/dist": true,
+        "**/node_modules": true,
+        "**/README.md": true,
+        "**/karma.conf.js": true,
+        "**/.gitignore": true,
+        "**/.editorconfig": true,
+        "**/tsconfig.spec.json": true,
+        "**/package-lock.json": true,
+        "**angular.json": true,
+        "**package.json": true,
+        "**tsconfig.app.json": true,
+        "**tsconfig.json": true
     },
     "explorerExclude.backup": {}
 }

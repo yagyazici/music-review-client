@@ -2,13 +2,3 @@
     background-color: #135081;
     color: white;
 }
-.cancel-btn{
-    color: white;
-    border: none;
-    transition: transform 0.2s ease;
-    display: inline-block;
-}
-
-.cancel-btn:hover{
-    transform: scale(1.1);
-}

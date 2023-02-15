@@ -24,9 +24,9 @@ export class ReviewService {
         return this.http.post<CustomResponse>(`${this.baseUrl}Post`, review,{headers: this.headers});
     }
     
-    public likeReview(rateId: string){
-        const params = new HttpParams().set("rateId", rateId)
-        return this.http.post("{this.baseUrl}like-rate", null, {headers: this.headers, params: params});
+    public likeReview(reviewId: string): Observable<CustomResponse>{
+        const params = new HttpParams().set("reviewId", reviewId)
+        return this.http.post<CustomResponse>(`${this.baseUrl}ToggleLikedReview`, null, {headers: this.headers, params: params});
     }
     //#endregion
     

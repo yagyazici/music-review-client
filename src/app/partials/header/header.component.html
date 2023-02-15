@@ -14,28 +14,11 @@
             <li class="nav-item navbar-brand">
                 <a class="nav-link active text-white" routerLink="/search"><i class="fas fa-search"></i></a>
             </li>
-            <button [matMenuTriggerFor]="notifMenu" mat-button class="nav-item navbar-brand m-auto position-relative"
-                (menuOpened)="notifMenuOpened()">
-                <i class="fa-solid fa-bell text-white"></i>
-                <small *ngIf="notificationsCount>0"
-                    class="notif-count position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{notificationsCount}}
-                </small>
-            </button>
-            <mat-menu #notifMenu="matMenu" xPosition="before" class="notif-menu">
-                <ng-template matMenuContent>
-                    <button mat-menu-item *ngFor="let notif of notifications"
-                        [routerLink]="['/profile', notif.FromUser.Id]"
-                        class="d-flex align-items-center gap-3 notif-menu-item">
-                        <img *ngIf="notif && notif.FromUser.ProfilePicture; else profileVector"
-                            class="my-auto rounded-circle profile-picture"
-                            src="{{createImgPath(notif.FromUser.ProfilePicture)}}">
-                        <ng-template #profileVector><img src="/assets/images/profile_vector.jpg"
-                                class="rounded-circle profile-picture"></ng-template>
-                        <small><strong>{{notif.FromUser.Username}}</strong> started following you.</small>
-                    </button>
-                </ng-template>
-            </mat-menu>
+            <li type="button" class="nav-item navbar-brand" (click)="notificationDialog()">
+                <a class="nav-link active text-white">
+                    <i [matBadge]="notificationsCount > 0 ? notificationsCount : ''" matBadgeSize="small" class="fa-solid fa-bell text-white"></i>
+                </a>
+            </li>
             <button mat-button class="nav-item navbar-brand mx-auto" [matMenuTriggerFor]="profileMenu"
                 (onMenuClose)="onClose()" (onMenuOpen)="onOpen()">
                 <div class="d-flex justify-content-center">

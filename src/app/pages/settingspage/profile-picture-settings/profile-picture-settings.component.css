@@ -1,36 +1,59 @@
 ::ng-deep :root {
     --cropper-overlay-color: transparent !important;
 }
+
 .frame {
-    background-image: 
-        linear-gradient(45deg, rgba(8, 45, 90, 0.363) 25%, transparent 0), 
-        linear-gradient(135deg, rgba(8, 45, 90, 0.363) 25%, transparent 0), 
-        linear-gradient(45deg, transparent 75%, rgba(8, 45, 90, 0.363) 0), 
+    background-image:
+        linear-gradient(45deg, rgba(8, 45, 90, 0.363) 25%, transparent 0),
+        linear-gradient(135deg, rgba(8, 45, 90, 0.363) 25%, transparent 0),
+        linear-gradient(45deg, transparent 75%, rgba(8, 45, 90, 0.363) 0),
         linear-gradient(135deg, transparent 75%, rgba(8, 45, 90, 0.363) 0);
     background-position: 0 0, 10px 0, 10px -10px, 0 10px;
     background-size: 20px 20px;
     width: 100%;
 }
-i{
+
+.inner-picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.profile-picture-box {
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
     transition: opacity .2s ease-in-out;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
-.profile-picture-box:hover i{
-    opacity: 1;
+
+.profile-picture-box:hover i {
+    opacity: 50%;
     transition: opacity .2s ease-in-out;
 }
-image-cropper  {
+
+image-cropper {
     display: flex;
     max-height: 50vh;
 }
 
-.cancel-btn{
-    color: white;
-    border: none;
-    transition: transform 0.2s ease;
-    display: inline-block;
-}
-
-.cancel-btn:hover{
-    transform: scale(1.1);
+.profile-img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
 }

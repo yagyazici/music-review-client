@@ -15,12 +15,16 @@ export class HomepageComponent implements OnInit {
     currentUser: UserDTO;
     constructor(
         private data: DataService, 
-        private router: Router,
         private authService: AuthService,
     ) {}
     
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         this.data.currentUser.subscribe(currentUser => this.currentUser = currentUser)
         this.authService.refreshToken();
     }
+    masonryItems = [
+        { title: 'item 1' },
+        { title: 'item 2' },
+        { title: 'item 3' },
+    ];
 }

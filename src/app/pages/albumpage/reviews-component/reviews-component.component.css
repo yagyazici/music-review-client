@@ -5,3 +5,7 @@
 .username:hover{
     text-decoration: underline !important;
 }
+
+.review-text {
+    overflow-wrap: anywhere;
+}

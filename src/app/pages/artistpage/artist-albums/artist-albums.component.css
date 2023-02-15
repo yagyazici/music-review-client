@@ -1,37 +1,107 @@
-.wrapper {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(6, minmax(200px, 1fr));
-}
-
-.album-box {
-    display: flex;
-    justify-content: center;
+.album {
     background-color: #64B7FC;
     transition: background-color .2s ease;
 }
 
-.album-box:hover{
+.album:hover {
     background-color: #3d9ddd;
     transition: background-color .2s ease;
 }
 
-.liked-album{
-    width: 200px;
-    height: 200px;
+@media (max-width: 600px) {
+    .album-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 100px;
+        height: auto;
+    }
+
+    .album {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        text-decoration: none;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .artist-album-text {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0;
+        flex-wrap: wrap;
+    }
 }
 
-.year-text{
-    color: #0d6efd !important;
+@media only screen and (min-width: 600px) {
+    .album-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 100px;
+        height: auto;
+    }
+
+    .album {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        background-color: #64B7FC;
+        transition: background-color .2s ease;
+        text-decoration: none;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .artist-album-text {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex: 1 1 0;
+    }
 }
 
-.year-text:hover{
-    color: #0d6efd !important;
-}
+@media only screen and (min-width: 768px) {
+    .album-wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(150px, 1fr));
+    }
 
-.text-truncate{
-    width: 200px;
-    overflow:hidden; 
-    white-space:nowrap; 
-    text-overflow: ellipsis;
+    .album {
+        display: flex;
+        flex-direction: column;
+        background-color: #64B7FC;
+        transition: background-color .2s ease;
+        text-decoration: none;
+        align-items: stretch;
+        gap: 0.5em;
+    }
+
+    .inner-album {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+    }
+
+    .artist-album-text {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        flex: unset;
+    }
 }

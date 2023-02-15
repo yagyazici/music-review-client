@@ -1,30 +1,33 @@
-<div *ngIf="userFavoriteAlbums">
-    <div *ngIf="userInfo && userInfo.Id === currentUser.Id">
-        <p *ngIf="userFavoriteAlbums.length > 0;else add" class="text-center text-white">
-            Favorite Albums
-            <a *ngIf="userInfo && userInfo.Id === currentUser.Id" class="btn main-btn btn-sm text-white"
-                routerLink="/settings/favorite-albums" role="button">
-                Edit
-            </a>
-        </p>
-        <ng-template #add>
-            <a class="btn main-btn btn-sm text-white" routerLink="/settings/favorite-albums" role="button">
-                Add your favorite albums
-            </a>
-        </ng-template>
+<div *ngIf="userFavoriteAlbums" class="album-page">
+    <div class="edit-buttons">
+        <p *ngIf="userFavoriteAlbums.length>0" class="text-white m-0 p-0">Favorite Albums</p>
+        <div *ngIf="userInfo && userInfo.Id === currentUser.Id">
+            <ng-container *ngIf="userFavoriteAlbums.length > 0;else add" class="text-center text-white">
+                <a class="btn main-btn"
+                    routerLink="/settings/favorite-albums">
+                    Edit
+                </a>
+            </ng-container>
+            <ng-template #add>
+                <a class="main-btn" routerLink="/settings/favorite-albums">
+                    Add your favorite albums
+                </a>
+            </ng-template>
+        </div>
     </div>
-    <div class="wrapper rounded-3">
-        <div *ngFor="let favoriteAlbum of userFavoriteAlbums" class="album-box p-3 user-select-none">
+    <div class="album-wrapper">
+        <div *ngFor="let favoriteAlbum of userFavoriteAlbums" class="album-box rounded-3 p-3 user-select-none">
             <a [routerLink]="['/album', favoriteAlbum.id]">
-                <img src="{{favoriteAlbum.images[0].url}}" class="favorite-album rounded-3 mx-auto">
-                <hr class="text-white">
-                <h6 class="m-0 p-0 text-white text-truncate"><strong>{{favoriteAlbum.name}}</strong></h6>
-                <small class="m-0 p-0 text-white">
-                    <a [routerLink]="['/artist', favoriteAlbum.artists[0].id]"
-                        class="text-decoration-none text-white artist-name">
-                        {{favoriteAlbum.artists[0].name}}
-                    </a>
-                </small>
+                <img src="{{favoriteAlbum.images[0].url}}" class="album-img rounded-3 mx-auto">
+                <div>
+                    <h6 class="m-0 p-0 text-white text-truncate"><strong>{{favoriteAlbum.name}}</strong></h6>
+                    <small class="m-0 p-0 text-white">
+                        <a [routerLink]="['/artist', favoriteAlbum.artists[0].id]"
+                            class="text-decoration-none text-white artist-name">
+                            {{favoriteAlbum.artists[0].name}}
+                        </a>
+                    </small>
+                </div>
             </a>
         </div>
     </div>

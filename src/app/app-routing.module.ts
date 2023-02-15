@@ -23,9 +23,9 @@ import { ArtistAlbumsComponent } from './pages/artistpage/artist-albums/artist-a
 import { ArtistSinglesComponent } from './pages/artistpage/artist-singles/artist-singles.component';
 import { FeedpageComponent } from './pages/feedpage/feedpage.component';
 import { ChangePasswordComponent } from './pages/settingspage/change-password/change-password.component';
-import { AuthService } from './services/auth.service';
 import { AuthenticationGuard } from './services/authentication.guard';
 import { DeleteImageComponent } from './pages/settingspage/profile-picture-settings/delete-image/delete-image.component';
+import { SettingsNavbarComponent } from './pages/settingspage/settings-navbar/settings-navbar.component';
 
 const routes: Routes = [
 	{
@@ -65,20 +65,19 @@ const routes: Routes = [
 				]
 			},
 			{
-				path: "settings", canActivate: [AuthenticationGuard], children: [
+				path: "settings", component: SettingsNavbarComponent, canActivate: [AuthenticationGuard], children: [
 					{ path: "", component: ProfileSettingsComponent },
 					{
 						path: "picture", component: ProfilePictureSettingsComponent, children: [
-							{ path: "", component: DeleteImageComponent }
+							{ path: "delete-picture", component: DeleteImageComponent }
 						]
 					},
 					{
 						path: "favorite-albums", component: FavoriteAlbumsSettingsComponent, children: [
-							{ path: "", component: SearchFavoriteAlbumComponent }
+							{ path: "search", component: SearchFavoriteAlbumComponent }
 						]
 					},
-					{ path: "password", component: ChangePasswordComponent },
-					{ path: "", redirectTo: "", pathMatch: "full" }
+					{ path: "password", component: ChangePasswordComponent }
 				]
 			},
 			{ path: "reviews", component: FeedpageComponent, canActivate: [AuthenticationGuard] },

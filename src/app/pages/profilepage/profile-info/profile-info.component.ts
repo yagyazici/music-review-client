@@ -97,8 +97,7 @@ export class ProfileInfoComponent implements OnInit {
         const dialogRef = this.dialog.open(FollowingComponent, {
             data: { userId: this.userId },
             autoFocus: false,
-            width: "500px",
-            maxHeight: "750px"
+            panelClass: "follow-panel"
         });
     }
 
@@ -106,8 +105,11 @@ export class ProfileInfoComponent implements OnInit {
         const dialogRef = this.dialog.open(FollowersComponent, {
             data: { userId: this.userId },
             autoFocus: false,
-            width: "500px",
-            maxHeight: "750px"
+            panelClass: "follow-panel"
         });
+    }
+    
+    getImage(profilePicture: string): string {
+        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
     }
 }

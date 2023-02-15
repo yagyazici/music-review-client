@@ -46,4 +46,8 @@ export class ReviewsComponentComponent implements OnInit {
     createImgPath(serverPath: string) {
         return `https://localhost:7172/${serverPath}`; 
     }
+
+    getImage(profilePicture: string): string {
+        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
+    }
 }

@@ -32,8 +32,16 @@ export class ArtistAlbumsComponent implements OnInit {
                 var parsed = <Album[]>JSON.parse(next).items;
                 this.albums = parsed;
                 this.albums.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime())
+                this.albums = this.reduceAlbums(this.albums);
             },
             error: error => {}
         })
+    }
+
+    reduceAlbums(arr : Album[]): Album[] {
+        return arr.reduce((albums: Album[], first) => {
+            if(!albums.some(second => second.name === first.name)) albums.push(first)
+            return albums;
+        },[]);
     }
 }

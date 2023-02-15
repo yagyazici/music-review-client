@@ -20,8 +20,7 @@
 .artist-names {
     display: flex;
 }
-
-/* @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .loaded {
         animation: 1s ease-out 1 slideInFromUp;
     }
@@ -42,7 +41,8 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-} */
+}
+
 
 @media only screen and (min-width: 600px) {
     .loaded {

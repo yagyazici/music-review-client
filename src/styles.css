@@ -8,7 +8,7 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-.uzgun-supurge-color{
+.light-blue{
     background-color: #64B7FC !important;
 }
 
@@ -25,14 +25,6 @@ body{
     color: #157737 !important;
 }
 
-.main-btn{
-    background-color: #0d59c9 !important;
-}
-
-.main-btn:hover{
-    background-color: #296acb !important;
-}
-
 .spotify-btn{
     background-color: white !important;
     color: #3ae47b !important;
@@ -45,6 +37,10 @@ body{
 
 .muted-color{
     color: #404448 !important;
+}
+
+.rating {
+    margin-bottom: unset;
 }
 
 .rating.color-negative .star-container .star svg {
@@ -78,4 +74,86 @@ body{
 
 .star-container{
     margin-left: 0;
+}
+
+.cancel-btn{
+    color: white;
+    border: none;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.cancel-btn:hover{
+    color: white;
+    transform: scale(1.1);
+}
+
+.main-btn {
+    background-color: #0d59c9;
+    color: rgba(255, 255, 255, 1);
+    padding: 0.25rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.main-btn:hover{
+    color: white;
+    border-color: white;
+}
+
+.middle-green-btn {
+    background-color: rgb(92, 184, 0) !important;
+    color: rgba(255, 255, 255, 1);
+    padding: 0.25rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.middle-green-btn:hover {
+    color: white;
+    border-color: white;
+}
+
+.cancel-btn{
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 0.875rem;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.cancel-btn:hover{
+    color: white;
+    transform: scale(1.1);
+}
+
+.empty-btn {
+    background-color: transparent;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.empty-btn:hover {
+    color: white;
+    border-color: white;
 }

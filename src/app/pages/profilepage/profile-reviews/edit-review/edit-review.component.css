@@ -1,45 +1,45 @@
-.album-image{
-    width: 300px;
-}
-
-::ng-deep .edit-review .mat-form-field{
+::ng-deep .edit-review .mat-form-field {
     font-family: 'Poppins', sans-serif !important;
     color: white !important;
+    width: 100%;
 }
 
 ::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline {
     font-family: 'Poppins', sans-serif;
-    color: white!important;
+    color: white !important;
 }
 
 ::ng-deep .edit-review .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: white!important;
+    color: white !important;
 }
 
 ::ng-deep .edit-review .mat-form-field.mat-focused .mat-form-field-label {
-    color: white!important;
+    color: white !important;
 }
 
-::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline-start{
+::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline-start {
     border-width: 1px !important;
 }
-::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline-end{
+
+::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline-end {
     border-width: 1px !important;
 }
-::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline-gap{
+
+::ng-deep .edit-review .mat-form-field-appearance-outline .mat-form-field-outline-gap {
     border-width: 1px !important;
 }
+
 ::ng-deep .edit-review .form-shadow:focus {
     border: 1px solid white !important;
     outline: none !important;
     box-shadow: none !important;
 }
 
-::ng-deep .edit-review .mat-select-value{
+::ng-deep .edit-review .mat-select-value {
     color: white !important;
 }
 
-::ng-deep .edit-review .mat-form-field-label{
+::ng-deep .edit-review .mat-form-field-label {
     color: white;
 }
 
@@ -51,30 +51,133 @@
     color: rgb(109, 109, 109);
 }
 
-::ng-deep .mat-select-arrow{
+::ng-deep .mat-select-arrow {
     color: inherit;
 }
 
-::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow{
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
     color: inherit;
 }
 
-.text-field{
+.text-field {
     width: 250px;
 }
 
-.cancel-btn{
-    color: white;
-    border: none;
-    transition: transform 0.2s ease;
-    display: inline-block;
-}
-
-.cancel-btn:hover{
-    transform: scale(1.1);
-}
-
-::ng-deep .edit-dialog .mat-dialog-container{
+::ng-deep .edit-panel .mat-dialog-container {
     background-color: #64B7FC;
     color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    ::ng-deep .edit-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100vh;
+        width: 100vw;
+        max-width: 100% !important;
+        max-height: 100%;
+        gap: 1vh;
+    }
+
+    .edit-dialog {
+        display: flex;
+    }
+
+    .edit-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .album-img {
+        height: 100%;
+        max-height: 240px;
+        width: auto;
+    }
+
+    .album-section {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .desktop-text {
+        display: none;
+    }
+
+    .mobile-text {
+        display: inline;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    ::ng-deep .edit-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100vh;
+        width: 100vw;
+        max-width: 100% !important;
+        max-height: 100%;
+        gap: 1vh;
+    }
+
+    .edit-dialog {
+        display: flex;
+    }
+
+    .edit-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .album-img {
+        height: 100%;
+        max-height: 240px;
+        width: auto;
+    }
+
+    .album-section {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .desktop-text {
+        display: none;
+    }
+
+    .mobile-text {
+        display: inline;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    ::ng-deep .edit-panel {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 500px;
+        max-width: 80vw;
+        height: auto;
+        position: static;
+        gap: 1vh;
+    }
+
+    .mobile-text {
+        display: none;
+    }
+
+    .desktop-text {
+        display: inline;
+    }
+
+    .inner-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 1vh;
+    }
 }

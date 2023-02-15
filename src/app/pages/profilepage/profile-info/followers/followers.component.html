@@ -8,10 +8,7 @@
         <li class="list-group-item" *ngFor="let user of followers">
             <a [routerLink]="['/profile', user.Id]" class="w-100" [mat-dialog-close] style="text-decoration: none;">
                 <div class="d-flex flex-row username">
-                    <img *ngIf="user && user.ProfilePicture; else profileVector" [src]="createImgPath(user.ProfilePicture)
-                    " alt="" class="rounded-circle me-2 profile-picture">
-                    <ng-template #profileVector><img src="/assets/images/profile_vector.jpg"
-                        class="rounded-circle me-2 profile-picture"></ng-template>
+                    <img *ngIf="user" [src]="getImage(user.ProfilePicture)" alt="" class="rounded-circle me-2 profile-picture">
                     <div class="my-auto text-break">
                         <h5 class="card-title">{{user.Username}}</h5>
                     </div>

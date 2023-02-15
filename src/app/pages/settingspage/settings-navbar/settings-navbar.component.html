@@ -1,16 +1,9 @@
-<div class="mx-auto w-50 h-75 d-flex flex-column mb-3">
-    <div class="d-flex flex-row align-items-center uzgun-supurge-color border rounded-3 border-dark container p-3 gap-3">
-        <h5 class="m-0">
-            <a [ngClass]="currentUrl == '/settings' ? 'btn main-btn text-white' : 'btn text-white'" routerLink="/settings" class="text-decoration-none">Settings</a>
-        </h5>
-        <h5 class="m-0">
-            <a [ngClass]="currentUrl == '/settings/picture' ? 'btn main-btn text-white' : 'btn text-white'" routerLink="/settings/picture" class="text-decoration-none">Picture</a>
-        </h5>
-        <h5 class="m-0">
-            <a [ngClass]="currentUrl == '/settings/favorite-albums' ? 'btn main-btn text-white' : 'btn text-white'" routerLink="/settings/favorite-albums" class="text-decoration-none">Favorite Albums</a>
-        </h5>
-        <h5 class="m-0">
-            <a [ngClass]="currentUrl == '/settings/password' ? 'btn main-btn text-white' : 'btn text-white'" routerLink="/settings/password" class="text-decoration-none">Password</a>
-        </h5>
+<div class="navbar-page">
+    <div class="inner-navbar light-blue rounded-3 border-dark p-3 gap-3">
+        <a [ngClass]="navbarClass('/settings')" routerLink="/settings">Settings</a>
+        <a [ngClass]="navbarClass('/settings/picture')" routerLink="/settings/picture">Picture</a>
+        <a [ngClass]="navbarClass('/settings/favorite-albums')" routerLink="/settings/favorite-albums">Favorite Albums</a>
+        <a [ngClass]="navbarClass('/settings/password')" routerLink="/settings/password">Password</a>
     </div>
+    <router-outlet></router-outlet>
 </div>

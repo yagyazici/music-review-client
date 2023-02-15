@@ -2,15 +2,10 @@
     text-decoration: underline !important;
 }
 
-.content {
-    max-height: 350px;
-    overflow: auto;
-}
-
 .sticky {
     position: sticky;
     top: 0;
-    z-index: 0;
+    z-index: 1;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -74,14 +69,101 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    .album-box {
+    .outer-album-page{
+        margin: auto;
+        width: 75%;
+    }
+
+    .album-page {
         display: flex;
         flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.5vw;
+        height: 100%;
+    }
+
+    .album-page>* {
+        flex: 1 0 0%;
+    }
+
+    .album-box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inner-album {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .album-box>* {
+        flex: 0 1 0%;
     }
 
     .album-img {
         width: 100%;
-        max-width: 640px;
+        max-width: 25vh;
         height: auto;
+    }
+
+    .album-info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .album-info>* {
+        display: flex;
+        gap: 0.25vw;
+    }
+
+    .image-box {
+        display: flex;
+        width: 100%;
+        align-items: flex-end;
+        gap: 0.5em;
+    }
+
+    .image-box>* {
+        flex: 1 0 auto;
+    }
+
+    .inner-img {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .heart-btn {
+        display: flex;
+        align-items: center;
+    }
+
+    .album-text {
+        white-space: break-spaces;
+        width: 20rem;
+        font-size: 1.20rem;
+    }
+
+    .content {
+        max-height: 32.50vh;
+        overflow: auto;
+    }
+
+    .reviews-box {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .reviews {
+        overflow: auto;
     }
 }

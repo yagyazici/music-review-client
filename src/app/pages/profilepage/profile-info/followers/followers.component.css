@@ -4,24 +4,74 @@
     height: auto;
 }
 
-.border-color{
+.border-color {
     border-color: #122953 !important;
 }
 
-.list-group-item{
+.list-group-item {
     background-color: inherit;
     border-color: #122953;
 }
 
-.list-group-item:last-child{
+.list-group-item:last-child {
     border-bottom: none !important;
 }
 
-::ng-deep .mat-dialog-container{
+::ng-deep .mat-dialog-container {
     background-color: #64B7FC;
     color: white;
 }
 
-.username:hover{
+.username:hover {
     text-decoration: underline !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+    ::ng-deep .follow-panel {
+        height: 100vh;
+        width: 100vw;
+        max-width: 100% !important;
+        max-height: 100%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    ::ng-deep .follow-panel {
+        height: 100vh;
+        width: 100vw;
+        max-width: 100% !important;
+        max-height: 100%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    ::ng-deep .follow-panel {
+        height: 100vh;
+        width: 100vw;
+        max-width: 100% !important;
+        max-height: 100%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    ::ng-deep .follow-panel {
+        width: 500px;
+        max-width: 80vw;
+        max-height: 750px;
+        position: static;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    ::ng-deep .follow-panel {
+        width: 500px;
+        max-width: 80vw;
+        max-height: 750px;
+        position: static;
+    }
 }

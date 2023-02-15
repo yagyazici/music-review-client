@@ -1,33 +1,16 @@
-.profile-picture {
-    width: 64px;
-    max-width: 120px;
-    height: auto;
-}
-
-.border-color{
-    border-color: #122953 !important;
-}
-
-.list-group-item{
-    background-color: inherit;
-    border-color: #122953;
-}
-
-.list-group-item:last-child{
-    border-bottom: none !important;
-}
-
 ::ng-deep .mat-dialog-container{
     background-color: #64B7FC;
     color: white;
 }
 
-.username:hover{
-    text-decoration: underline !important;
+.notification-img {
+    width: 100%;
+    max-width: 32px;
+    height: auto;
 }
 
 @media only screen and (max-width: 600px) {
-    ::ng-deep .follow-panel {
+    ::ng-deep .notification-panel {
         height: 100vh;
         width: 100vw;
         max-width: 100% !important;
@@ -37,7 +20,7 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    ::ng-deep .follow-panel {
+    ::ng-deep .notification-panel {
         height: 100vh;
         width: 100vw;
         max-width: 100% !important;
@@ -47,7 +30,7 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    ::ng-deep .follow-panel {
+    ::ng-deep .notification-panel {
         height: 100vh;
         width: 100vw;
         max-width: 100% !important;
@@ -57,20 +40,20 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    ::ng-deep .follow-panel {
-        width: 500px;
+    ::ng-deep .notification-panel {
+        width: 400px;
         max-width: 80vw;
-        max-height: 750px;
+        max-height: 400px;
         position: static;
     }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    ::ng-deep .follow-panel {
-        width: 500px;
+    ::ng-deep .notification-panel {
+        width: 400px;
         max-width: 80vw;
-        max-height: 750px;
+        max-height: 500px;
         position: static;
     }
 }

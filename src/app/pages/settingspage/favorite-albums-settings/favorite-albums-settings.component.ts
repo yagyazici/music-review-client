@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { CdkDragDrop, DragAxis, DropListOrientation, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { SearchFavoriteAlbumComponent } from './search-favorite-album/search-favorite-album.component';
@@ -12,7 +12,7 @@ import { SignalRService } from 'src/app/services/signalr.service';
 import { HubUrls } from 'src/app/constants/hub-urls';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { Router } from '@angular/router';
- 
+
 
 @Component({
     selector: 'app-favorite-albums-settings',
@@ -23,6 +23,9 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
 
     favoriteAlbums: Album[];
     loggedUser: UserDTO;
+    innerWidth: number;
+    lockAxis: DragAxis;
+    listOrientation: DropListOrientation;
 
     constructor(
         public dialog: MatDialog,
@@ -31,6 +34,7 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
         private signalRService: SignalRService,
         private router: Router,
         private snackBar: MatSnackBar,
+        private elementRef: ElementRef
     ) { }
 
     async ngOnInit() {
@@ -39,12 +43,28 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
         await this.getCurrentUserFavoriteAlbums();
         this.threeAlbumRule()
         this.signalRService.on(HubUrls.UserHub, ReceiveFunctions.UserFavoriteAlbumsUpdatedMessageFunction, message => {
-            if (message == this.loggedUser.Id){
+            if (message == this.loggedUser.Id) {
                 this.getCurrentUserFavoriteAlbums().then(data => {
                     this.threeAlbumRule();
                 });
             }
         });
+        this.onResize();
+    }
+
+    @HostListener("window:resize")
+    onResize() {
+        this.innerWidth = window.innerWidth;
+        if (this.innerWidth < 992){
+            console.log("992 den küçük");
+            this.listOrientation = "vertical"
+            this.lockAxis = "y"
+        }
+        else if (this.innerWidth >=  992) {
+            console.log("992 den büyük");
+            this.listOrientation = "horizontal"
+            this.lockAxis = "x"
+        }
     }
 
     drop(event: CdkDragDrop<string[]>) {
@@ -59,31 +79,31 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
             maxHeight: "500px"
         });
         dialogRef.afterClosed().subscribe(result => {
-            if (result){
+            if (result) {
                 this.favoriteAlbums[idx] = result;
             }
         });
     }
 
-    async getCurrentUserFavoriteAlbums(){
+    async getCurrentUserFavoriteAlbums() {
         await firstValueFrom(this.authService.getCurrentUserFavoriteAlbums()).then(data => {
             this.favoriteAlbums = data;
         })
     }
 
-    updateUserFavoriteAlbums(favoriteAlbums: Album[]){
+    updateUserFavoriteAlbums(favoriteAlbums: Album[]) {
         var favoriteAlbums = this.favoriteAlbums.filter(album => album.id != null)
         this.authService.updateUserFavoriteAlbums(favoriteAlbums).subscribe();
         this.openSnackBar();
     }
 
-    threeAlbumRule(){
-        while (this.favoriteAlbums.length != 3){
+    threeAlbumRule() {
+        while (this.favoriteAlbums.length != 3) {
             this.favoriteAlbums.push(new Album());
         }
     }
 
-    cancel(){
+    cancel() {
         const currentUrl = this.router.url;
         this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
             this.router.navigate([currentUrl]);

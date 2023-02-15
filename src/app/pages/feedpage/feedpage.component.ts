@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { Review } from 'src/app/models/review';
 import { UserDTO } from 'src/app/models/userDTO';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,14 +17,16 @@ export class FeedpageComponent implements OnInit {
     currentUser: UserDTO;
     isAuthenticated: boolean;
     reviews: Review[];
-    liked = "fa-solid fa-heart text-danger m-0 p-0";
-    notLiked = "fa-regular fa-heart m-0 p-0"
+    liked = "full-heart";
 
     constructor(
         private authService: AuthService,
         private reviewService: ReviewService,
+        private router: Router, 
         private dataService: DataService,
-    ) { }
+    ) {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+     }
 
     ngOnInit(): void {
         this.authService.refreshToken();
@@ -31,32 +35,54 @@ export class FeedpageComponent implements OnInit {
         this.getUserFeed();
     }
 
-    getUserFeed(){
+    getUserFeed() {
         this.reviewService.getUserFeed().subscribe(data => {
             this.reviews = data;
         })
     }
 
     createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`;
     }
 
-    likeButton(reviewId: string){
-        
+    likeButton(reviewId: string) {
         this.reviewService.likeReview(reviewId).subscribe({
             next: next => {
                 console.log(next);
             },
             error: error => {
-
             }
         })
     }
 
-    updateLike(reviewId: string){
-        var userId = this.currentUser.Id
-        var review = this.reviews.find(review => review.Id == reviewId);
-        var check = review?.Likes.includes(userId);
-        return check;
+    likeReview(event: any, review: Review) {
+        let reviewId = review.Id;
+        this.reviewService.likeReview(reviewId).subscribe({
+            next: next => {
+                next.responseText == "added" ? review.Likes.length += 1 : review.Likes.length -= 1;
+            },
+            error: error => {
+            }
+        })
+        event.target.classList.toggle(this.liked);
+    }
+
+    likeText(likeTotal: number): string {
+        return likeTotal > 0 ? `${likeTotal} likes` : "like"
+    }
+
+    editedText(review: Review): string {
+        if (review.Edited) {
+            return `${moment(review.EditedDate).fromNow()} [edited]`
+        }
+        return `${moment(review.PublishedDate).fromNow()}`
+    }
+
+    checkLiked(likes: string[], userId: string): string {
+        return likes.includes(userId) ? this.liked : '';
+    }
+
+    getImage(profilePicture: string): string {
+        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
     }
 }

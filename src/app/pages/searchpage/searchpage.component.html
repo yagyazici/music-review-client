@@ -15,32 +15,22 @@
             <div class="user-wrapper gap-3 my-3">
                 <a class="user-box p-3 rounded-3 user-select-none" *ngFor="let user of users"
                     [routerLink]="['/profile', user.Id]">
-                    <img *ngIf="user && user.ProfilePicture; else profileVector"
-                        class="my-auto rounded-circle user-img" src="{{createImgPath(user.ProfilePicture)}}">
-                    <ng-template #profileVector>
-                        <img src="/assets/images/profile_vector.jpg" class="rounded-circle user-img">
-                    </ng-template>
-                    <div>
-                        <h6 class="m-0 p-0 anchor-color text-truncate"><strong>{{user.Username}}</strong></h6>
-                    </div>
+                    <img *ngIf="user" [src]="getImage(user.ProfilePicture)" class="my-auto rounded-circle user-img">
+                    <strong class="m-0 p-0 anchor-color text-truncate">{{user.Username}}</strong>
                 </a>
             </div>
         </div>
         <div *ngIf="albums && albums.length>0; else show_error">
             <h3 class="text-white m-0">Albums</h3>
             <div class="album-wrapper gap-3 my-3">
-                <a class="album-box p-3 rounded-3 user-select-none" *ngFor="let album of albums"
-                    [routerLink]="['/album', album.id]">
-                    <img src="{{album.images[0].url}}" class="search-img rounded-3" loading="lazy">
-                    <div>
-                        <h6 class="m-0 p-0 anchor-color text-truncate" [title]="album.name">
-                            <strong>{{album.name}}</strong>
-                        </h6>
-                        <small class="m-0 p-0">
-                            <span class="year-text">{{album.release_date | getYear}} &bullet;</span>
-                            <a [routerLink]="['/artist', album.artists[0].id]"
-                                class="artist-name">{{album.artists[0].name}}</a>
-                        </small>
+                <a class="album border border-dark p-3 rounded-3 p-3 user-selection-none text-decoration-none"
+                    [routerLink]="['/album', album.id]" *ngFor="let album of albums">
+                    <div class="inner-album">
+                        <img src="{{album.images[0].url}}" class="album-img rounded-3">
+                    </div>
+                    <div class="artist-album-text">
+                        <strong class="anchor-color">{{album.name}}</strong>
+                        <small class="anchor-color">{{album.release_date | getYear}}</small>
                     </div>
                 </a>
             </div>

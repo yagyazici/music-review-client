@@ -96,4 +96,8 @@ export class ProfilePictureSettingsComponent implements OnInit {
             panelClass: "delete-dialog"
         });
     }
+
+    getImage(profilePicture: string): string {
+        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
+    }
 }

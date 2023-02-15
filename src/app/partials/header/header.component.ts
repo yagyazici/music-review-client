@@ -8,6 +8,8 @@ import { Notification } from 'src/app/models/notification';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/dataservice.service';
 import { SignalRService } from 'src/app/services/signalr.service';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
     selector: 'app-header',
@@ -28,18 +30,17 @@ export class HeaderComponent implements OnInit {
     currentUser: UserDTO;
     userInfo: UserDTO;
     state: string = 'default';
-    notifications: Notification [];
     notificationsCount: number;
 
     constructor(
         private router: Router, 
         private data: DataService,
         private signalRService: SignalRService,
-        private authService: AuthService
+        private authService: AuthService,
+        public dialog: MatDialog
     ) { 
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
-
     
     async ngOnInit() {
         this.data.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated)
@@ -66,17 +67,6 @@ export class HeaderComponent implements OnInit {
         this.state = "rotated";
     }
 
-    notifMenuOpened(){
-        this.getUserNotifications();
-        this.notificationsCount = 0;
-    }
-
-    getUserNotifications(){
-        this.authService.getUserNotifications().subscribe(data => {
-            this.notifications = data.reverse();
-        })
-    }
-
     getUserNotificationsCount(){
         this.authService.getUserNotificationsCount().subscribe({
             next: (next: any) => {
@@ -90,5 +80,15 @@ export class HeaderComponent implements OnInit {
     
     createImgPath(serverPath: string) {
         return `https://localhost:7172/${serverPath}`; 
+    }
+
+    notificationDialog() {
+        var dialog = this.dialog.open(NotificationComponent, {
+            autoFocus: false,
+            panelClass: "notification-panel"
+        });
+        dialog.afterClosed().subscribe(_ => {
+            this.notificationsCount = 0;
+        })
     }
 }

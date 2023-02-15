@@ -1,15 +1,14 @@
-<div *ngIf="userLikedAlbums" class="wrapper gap-3">
-    <div class="album-box p-3 rounded-3 user-select-none" 
-    *ngFor="let likedAlbum of userLikedAlbums.slice().reverse()">
-        <a [routerLink]="['/album', likedAlbum.id]" class="text-decoration-none" style="cursor: pointer;">
-            <img src="{{likedAlbum.images[0].url}}" class="liked-album rounded-3">
-            <hr>
-            <h6 class="m-0 p-0 anchor-color text-truncate" [title]="likedAlbum.name"><strong>{{likedAlbum.name}}</strong></h6>
-            <small class="m-0 p-0 artist-name">
-                <a [routerLink]="['/artist', likedAlbum.artists[0].id]" class="text-decoration-none">
+<div *ngIf="userLikedAlbums" class="liked-wrapper gap-3">
+    <a class="album-box p-3 rounded-3 user-select-none" *ngFor="let likedAlbum of userLikedAlbums.slice().reverse()"
+        [routerLink]="['/album', likedAlbum.id]">
+        <img src="{{likedAlbum.images[0].url}}" class="album-img rounded-3">
+        <div>
+            <h6 class="m-0 p-0 anchor-color text-truncate" [title]="likedAlbum.name">
+                <strong>{{likedAlbum.name}}</strong></h6>
+            <small class="m-0 p-0 year-text"><a [routerLink]="['/artist', likedAlbum.artists[0].id]"
+                    class="text-decoration-none">
                     {{likedAlbum.artists[0].name}}
-                </a>
-            </small>
-        </a>
-    </div>
+                </a></small>
+        </div>
+    </a>
 </div>

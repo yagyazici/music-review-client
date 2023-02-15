@@ -1,6 +1,6 @@
 <div *ngIf="currentlyPlaying && currentlyPlaying.is_playing" class="current-song">
     <div *ngIf="currentlyPlaying && currentlyPlaying.is_playing"
-        class="inner-current-song uzgun-supurge-color p-1 border border-dark rounded-3"
+        class="inner-current-song light-blue p-1 border border-dark rounded-3"
         [ngClass]="loaded == true ? 'loaded' :''">
         <img src="{{currentlyPlaying && currentlyPlaying.item.album.images[0].url}}" alt=""
             class="my-auto rounded-3 album-img">

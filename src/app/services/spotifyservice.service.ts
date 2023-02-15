@@ -26,7 +26,7 @@ export class SpotifyserviceService {
         });
     }
     
-    currentSong(): Observable<any>{
+    currentSong(){
         const params = new HttpParams().set("market", "gb")
         return this.http.get(
             "https://api.spotify.com/v1/me/player/currently-playing", 
@@ -38,7 +38,7 @@ export class SpotifyserviceService {
         ); 
     }
 
-    searchAlbum(query: string): Observable<any>{
+    searchAlbum(query: string){
         const params = new HttpParams().set("q", query).set("type", "album").set("market", "gb")
         return this.http.get(
             "https://api.spotify.com/v1/search",

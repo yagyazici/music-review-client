@@ -1,15 +1,9 @@
-<app-settings-navbar></app-settings-navbar>
-<div class="mx-auto w-50 h-75 d-flex flex-column gap-3">
-    <div class="uzgun-supurge-color border rounded-3 border-dark container p-3 frame">
+<div class="d-flex flex-column gap-3">
+    <div class="light-blue border rounded-3 border-dark frame">
         <form>
-            <div (click)="file.click()" [style.display]="showCropper ? 'none' : 'flex'" class=" justify-content-center profile-picture-box position-relative" style="cursor: pointer">
-                <img *ngIf="currentUser && currentUser.ProfilePicture; else profileVector" [src]="createImgPath(currentUser.ProfilePicture)" class="profile-picture rounded-circle">
-                <ng-template #profileVector>
-                    <img class="profile-picture rounded-circle" src="/assets/images/profile_vector.jpg" alt="">
-                </ng-template>
-                <div class="d-flex justify-content-center align-items-center w-100 h-100 position-absolute inner-picture rounded-circle">
-                    <h3><i class="fa-solid fa-camera text-white"></i></h3>
-                </div>
+            <div (click)="file.click()" [style.display]="showCropper ? 'none' : 'flex'" class="profile-picture-box">
+                <img *ngIf="currentUser" [src]="getImage(currentUser.ProfilePicture)" class="profile-img p-3 rounded-circle">
+                <h3 class="inner-picture"><i class="fa-solid fa-camera text-white"></i></h3>
             </div>
             <input type="file" #file class="ms-auto btn btn-dark" (change)="fileChangeEvent($event)" class="d-none"/>
             <image-cropper
@@ -34,11 +28,11 @@
         </form>       
     </div>
     <div *ngIf="!showCropper && currentUser.ProfilePicture" class="d-flex justify-content-end">
-        <span (click)="deleteDialog()" class="btn middle-green-btn btn-sm" style="cursor: pointer;text-decoration: none;">Delete</span>
+        <span (click)="deleteDialog()" class="middle-green-btn">Delete</span>
     </div>
     <div mat-dialog-actions class="d-flex justify-content-between">
-        <button [style.display]="showCropper ? null : 'none'" (click)="cancelUploadFile();" class="btn btn-sm cancel-btn">Cancel</button>
-        <button [style.display]="showCropper ? null : 'none'" (click)="uploadFile(croppedImage);" class="btn main-btn btn-sm text-white">Save</button>
+        <button [style.display]="showCropper ? null : 'none'" (click)="cancelUploadFile();" class="cancel-btn">Cancel</button>
+        <button [style.display]="showCropper ? null : 'none'" (click)="uploadFile(croppedImage);" class="main-btn">Save</button>
     </div>
 </div>
 

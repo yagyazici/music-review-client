@@ -1,31 +1,30 @@
-<h3>Edit Review</h3>
-<div class="row">
-    <div class="col">
-        <div class="d-flex flex-column gap-3">
-            <img *ngIf="albumReview && albumReview.AlbumImage" src="{{albumReview.AlbumImage}}"
-                class="album-image rounded-3 mx-auto m-0 p-0">
-        </div>
+<div class="edit-panel">
+    <div class="edit-buttons">
+        <p (click)="onNoClick()" class="cancel-btn m-0">Cancel</p>
+        <h5 class="mobile-text m-0 p-0">Edit Review</h5>
+        <button (click)="onSubmit()" class="main-btn">Edit</button>
     </div>
-    <div class="col d-flex flex-column justify-content-center">
-        <div>
-            <h4 *ngIf="albumReview && albumReview.AlbumName" class="m-0 p-0">{{albumReview.AlbumName}}</h4>
-            <p *ngIf="albumReview && albumReview.ArtistName" class="m-0 p-0">{{albumReview.ArtistName}}</p>
-            <hr>
-        </div>
-        <form *ngIf="reactiveForm" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" class="edit-review">
-            <label for="albumRate">Album rate:</label>
-            <star-rating-control [hoverEnabled]="true" [size]="'medium'" [starType]="'svg'"
-                (hoverRatingChange)="onHoverRatingChange($event)" formControlName="albumRate" class="d-flex"
-                [minlength]="1" [maxlength]="5" id="albumRate">
-            </star-rating-control>
-            <mat-form-field appearance="outline" class="text-field">
-                <mat-label>Edit</mat-label>
-                <input matInput placeholder="Edit your thoughts" formControlName="albumThoughts" [spellcheck]="false">
-            </mat-form-field>
-            <div class="d-flex justify-content-between">
-                <p (click)="onNoClick()"  class="btn btn-sm cancel-btn m-0">Cancel</p>
-                <button (click)="onSubmit()" class="btn main-btn text-white btn-sm">Edit!</button>
+    <div class="inner-panel">
+        <h5 class="desktop-text">Edit Review</h5>
+        <div class="album-section">
+            <img *ngIf="albumReview && albumReview.AlbumImage" src="{{albumReview.AlbumImage}}" class="album-img rounded-3">
+            <div>
+                <h4 *ngIf="albumReview && albumReview.AlbumName" class="m-0 p-0">{{albumReview.AlbumName}}</h4>
+                <p *ngIf="albumReview && albumReview.ArtistName" class="m-0 p-0">{{albumReview.ArtistName}}</p>
             </div>
-        </form>
+        </div>
+        <div class="form-section">
+            <form *ngIf="reactiveForm" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" class="edit-review">
+                <label for="albumRate">Album rate:</label>
+                <star-rating-control [hoverEnabled]="true" [size]="'medium'" [starType]="'svg'"
+                    (hoverRatingChange)="onHoverRatingChange($event)" formControlName="albumRate" class="d-flex"
+                    [minlength]="1" [maxlength]="5" id="albumRate">
+                </star-rating-control>
+                <mat-form-field appearance="outline">
+                    <mat-label>Edit</mat-label>
+                    <input matInput formControlName="albumThoughts" [spellcheck]="false">
+                </mat-form-field>
+            </form>
+        </div>
     </div>
 </div>

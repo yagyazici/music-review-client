@@ -53,7 +53,7 @@ export class SearchpageComponent implements OnInit {
         this.spotify.searchAlbum(query).subscribe({
             next: (data: any) => {
                 var items = <Album[]>JSON.parse(data).albums.items
-                this.albums = items;
+                this.albums = this.reduceAlbums(items);
             },
             error: (error: any) => {
                 this.albumsError = error;
@@ -69,5 +69,16 @@ export class SearchpageComponent implements OnInit {
 
     createImgPath(serverPath: string) {
         return `https://localhost:7172/${serverPath}`; 
+    }
+
+    reduceAlbums(arr : Album[]): Album[] {
+        return arr.reduce((albums: Album[], first) => {
+            if(!albums.some(second => second.name === first.name)) albums.push(first)
+            return albums;
+        },[]);
+    }
+
+    getImage(profilePicture: string): string {
+        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
     }
 }
