@@ -1,15 +1,14 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HubUrls } from 'src/app/constants/hub-urls';
-import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { UserDTO } from 'src/app/models/userDTO';
-import { Notification } from 'src/app/models/notification';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/dataservice.service';
-import { SignalRService } from 'src/app/services/signalr.service';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { NotificationComponent } from '../notification/notification.component';
+import { MusicHubService } from 'src/app/services/music.hub.service';
+import { UserHubService } from 'src/app/services/user.hub.service';
+import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 
 @Component({
     selector: 'app-header',
@@ -33,41 +32,47 @@ export class HeaderComponent implements OnInit {
     notificationsCount: number;
 
     constructor(
-        private router: Router, 
+        private router: Router,
         private data: DataService,
-        private signalRService: SignalRService,
         private authService: AuthService,
-        public dialog: MatDialog
-    ) { 
+        public dialog: MatDialog,
+        private musicHub: MusicHubService,
+        private userHub: UserHubService
+    ) {
+
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
-    
+
     async ngOnInit() {
         this.data.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated)
-        if (this.isAuthenticated){
+        if (this.isAuthenticated) {
             this.getUserNotificationsCount();
+            this.musicHub.start();
+            console.log("music açıldı");
+            this.userHub.start();
+            console.log("user açıldı");
+            this.userHub.on(ReceiveFunctions.UserSendNotificitionMessage, message => {
+                if (message == this.currentUser.Id){
+                    this.getUserNotificationsCount();
+                }
+            })
         }
         this.data.currentUser.subscribe(currentUser => this.currentUser = currentUser);
-        this.signalRService.on(HubUrls.UserHub, ReceiveFunctions.UserSendNotificitionMessage, message => {
-            if (message == this.currentUser.Id){
-                this.getUserNotificationsCount();
-            }
-        });
     }
 
-    logout(){
+    logout() {
         this.authService.logout();
     }
 
-    onClose(){
+    onClose() {
         this.state = "default";
     }
 
-    onOpen(){
+    onOpen() {
         this.state = "rotated";
     }
 
-    getUserNotificationsCount(){
+    getUserNotificationsCount() {
         this.authService.getUserNotificationsCount().subscribe({
             next: (next: any) => {
                 this.notificationsCount = next;
@@ -77,9 +82,9 @@ export class HeaderComponent implements OnInit {
             }
         })
     }
-    
+
     createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`;
     }
 
     notificationDialog() {

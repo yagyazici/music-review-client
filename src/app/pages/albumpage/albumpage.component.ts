@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpotifyserviceService } from 'src/app/services/spotifyservice.service';
 import { UserDTO } from 'src/app/models/userDTO';
@@ -87,5 +87,9 @@ export class AlbumpageComponent implements OnInit {
         this.reviewService.getAlbumLikedCount(albumId).subscribe(data => {
             this.likeCount = data;
         })
+    }
+
+    likedClass(liked: boolean): string {
+        return liked ? "fa-solid fa-heart text-danger" : "fa-regular fa-heart";
     }
 }

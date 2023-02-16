@@ -23,21 +23,16 @@
                 </a>
                 <div class="heart-text">
                     <i (click)="likeReview($event, review)"
-                        class="{{review.Likes.includes(currentUser.Id) ? liked : ''}} fa-regular fa-heart heart-btn"></i>
+                        class="{{checkLiked(review.Likes, currentUser.Id) ? liked : ''}} fa-regular fa-heart heart-btn"></i>
                     <small>{{likeText(review.Likes.length)}}</small>
                 </div>
             </div>
             <div class="star-info">
                 <star-rating-control [size]="'medium'" [starType]="'svg'" [readOnly]="true" [rating]="review.AlbumRate">
                 </star-rating-control>
-                <small *ngIf="review.Edited; else notEdited" class="edited-textmuted-color m-0 p-0">
-                    {{review.EditedDate | dateAgo }} [edited]
+                <small class="edited-text muted-color m-0 p-0">
+                    {{editedText(review)}}
                 </small>
-                <ng-template #notEdited>
-                    <small class="edited-text muted-color m-0 p-0">
-                        {{review.PublishedDate | dateAgo }}
-                    </small>
-                </ng-template>
             </div>
             <p class="review-text">{{review.AlbumThoughts}}</p>
         </div>

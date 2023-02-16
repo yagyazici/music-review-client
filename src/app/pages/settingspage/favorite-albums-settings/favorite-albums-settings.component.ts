@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CdkDragDrop, DragAxis, DropListOrientation, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
@@ -8,10 +8,9 @@ import { firstValueFrom } from 'rxjs';
 import { Album } from 'src/app/models/album';
 import { UserDTO } from 'src/app/models/userDTO';
 import { DataService } from 'src/app/services/dataservice.service';
-import { SignalRService } from 'src/app/services/signalr.service';
-import { HubUrls } from 'src/app/constants/hub-urls';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { Router } from '@angular/router';
+import { UserHubService } from 'src/app/services/user.hub.service';
 
 
 @Component({
@@ -31,10 +30,9 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
         public dialog: MatDialog,
         private authService: AuthService,
         private dataService: DataService,
-        private signalRService: SignalRService,
         private router: Router,
         private snackBar: MatSnackBar,
-        private elementRef: ElementRef
+        private userHub: UserHubService
     ) { }
 
     async ngOnInit() {
@@ -42,7 +40,7 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
         this.dataService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
         await this.getCurrentUserFavoriteAlbums();
         this.threeAlbumRule()
-        this.signalRService.on(HubUrls.UserHub, ReceiveFunctions.UserFavoriteAlbumsUpdatedMessageFunction, message => {
+        this.userHub.on(ReceiveFunctions.UserFavoriteAlbumsUpdatedMessageFunction, message => {
             if (message == this.loggedUser.Id) {
                 this.getCurrentUserFavoriteAlbums().then(data => {
                     this.threeAlbumRule();

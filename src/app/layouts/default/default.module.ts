@@ -59,8 +59,8 @@ import { ChangePasswordComponent } from 'src/app/pages/settingspage/change-passw
 import { ErrorsPipe } from 'src/app/pipes/errors.pipe';
 import { DeleteImageComponent } from 'src/app/pages/settingspage/profile-picture-settings/delete-image/delete-image.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { NotifPipe } from 'src/app/pipes/notif.pipe';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { GenericSignalrService } from 'src/app/services/generic.signalr.service';
 
 
 @NgModule({

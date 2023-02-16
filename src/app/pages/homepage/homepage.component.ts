@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { HubUrls } from 'src/app/constants/hub-urls';
 import { UserDTO } from 'src/app/models/userDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/dataservice.service';
+import { GenericSignalrService } from 'src/app/services/generic.signalr.service';
+import { MusicHubService } from 'src/app/services/music.hub.service';
+import { UserHubService } from 'src/app/services/user.hub.service';
 
 @Component({
     selector: 'app-homepage',
@@ -15,16 +18,11 @@ export class HomepageComponent implements OnInit {
     currentUser: UserDTO;
     constructor(
         private data: DataService, 
-        private authService: AuthService,
+        private authService: AuthService
     ) {}
     
-    async ngOnInit(): Promise<void> {
+    ngOnInit() {
         this.data.currentUser.subscribe(currentUser => this.currentUser = currentUser)
         this.authService.refreshToken();
     }
-    masonryItems = [
-        { title: 'item 1' },
-        { title: 'item 2' },
-        { title: 'item 3' },
-    ];
 }

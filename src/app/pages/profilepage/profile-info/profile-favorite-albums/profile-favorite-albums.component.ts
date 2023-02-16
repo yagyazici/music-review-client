@@ -28,4 +28,8 @@ export class ProfileFavoriteAlbumsComponent implements OnInit {
             this.userFavoriteAlbums = data;
         })
     }
+
+    favoriteBtnText(album: Album[]): string {
+        return album.length > 0 ? "Edit" : "Add your favorite albums";
+    }
 }

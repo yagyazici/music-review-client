@@ -23,14 +23,9 @@
                             <star-rating-control [size]="'medium'" [starType]="'svg'" [readOnly]="true"
                             [rating]="albumReview.AlbumRate" id="albumReview">
                             </star-rating-control>
-                            <small *ngIf="albumReview.Edited; else notEdited" class="text-muted muted-color">
-                                {{albumReview.EditedDate | dateAgo }} [edited]
+                            <small class="text-muted muted-color">
+                                {{editedText(albumReview)}}
                             </small>
-                            <ng-template #notEdited>
-                                <small class="text-muted muted-color">
-                                    {{albumReview.PublishedDate | dateAgo }}
-                                </small>
-                            </ng-template>
                         </div>
                         <h6 class="review-text">{{albumReview.AlbumThoughts}}</h6>
                     </div>

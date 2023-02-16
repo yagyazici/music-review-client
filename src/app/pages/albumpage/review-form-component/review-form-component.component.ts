@@ -1,12 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HoverRatingChangeEvent } from 'angular-star-rating/lib/interfaces/hover-rating-change-event.interface';
-import { HubUrls } from 'src/app/constants/hub-urls';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { Review } from 'src/app/models/review';
 import { UserDTO } from 'src/app/models/userDTO';
+import { MusicHubService } from 'src/app/services/music.hub.service';
 import { ReviewService } from 'src/app/services/review.service';
-import { SignalRService } from 'src/app/services/signalr.service';
 
 
 @Component({
@@ -28,7 +27,7 @@ export class ReviewFormComponentComponent implements OnInit {
 
     constructor(
         private reviewService: ReviewService,
-        private signalRService: SignalRService
+        private musicHub: MusicHubService
     ) { }
 
     async ngOnInit() {
@@ -36,11 +35,11 @@ export class ReviewFormComponentComponent implements OnInit {
             albumReview: new FormControl("", Validators.required),
             albumThoughts: new FormControl("", Validators.required),
         });
-        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicReviewAddedMessageReceiveFunction, message => {
+        this.musicHub.on(ReceiveFunctions.MusicReviewAddedMessageReceiveFunction, message => {
             if (message.albumId == this.albumId && message.author.id == this.currentFormUser.Id) {
                 this.albumReviewCheck(this.albumId);
             }
-        });
+        })
         this.albumReviewCheck(this.albumId);
     }
 

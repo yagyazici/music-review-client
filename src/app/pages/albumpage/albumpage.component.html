@@ -9,17 +9,11 @@
                 <div class="buttons">
                     <div class="heart-btn">
                         <button (click)="likeButton()" mat-icon-button>
-                            <h3 *ngIf="liked; else emptyLike" class="m-0">
-                                <i class="fa-solid fa-heart text-danger"></i>
+                            <h3 class="m-0">
+                                <i [class]="likedClass(liked)"></i>
                             </h3>
-                            <ng-template #emptyLike>
-                                <h3 class="m-0"><i class="fa-regular fa-heart"></i></h3>
-                            </ng-template>
                         </button>
                         <p *ngIf="likeCount > 0" class="my-auto">{{likeCount}} likes</p>
-                        <ng-template #noLike>
-                            <p class="my-auto"></p>
-                        </ng-template>
                     </div>
                     <a class="text-decoration-none btn btn-sm spotify-btn" href="{{album.external_urls.spotify}}"
                         target="blank">
@@ -77,21 +71,10 @@
         <div class="position-relative reviews-box">
             <div class="reviews text-white position-relative">
                 <app-reviews-component></app-reviews-component>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
-                <h1>za</h1>
             </div>
             <div class="sticky">
-                <app-review-form-component [albumId]="albumId" [albumForm]="album"[currentFormUser]="currentUser"></app-review-form-component>
+                <app-review-form-component [albumId]="albumId" [albumForm]="album"
+                    [currentFormUser]="currentUser"></app-review-form-component>
             </div>
         </div>
     </div>

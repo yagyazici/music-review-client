@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from 'src/app/services/review.service';
-import { SignalRService } from 'src/app/services/signalr.service';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
-import { HubUrls } from 'src/app/constants/hub-urls';
 import { Review } from 'src/app/models/review';
+import * as moment from 'moment';
+import { MusicHubService } from 'src/app/services/music.hub.service';
 
 @Component({
     selector: 'app-reviews-component',
@@ -18,12 +18,12 @@ export class ReviewsComponentComponent implements OnInit {
     constructor(
         private activated_route: ActivatedRoute,
         private reviewService: ReviewService,
-        private signalRService: SignalRService
+        private musicHub: MusicHubService
     ) { }
 
     ngOnInit(){
         this.getParams();
-        this.signalRService.on(HubUrls.MusicRateHub, ReceiveFunctions.MusicReviewAddedMessageReceiveFunction, message => {
+        this.musicHub.on(ReceiveFunctions.MusicReviewAddedMessageReceiveFunction, message => {
             if (message.albumId == this.albumId) {
                 this.getAlbumReviews(this.albumId);
             }
@@ -49,5 +49,12 @@ export class ReviewsComponentComponent implements OnInit {
 
     getImage(profilePicture: string): string {
         return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
+    }
+
+    editedText(review: Review): string {
+        if (review.Edited) {
+            return `${moment(review.EditedDate).fromNow()} [edited]`
+        }
+        return `${moment(review.PublishedDate).fromNow()}`
     }
 }

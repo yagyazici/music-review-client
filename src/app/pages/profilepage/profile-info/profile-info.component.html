@@ -9,41 +9,28 @@
                         <small *ngIf="userInfo?.Bio" class="text-white m-0 p-0">{{userInfo.Bio}}</small>
                     </div>
                     <div class="following-buttons">
-                        <p class="text-white m-0" *ngIf="followers; else noFollowers"
-                            style="cursor: pointer;text-decoration: none;" (click)="followersDialog()">
+                        <p class="text-white m-0"
+                            style="cursor: pointer;text-decoration: none;" (click)="followers>0 ? followersDialog() : '';">
                             <strong>{{followers}}</strong><small> followers</small>
                         </p>
-                        <ng-template #noFollowers>
-                            <p class="text-white m-0" style="cursor: pointer;text-decoration: none;">
-                                <strong>{{followers}}</strong><small> followers</small>
-                            </p>
-                        </ng-template>
-                        <p class="text-white m-0" *ngIf="followings; else noFollowing"
-                            style="cursor: pointer;text-decoration: none;" (click)="followingDialog()">
+                        <p class="text-white m-0"
+                            style="cursor: pointer;text-decoration: none;" (click)="followings>0 ? followingDialog() : ''">
                             <strong>{{followings}}</strong><small> following</small>
                         </p>
-                        <ng-template #noFollowing>
-                            <p class="text-white m-0" style="cursor: pointer;text-decoration: none;">
-                                <strong>{{followings}}</strong><small> following</small>
-                            </p>
-                        </ng-template>
                     </div>
-                    <a *ngIf="userInfo && userInfo.Id === currentUser.Id" class="main-btn"
-                        routerLink="/settings">Edit Profile</a>
-                    <button *ngIf="userInfo && userInfo.Id !== currentUser.Id && !followed; else unfollow"
-                        (click)="followButton(userInfo)" class="btn btn-dark btn-sm">Follow</button>
-                    <ng-template #unfollow>
-                        <button *ngIf="userInfo && userInfo.Id !== currentUser.Id && followed"
-                            (click)="followButton(userInfo)" class="btn btn-secondary btn-sm">Unfollow</button>
-                    </ng-template>
+                    <a *ngIf="userInfo && userInfo.Id === currentUser.Id" class="main-btn" routerLink="/settings">Edit
+                        Profile</a>
+                    <button *ngIf="userInfo && userInfo.Id !== currentUser.Id"
+                        (click)="followButton(userInfo)" [class]="followedButtonClass(followed)">{{followedText(followed)}}</button>
                 </div>
             </div>
-            <app-profile-favorite-albums [currentUser]="currentUser" [userInfo]="userInfo" [userId]="userId"></app-profile-favorite-albums>
+            <app-profile-favorite-albums [currentUser]="currentUser" [userInfo]="userInfo"
+                [userId]="userId"></app-profile-favorite-albums>
         </div>
     </div>
     <div *ngIf="userInfo" class="d-flex flex-row gap-3 align-items-center">
-        <a [ngClass]="!currentUrl.includes('likes') ? 'main-btn' : 'empty-btn'"
-            [routerLink]="['/profile', userInfo.Id]" class="m-0">Reviews</a>
+        <a [ngClass]="!currentUrl.includes('likes') ? 'main-btn' : 'empty-btn'" [routerLink]="['/profile', userInfo.Id]"
+            class="m-0">Reviews</a>
         <a [ngClass]="currentUrl.includes('likes') ? 'main-btn' : 'empty-btn'"
             [routerLink]="['/profile', userInfo.Id, 'likes']" class="m-0">Likes</a>
     </div>
