@@ -8,6 +8,6 @@ import { GenericSignalrService } from './generic.signalr.service';
 export class UserHubService extends GenericSignalrService {
 
     constructor() {
-        super(HubUrls.UserHub)
+        super(HubUrls.UserHub, "UserHub")
     }
 }

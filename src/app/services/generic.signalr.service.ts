@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
+import { UrlSerializer } from '@angular/router';
+import { HubConnection, HubConnectionBuilder, HubConnectionState, LogLevel } from '@microsoft/signalr';
 
 @Injectable({
     providedIn: 'root'
@@ -8,6 +9,7 @@ export abstract class GenericSignalrService {
 
     constructor(
         protected hubUrl: string,
+        protected name: string
     ) { }
 
     private _connection: HubConnection;
@@ -21,10 +23,11 @@ export abstract class GenericSignalrService {
 
             const hubConnection: HubConnection = builder.withUrl(this.hubUrl)
                 .withAutomaticReconnect()
+                .configureLogging(LogLevel.None)
                 .build();
 
             hubConnection.start()
-                .then(() => console.log("Connected"))
+                .then(() => console.log(`Connected to ${this.name}`))
                 .catch(error => setTimeout(() => this.start(), 2000));
 
             this._connection = hubConnection;

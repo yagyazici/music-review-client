@@ -48,9 +48,7 @@ export class HeaderComponent implements OnInit {
         if (this.isAuthenticated) {
             this.getUserNotificationsCount();
             this.musicHub.start();
-            console.log("music açıldı");
             this.userHub.start();
-            console.log("user açıldı");
             this.userHub.on(ReceiveFunctions.UserSendNotificitionMessage, message => {
                 if (message == this.currentUser.Id){
                     this.getUserNotificationsCount();
