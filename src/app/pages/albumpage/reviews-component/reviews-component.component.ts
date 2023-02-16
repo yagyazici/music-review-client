@@ -33,7 +33,7 @@ export class ReviewsComponentComponent implements OnInit {
 
     getAlbumReviews(albumId: string){
         this.reviewService.getAlbumReviews(albumId).subscribe(data => {
-            this.albumReviews = data;
+            this.albumReviews = data.reverse();
         })
     }
 

@@ -34,7 +34,7 @@ export class NotificationComponent implements OnInit {
 
     getNotifications() {
         this.authService.getUserNotifications().subscribe(data => {
-            this.notifications = data;
+            this.notifications = data.reverse();
         })
     }
 

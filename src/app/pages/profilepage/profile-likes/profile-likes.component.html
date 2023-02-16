@@ -1,5 +1,5 @@
 <div *ngIf="userLikedAlbums" class="liked-wrapper gap-3">
-    <a class="album-box p-3 rounded-3 user-select-none" *ngFor="let likedAlbum of userLikedAlbums.slice().reverse()"
+    <a class="album-box p-3 rounded-3 user-select-none" *ngFor="let likedAlbum of userLikedAlbums"
         [routerLink]="['/album', likedAlbum.id]">
         <img src="{{likedAlbum.images[0].url}}" class="album-img rounded-3">
         <div>

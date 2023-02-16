@@ -1,6 +1,6 @@
 <div class="feed-page" *ngIf="reviews">
     <div class="feed-wrapper">
-        <div class="feed light-blue rounded-3 p-3" *ngFor="let review of reviews.slice().reverse()">
+        <div class="feed light-blue rounded-3 p-3" *ngFor="let review of reviews">
             <div>
                 <div class="inner-feed">
                     <img src="{{review.AlbumImage}}" class="album-img rounded-3">

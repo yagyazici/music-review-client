@@ -58,7 +58,7 @@ export class ProfileReviewsComponent implements OnInit {
 
     async getUserAlbumReviews(userId: string) {
         await firstValueFrom(this.reviewService.getUserAlbumReviews(userId)).then(data => {
-            this.userAlbumReviews = data;
+            this.userAlbumReviews = data.reverse();
         });
     }
 

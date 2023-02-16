@@ -37,7 +37,7 @@ export class FeedpageComponent implements OnInit {
 
     getUserFeed() {
         this.reviewService.getUserFeed().subscribe(data => {
-            this.reviews = data;
+            this.reviews = data.reverse();
         })
     }
 

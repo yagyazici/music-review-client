@@ -26,7 +26,7 @@ export class ProfileLikesComponent implements OnInit {
 
     getUserLikedAlbums(userId: string){
         this.authService.getUserLikedAlbums(userId).subscribe(data => {
-            this.userLikedAlbums = data;
+            this.userLikedAlbums = data.reverse();
         })
     }
 }

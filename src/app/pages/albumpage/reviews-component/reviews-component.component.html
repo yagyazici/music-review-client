@@ -1,6 +1,6 @@
 <div *ngIf="albumReviews && albumReviews.length>0;else noAlbumReview">
     <ul class="border border-dark rounded-3 list-group list-group-flush light-blue">
-        <li *ngFor="let albumReview of albumReviews.slice().reverse()" class="border-dark list-group-item light-blue">
+        <li *ngFor="let albumReview of albumReviews" class="border-dark list-group-item light-blue">
             <div class="d-flex flex-row gap-3">
                 <div>
                     <img *ngIf="albumReview && albumReview.Author" class="rounded-circle profile-picture" [src]="getImage(albumReview.Author.ProfilePicture)">

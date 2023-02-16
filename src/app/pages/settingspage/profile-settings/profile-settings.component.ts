@@ -130,7 +130,7 @@ export class ProfileSettingsComponent implements OnInit {
                 viewValue: `${y}`
             }
             return year;
-        })
+        }).reverse()
         this.selectedYear = new Date(this.loggedUser.BirthDate).getFullYear().toString();
         this.selectedYear = `${this.selectedYear}`;
     }
