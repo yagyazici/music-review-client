@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom, Observable } from 'rxjs';
 import { Album } from '../models/album';
+import { AuthToken } from '../models/auth-token';
 import { CustomResponse } from '../models/custom-response';
 import { Follingers } from '../models/follingers';
+import { LoginRespose } from '../models/login.respose';
 import { Notification } from '../models/notification';
 import { User } from '../models/user';
 import { UserDTO } from '../models/userDTO';
@@ -27,12 +29,12 @@ export class AuthService {
 	) {
 	}
 
-	public register(user: User): Observable<CustomResponse> {
-		return this.http.post<CustomResponse>(`${this.baseUrl}Register`, user);
+	public register(user: User): Observable<CustomResponse<User & string[]>> {
+		return this.http.post<CustomResponse<User & string[]>>(`${this.baseUrl}Register`, user);
 	}
 
-	public login(user: User): Observable<CustomResponse> {
-		return this.http.post<CustomResponse>(`${this.baseUrl}Login`, user);
+	public login(user: User): Observable<CustomResponse<LoginRespose & string>> {
+		return this.http.post<CustomResponse<LoginRespose & string>>(`${this.baseUrl}Login`, user);
 	}
 
 	public logout() {
@@ -76,7 +78,7 @@ export class AuthService {
 		return this.http.put(`${this.baseUrl}UploadProfileImage`, formData, { headers: headers, reportProgress: true, observe: "events" })
 	}
 
-	public updateProfile(username: string, bio: string, birthDate: string, email: string): Observable<CustomResponse> {
+	public updateProfile(username: string, bio: string, birthDate: string, email: string): Observable<CustomResponse<boolean & string[]>> {
 		var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
 			"Authorization": `bearer ${token}`
@@ -86,13 +88,13 @@ export class AuthService {
 			.set("bio", bio)
 			.set("birthDate", birthDate)
 			.set("email", email)
-		return this.http.put<CustomResponse>(`${this.baseUrl}UpdateUser`, null, {
+		return this.http.put<CustomResponse<boolean & string[]>>(`${this.baseUrl}UpdateUser`, null, {
 			headers: headers,
 			params: params
 		});
 	}
 
-	public updatePassword(oldPassword: string, newPassword: string): Observable<CustomResponse> {
+	public updatePassword(oldPassword: string, newPassword: string): Observable<CustomResponse<string>> {
 		var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
 			"Authorization": `bearer ${token}`
@@ -100,7 +102,7 @@ export class AuthService {
 		const params = new HttpParams()
 			.set("currentPassword", oldPassword)
 			.set("newPassword", newPassword);
-		return this.http.put<CustomResponse>(`${this.baseUrl}UpdatePassword`, null, {
+		return this.http.put<CustomResponse<string>>(`${this.baseUrl}UpdatePassword`, null, {
 			headers: headers,
 			params: params
 		});
@@ -138,12 +140,12 @@ export class AuthService {
 		});
 	}
 
-	public updateUserFavoriteAlbums(favoriteAlbums: Album[]): Observable<CustomResponse> {
+	public updateUserFavoriteAlbums(favoriteAlbums: Album[]): Observable<CustomResponse<boolean>> {
 		var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
 			"Authorization": `bearer ${token}`
 		});
-		return this.http.post<CustomResponse>(`${this.baseUrl}AddUserFavoriteAlbums`, favoriteAlbums, {
+		return this.http.post<CustomResponse<boolean>>(`${this.baseUrl}AddUserFavoriteAlbums`, favoriteAlbums, {
 			headers: headers
 		});
 	}
@@ -160,23 +162,23 @@ export class AuthService {
 			const params = new HttpParams()
 				.set("userId", userId)
 				.set("refreshToken", refreshToken || "")
-			firstValueFrom(this.http.post<CustomResponse>(`${this.baseUrl}RefreshToken`, null, {
+			firstValueFrom(this.http.post<CustomResponse<AuthToken & boolean>>(`${this.baseUrl}RefreshToken`, null, {
 				params: params
 			})).then(data => {
 				console.log(data.response);
-				localStorage.setItem('authToken', data.response.jwt);
-				localStorage.setItem("tokenExpires", data.response.expires)
+				localStorage.setItem('authToken', data.response.Token);
+				localStorage.setItem("tokenExpires", data.response.Expires.toString())
 			})
 		}
 		else return;
 	}
 
-	public likeAlbum(likeAlbum: Album): Observable<CustomResponse> {
+	public likeAlbum(likeAlbum: Album): Observable<CustomResponse<boolean>> {
 		var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
 			"Authorization": `bearer ${token}`
 		});
-		return this.http.post<CustomResponse>(`${this.baseUrl}ToggleUserLikedAlbum`, likeAlbum, {
+		return this.http.post<CustomResponse<boolean>>(`${this.baseUrl}ToggleUserLikedAlbum`, likeAlbum, {
 			headers: headers
 		})
 	}
@@ -207,12 +209,12 @@ export class AuthService {
 		})
 	}
 
-	public followUser(followedUser: UserDTO): Observable<CustomResponse> {
+	public followUser(followedUser: UserDTO): Observable<CustomResponse<boolean>> {
 		var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
 			"Authorization": `bearer ${token}`
 		});
-		return this.http.post<CustomResponse>(`${this.baseUrl}ToggleUserFollowedUser`, followedUser, { headers: headers });
+		return this.http.post<CustomResponse<boolean>>(`${this.baseUrl}ToggleUserFollowedUser`, followedUser, { headers: headers });
 	}
 
 	public checkUserFollowed(userId: string): Observable<boolean> {
@@ -271,12 +273,12 @@ export class AuthService {
 		return this.http.get("https://localhost:7172/Recourses/Images/63c824cca81836c19713059b.jpeg", { responseType: "blob" })
 	}
 
-	public deleteImage(): Observable<CustomResponse> {
+	public deleteImage(): Observable<CustomResponse<string>> {
 		var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
 			"Authorization": `bearer ${token}`
 		});
-		return this.http.delete<CustomResponse>(`${this.baseUrl}DeleteProfileImage`, { headers: headers })
+		return this.http.delete<CustomResponse<string>>(`${this.baseUrl}DeleteProfileImage`, { headers: headers })
 	}
 }
 

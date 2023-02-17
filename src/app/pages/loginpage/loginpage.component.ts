@@ -49,13 +49,12 @@ export class LoginpageComponent implements OnInit {
         this.authService.login(this.user).subscribe(response => {
             if (response.status) {
                 this.isLoading = false;
-                localStorage.setItem('authToken', response.response.authToken.jwt);
-                localStorage.setItem("tokenExpires", response.response.authToken.expires);
-                localStorage.setItem("refreshToken", response.response.refreshToken.Token);
-                var user = <UserDTO>response.response.currentUser;
+                localStorage.setItem('authToken', response.response.AuthToken.Token);
+                localStorage.setItem("tokenExpires", response.response.AuthToken.Expires.toString());
+                localStorage.setItem("refreshToken", response.response.RefreshToken.Token);
+                var user = <UserDTO>response.response.CurrentUser;
                 localStorage.setItem("user", JSON.stringify(user));
                 this.data.changeCurrentUser(user);
-                console.log(response);
                 this.data.changeIsAuthenticated(true);
                 this.router.navigate(["/"]);
             }

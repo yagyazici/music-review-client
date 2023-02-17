@@ -1,5 +1,5 @@
-export class CustomResponse {
-    response: any;
+export class CustomResponse<TResponse> {
+    response: TResponse;
     responseText: string;
     status: boolean;
 }

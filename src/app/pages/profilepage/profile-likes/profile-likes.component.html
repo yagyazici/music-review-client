@@ -1,14 +1,14 @@
-<div *ngIf="userLikedAlbums" class="liked-wrapper gap-3">
-    <a class="album-box p-3 rounded-3 user-select-none" *ngFor="let likedAlbum of userLikedAlbums"
-        [routerLink]="['/album', likedAlbum.id]">
-        <img src="{{likedAlbum.images[0].url}}" class="album-img rounded-3">
-        <div>
-            <h6 class="m-0 p-0 anchor-color text-truncate" [title]="likedAlbum.name">
-                <strong>{{likedAlbum.name}}</strong></h6>
-            <small class="m-0 p-0 year-text"><a [routerLink]="['/artist', likedAlbum.artists[0].id]"
-                    class="text-decoration-none">
-                    {{likedAlbum.artists[0].name}}
-                </a></small>
+<div class="album-wrapper gap-3 my-3">
+    <a class="album border border-dark p-3 rounded-3 p-3 user-selection-none text-decoration-none"
+        [routerLink]="['/album', album.id]" *ngFor="let album of userLikedAlbums">
+        <div class="inner-album">
+            <img src="{{album.images[0].url}}" class="album-img rounded-3">
+        </div>
+        <div class="artist-album-text">
+            <strong class="anchor-color">{{album.name}}</strong>
+            <a class="anchor-color m-0 p-0 text-start text-decoration-none" [routerLink]="['/artist', album.artists[0].id]">
+                <small>{{album.artists[0].name}}</small>
+            </a>
         </div>
     </a>
 </div>

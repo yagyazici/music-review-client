@@ -1,21 +1,18 @@
-.album-box:hover{
-    background-color: #3d9ddd;
+.album {
+    background-color: #64B7FC;
     transition: background-color .2s ease;
 }
 
-.text-truncate{
-    width: 200px;
-    overflow:hidden; 
-    white-space:nowrap; 
-    text-overflow: ellipsis;
+.artist-name {
+    text-decoration: none !important;
 }
 
-.artist-name:hover{
-    text-decoration: underline;
+.artist-name:hover {
+    text-decoration: underline !important;
 }
 
 @media (max-width: 600px) {
-    .liked-wrapper {
+    .album-wrapper {
         display: grid;
         grid-template-columns: 1fr;
     }
@@ -26,26 +23,25 @@
         height: auto;
     }
 
-    .album-box {
+    .album {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        background-color: #64B7FC;
-        transition: background-color .2s ease;
         text-decoration: none;
         align-items: center;
         gap: 0.5em;
     }
 
-    .text-truncate {
-        white-space: break-spaces;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .artist-album-text {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex: 1;
     }
 }
 
 @media only screen and (min-width: 600px) {
-    .liked-wrapper {
+    .album-wrapper {
         display: grid;
         grid-template-columns: 1fr;
     }
@@ -56,7 +52,7 @@
         height: auto;
     }
 
-    .album-box {
+    .album {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -67,83 +63,34 @@
         gap: 0.5em;
     }
 
-    .text-truncate {
-        white-space: break-spaces;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .artist-album-text {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex: 1 1 0;
     }
 }
 
 @media only screen and (min-width: 768px) {
-    .liked-wrapper {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(auto, 1fr));
-    }
-
-    .album-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: #64B7FC;
-        transition: background-color .2s ease;
-        text-decoration: none;
-        gap: 0.5em;
-    }
-
-    .album-img {
-        width: 100%;
-        max-width: 200px;
-        height: auto;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .liked-wrapper {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(auto, 1fr));
-    }
-
-    .album-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: #64B7FC;
-        transition: background-color .2s ease;
-        text-decoration: none;
-        align-items: center;
-        gap: 0.5em;
-    }
-
-    .album-img {
-        width: 100%;
-        max-width: 250px;
-        height: auto;
-    }
-
-    .text-truncate {
-        white-space: nowrap;
-        width: 200px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .liked-wrapper {
+    .album-wrapper {
         display: grid;
         grid-template-columns: repeat(4, minmax(150px, 1fr));
     }
 
-    .album-box {
+    .album {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         background-color: #64B7FC;
         transition: background-color .2s ease;
         text-decoration: none;
-        align-items: center;
+        align-items: stretch;
         gap: 0.5em;
+    }
+
+    .inner-album {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .album-img {
@@ -152,10 +99,12 @@
         height: auto;
     }
 
-    .text-truncate {
-        white-space: nowrap;
-        width: 200px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .artist-album-text {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        flex: unset;
     }
 }

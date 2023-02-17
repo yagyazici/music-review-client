@@ -39,7 +39,7 @@ export class ReviewFormComponentComponent implements OnInit {
             if (message.albumId == this.albumId && message.author.id == this.currentFormUser.Id) {
                 this.albumReviewCheck(this.albumId);
             }
-        })
+        });
         this.albumReviewCheck(this.albumId);
     }
 
@@ -61,6 +61,7 @@ export class ReviewFormComponentComponent implements OnInit {
         }
         if (this.reactiveForm.valid) {
             this.reviewService.postReview(review).subscribe();
+            this.reviewExists = true;
         }
         else {
             return;

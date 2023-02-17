@@ -35,7 +35,7 @@ export abstract class GenericSignalrService {
 
         this._connection.onreconnected(connectionId => console.log("Reconnected"));
         this._connection.onreconnecting(error => console.log("Reconnecting"));
-        this._connection.onclose(error => console.log("Close reconnection"));
+        this._connection.onclose(error => console.log("Close connection"));
     }
 
     invoke(procedureName: string, message: any, successCallBack?: (value: any) => void, errorCallBack?: (error: any) => void) {

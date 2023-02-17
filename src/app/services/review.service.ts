@@ -19,21 +19,21 @@ export class ReviewService {
     }
 
     //#region PostRequests
-    public postReview(review: Review): Observable<CustomResponse> {
+    public postReview(review: Review): Observable<CustomResponse<string>> {
         var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
             "Authorization": `bearer ${token}`
         });
-        return this.http.post<CustomResponse>(`${this.baseUrl}Post`, review,{headers: headers});
+        return this.http.post<CustomResponse<string>>(`${this.baseUrl}Post`, review,{headers: headers});
     }
     
-    public likeReview(reviewId: string): Observable<CustomResponse>{
+    public likeReview(reviewId: string): Observable<CustomResponse<string>>{
         var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
             "Authorization": `bearer ${token}`
         });
         const params = new HttpParams().set("reviewId", reviewId)
-        return this.http.post<CustomResponse>(`${this.baseUrl}ToggleLikedReview`, null, {headers: headers, params: params});
+        return this.http.post<CustomResponse<string>>(`${this.baseUrl}ToggleLikedReview`, null, {headers: headers, params: params});
     }
     //#endregion
     
@@ -93,24 +93,24 @@ export class ReviewService {
     //#endregion
 
     //#region PutRequests
-    public UpdateAlbumReview(id: string, newRate: string, newThoughts: string): Observable<CustomResponse>{
+    public UpdateAlbumReview(id: string, newRate: string, newThoughts: string): Observable<CustomResponse<string | boolean>>{
         var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
             "Authorization": `bearer ${token}`
         });
         const params = new HttpParams().set("id", id).set("newRate", newRate).set("newThoughts", newThoughts);
-        return this.http.put<CustomResponse>(`${this.baseUrl}Put`, null, {headers: headers, params: params});
+        return this.http.put<CustomResponse<string | boolean>>(`${this.baseUrl}Put`, null, {headers: headers, params: params});
     }
     //#endregion
 
     //#region DeleteRequests
-    public DeleteAlbumReview(id: string): Observable<CustomResponse>{
+    public DeleteAlbumReview(id: string): Observable<CustomResponse<string>>{
         var token = localStorage.getItem("authToken");
 		var headers = new HttpHeaders({
             "Authorization": `bearer ${token}`
         });
         const params = new HttpParams().set("id", id);
-        return this.http.delete<CustomResponse>(`${this.baseUrl}Delete`, {headers: headers, params: params});
+        return this.http.delete<CustomResponse <string>>(`${this.baseUrl}Delete`, {headers: headers, params: params});
     }
     //#endregion
 }
