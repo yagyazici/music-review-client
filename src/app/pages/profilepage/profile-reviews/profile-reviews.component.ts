@@ -6,7 +6,7 @@ import { firstValueFrom } from 'rxjs';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Review } from 'src/app/models/Music/review';
-import { DataService } from 'src/app/services/dataservice.service';
+import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';

@@ -5,7 +5,7 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { Album } from 'src/app/models/Music/album';
 import { AuthToken } from 'src/app/models/Auth/auth-token';
 import { LoginRespose } from 'src/app/models/Responses/login.respose';
-import { DataService } from '../dataservice.service';
+import { DataService } from '../ProvideServices/dataservice.service';
 import { MusicHubService } from '../SignalR/music.hub.service';
 import { UserHubService } from '../SignalR/user.hub.service';
 import { CustomResponse } from 'src/app/models/Responses/custom-response';

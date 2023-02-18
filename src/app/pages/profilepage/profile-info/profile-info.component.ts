@@ -3,7 +3,7 @@ import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
-import { DataService } from 'src/app/services/dataservice.service';
+import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { FollowersComponent } from './followers/followers.component';
 import { FollowingComponent } from './following/following.component';

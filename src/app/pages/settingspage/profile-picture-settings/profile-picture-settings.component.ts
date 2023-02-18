@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { base64ToFile, Dimensions, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 import { firstValueFrom } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
-import { DataService } from 'src/app/services/dataservice.service';
+import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { DeleteImageComponent } from './delete-image/delete-image.component';
 

@@ -23,9 +23,9 @@ import { ArtistAlbumsComponent } from './pages/artistpage/artist-albums/artist-a
 import { ArtistSinglesComponent } from './pages/artistpage/artist-singles/artist-singles.component';
 import { FeedpageComponent } from './pages/feedpage/feedpage.component';
 import { ChangePasswordComponent } from './pages/settingspage/change-password/change-password.component';
-import { AuthenticationGuard } from './services/authentication.guard';
 import { DeleteImageComponent } from './pages/settingspage/profile-picture-settings/delete-image/delete-image.component';
 import { SettingsNavbarComponent } from './pages/settingspage/settings-navbar/settings-navbar.component';
+import { AuthenticationGuard } from './services/ProvideServices/authentication.guard';
 
 const routes: Routes = [
 	{

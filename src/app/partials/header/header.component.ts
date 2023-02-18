@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/dataservice.service';
+import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { NotificationComponent } from '../notification/notification.component';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';

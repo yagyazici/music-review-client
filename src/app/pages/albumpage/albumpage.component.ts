@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from 'src/app/services/dataservice.service';
+import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { Album } from 'src/app/models/Music/album';
 import { firstValueFrom } from 'rxjs';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';

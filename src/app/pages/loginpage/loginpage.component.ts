@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/dataservice.service';
+import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
