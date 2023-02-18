@@ -4,7 +4,7 @@
 <div class="w-50 mx-auto light-blue border rounded-3 border-dark p-5" *ngIf="!isLoading">
     <h1 class="pt-3 text-center text-white"><u>Login</u></h1>
     <small *ngIf="errorText" class="text-danger m-0 p-0">{{errorText}}</small>
-    <form [formGroup]="reactiveForm" (submit)="login()">
+    <form [formGroup]="reactiveForm" (submit)="login()" class="login-form">
         <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
             <input matInput formControlName="username" [spellcheck]="false">

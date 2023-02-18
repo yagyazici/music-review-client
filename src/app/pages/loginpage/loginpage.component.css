@@ -1,57 +1,57 @@
 /*#region RegionName*/
-::ng-deep .mat-form-field {
+::ng-deep .login-form .mat-form-field {
     font-family: 'Poppins', sans-serif !important;
     display: inherit !important;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+::ng-deep .login-form .mat-form-field-appearance-outline .mat-form-field-outline {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem !important;
     color: white !important;
 }
 
-::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+::ng-deep .login-form .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: white !important;
 }
 
-::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+::ng-deep .login-form .mat-form-field.mat-focused .mat-form-field-label {
     color: white !important;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+::ng-deep .login-form .mat-form-field-appearance-outline .mat-form-field-outline-start {
     border-width: 1px !important;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+::ng-deep .login-form .mat-form-field-appearance-outline .mat-form-field-outline-end {
     border-width: 1px !important;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+::ng-deep .login-form .mat-form-field-appearance-outline .mat-form-field-outline-gap {
     border-width: 1px !important;
 }
 
-::ng-deep input::placeholder {
+::ng-deep .login-form input::placeholder {
     color: white !important;
 }
 
-::ng-deep input {
+::ng-deep .login-form input {
     color: white !important;
 }
 
-::ng-deep .mat-input-element {
+::ng-deep .login-form .mat-input-element {
     caret-color: white;
 }
 
-::ng-deep .mat-form-field-empty.mat-form-field-label {
+::ng-deep .login-form .mat-form-field-empty.mat-form-field-label {
     color: white;
 }
 
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+::ng-deep .login-form .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
 .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
     color: white !important;
 }
 
-::ng-deep .mat-icon {
+::ng-deep .login-form .mat-icon {
     color: white;
 }
 

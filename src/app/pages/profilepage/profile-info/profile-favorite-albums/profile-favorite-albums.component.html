@@ -2,7 +2,7 @@
     <div class="edit-buttons">
         <p *ngIf="userFavoriteAlbums.length>0" class="text-white m-0 p-0">Favorite Albums</p>
         <div *ngIf="userInfo && userInfo.Id === currentUser.Id">
-            <a class="btn main-btn" routerLink="/settings/favorite-albums">
+            <a class="main-btn" routerLink="/settings/favorite-albums">
                 {{favoriteBtnText(userFavoriteAlbums)}}
             </a>
         </div>
