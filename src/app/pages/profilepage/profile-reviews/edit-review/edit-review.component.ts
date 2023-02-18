@@ -5,7 +5,7 @@ import { HoverRatingChangeEvent } from 'angular-star-rating/lib/interfaces/hover
 import { firstValueFrom } from 'rxjs';
 import { Review } from 'src/app/models/review';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
-import { ReviewService } from 'src/app/services/review.service';
+import { ReviewService } from 'src/app/services/ModelServices/review.service';
 
 export interface DialogData {
     reviewId: string;

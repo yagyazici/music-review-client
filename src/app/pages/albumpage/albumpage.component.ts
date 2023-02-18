@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SpotifyserviceService } from 'src/app/services/spotifyservice.service';
 import { UserDTO } from 'src/app/models/userDTO';
 import { DataService } from 'src/app/services/dataservice.service';
 import { Album } from 'src/app/models/album';
-import { AuthService } from 'src/app/services/auth.service';
 import { firstValueFrom } from 'rxjs';
-import { ReviewService } from 'src/app/services/review.service';
+import { ReviewService } from 'src/app/services/ModelServices/review.service';
+import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
+import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 @Component({
     selector: 'app-albumpage',

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { UrlSerializer } from '@angular/router';
 import { HubConnection, HubConnectionBuilder, HubConnectionState, LogLevel } from '@microsoft/signalr';
 
 @Injectable({

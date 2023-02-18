@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SpotifyserviceService } from 'src/app/services/spotifyservice.service';
+import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
 
 
 @Component({
@@ -9,7 +9,9 @@ import { SpotifyserviceService } from 'src/app/services/spotifyservice.service';
 })
 export class CurrentsongComponent implements OnInit {
 
-    constructor(private spotify: SpotifyserviceService) { }
+    constructor(
+        private spotify: SpotifyserviceService
+    ) { }
     currentlyPlaying: any;
     @Input() toCurrentSong: boolean;
     loaded: boolean = false;

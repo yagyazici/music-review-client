@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ReviewService } from 'src/app/services/review.service';
+import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { Review } from 'src/app/models/review';
 import * as moment from 'moment';
-import { MusicHubService } from 'src/app/services/music.hub.service';
+import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 
 @Component({
     selector: 'app-reviews-component',

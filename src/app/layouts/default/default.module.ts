@@ -60,7 +60,7 @@ import { ErrorsPipe } from 'src/app/pipes/errors.pipe';
 import { DeleteImageComponent } from 'src/app/pages/settingspage/profile-picture-settings/delete-image/delete-image.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NgxMasonryModule } from 'ngx-masonry';
-import { GenericSignalrService } from 'src/app/services/generic.signalr.service';
+import { GenericSignalrService } from 'src/app/services/SignalR/generic.signalr.service';
 
 
 @NgModule({

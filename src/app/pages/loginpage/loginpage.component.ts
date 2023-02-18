@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/dataservice.service';
 import { UserDTO } from 'src/app/models/userDTO';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 @Component({
     selector: 'app-loginpage',

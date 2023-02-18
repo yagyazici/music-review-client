@@ -6,10 +6,10 @@ import { firstValueFrom } from 'rxjs';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { Review } from 'src/app/models/review';
 import { UserDTO } from 'src/app/models/userDTO';
-import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/dataservice.service';
-import { MusicHubService } from 'src/app/services/music.hub.service';
-import { ReviewService } from 'src/app/services/review.service';
+import { AuthService } from 'src/app/services/ModelServices/auth.service';
+import { ReviewService } from 'src/app/services/ModelServices/review.service';
+import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 import { DeleteReviewComponent } from './delete-review/delete-review.component';
 import { EditReviewComponent } from './edit-review/edit-review.component';
 

@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { firstValueFrom } from 'rxjs';
 import { UserDTO } from 'src/app/models/userDTO';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 export interface DialogData {
     userId: string;

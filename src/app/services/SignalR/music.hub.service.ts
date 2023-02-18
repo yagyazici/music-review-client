@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HubUrls } from '../constants/hub-urls';
+import { HubUrls } from 'src/app/constants/hub-urls';
 import { GenericSignalrService } from './generic.signalr.service';
 
 @Injectable({

@@ -2,17 +2,17 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom, Observable } from 'rxjs';
-import { Album } from '../models/album';
-import { AuthToken } from '../models/auth-token';
-import { CustomResponse } from '../models/custom-response';
-import { Follingers } from '../models/follingers';
-import { LoginRespose } from '../models/login.respose';
-import { Notification } from '../models/notification';
-import { User } from '../models/user';
-import { UserDTO } from '../models/userDTO';
-import { DataService } from './dataservice.service';
-import { MusicHubService } from './music.hub.service';
-import { UserHubService } from './user.hub.service';
+import { Album } from 'src/app/models/album';
+import { AuthToken } from 'src/app/models/auth-token';
+import { CustomResponse } from 'src/app/models/custom-response';
+import { Follingers } from 'src/app/models/follingers';
+import { LoginRespose } from 'src/app/models/login.respose';
+import { User } from 'src/app/models/user';
+import { UserDTO } from 'src/app/models/userDTO';
+import { Notification } from 'src/app/models/notification';
+import { DataService } from '../dataservice.service';
+import { MusicHubService } from '../SignalR/music.hub.service';
+import { UserHubService } from '../SignalR/user.hub.service';
 
 @Injectable({
 	providedIn: 'root'

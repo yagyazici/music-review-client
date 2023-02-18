@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CustomResponse } from '../models/custom-response';
-import { Review } from '../models/review';
+import { CustomResponse } from '../../models/custom-response';
+import { Review } from '../../models/review';
 
 
 @Injectable({

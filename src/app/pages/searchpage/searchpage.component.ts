@@ -3,8 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Album } from 'src/app/models/album';
 import { UserDTO } from 'src/app/models/userDTO';
-import { AuthService } from 'src/app/services/auth.service';
-import { SpotifyserviceService } from 'src/app/services/spotifyservice.service';
+import { AuthService } from 'src/app/services/ModelServices/auth.service';
+import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
 
 @Component({
     selector: 'app-searchpage',

@@ -4,8 +4,8 @@ import { HoverRatingChangeEvent } from 'angular-star-rating/lib/interfaces/hover
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { Review } from 'src/app/models/review';
 import { UserDTO } from 'src/app/models/userDTO';
-import { MusicHubService } from 'src/app/services/music.hub.service';
-import { ReviewService } from 'src/app/services/review.service';
+import { ReviewService } from 'src/app/services/ModelServices/review.service';
+import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 
 
 @Component({

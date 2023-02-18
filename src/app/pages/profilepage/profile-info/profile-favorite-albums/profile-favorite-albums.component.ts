@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Album } from 'src/app/models/album';
-import { User } from 'src/app/models/user';
 import { UserDTO } from 'src/app/models/userDTO';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 @Component({
     selector: 'app-profile-favorite-albums',
