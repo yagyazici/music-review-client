@@ -36,7 +36,6 @@ export class ProfileReviewsComponent implements OnInit {
     ) { }
 
     async ngOnInit() {
-        this.authService.refreshToken()
         this.activatedRoute.parent?.paramMap.subscribe(params => {
             this.userId = params.get("user-id") || "";
         });

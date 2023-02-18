@@ -39,7 +39,6 @@ export class ProfileSettingsComponent implements OnInit {
     ) {}
 
     async ngOnInit() {
-        await this.authService.refreshToken();
         this.dataService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
         await this.getUser();
         this.createDays();

@@ -9,6 +9,15 @@ export class CustomInterceptorService implements HttpInterceptor{
 
     constructor() { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        throw new Error('Method not implemented.');
+        if (req.url.startsWith("https://localhost:7172")){
+            var token = localStorage.getItem("authToken");
+            let authReq = req.clone({
+                setHeaders: {
+                    "Authorization": `bearer ${token}` 
+                }
+            })
+            return next.handle(authReq);
+        }
+        return next.handle(req)
     }
 }

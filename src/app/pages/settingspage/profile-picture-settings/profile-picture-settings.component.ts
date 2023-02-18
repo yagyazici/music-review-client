@@ -34,7 +34,6 @@ export class ProfilePictureSettingsComponent implements OnInit {
     
 
     async ngOnInit(){
-        this.authService.refreshToken()
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
         await this.getUser();
     }

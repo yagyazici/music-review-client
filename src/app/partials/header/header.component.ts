@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit {
         this.data.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated)
         if (this.isAuthenticated) {
             this.getUserNotificationsCount();
+            this.authService.refreshToken();
             this.musicHub.start();
             this.userHub.start();
             this.userHub.on(ReceiveFunctions.UserSendNotificitionMessage, message => {

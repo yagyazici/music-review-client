@@ -36,7 +36,6 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
     ) { }
 
     async ngOnInit() {
-        this.authService.refreshToken()
         this.dataService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
         await this.getCurrentUserFavoriteAlbums();
         this.threeAlbumRule()

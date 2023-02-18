@@ -27,7 +27,6 @@ export class ChangePasswordComponent implements OnInit {
     ){}
     
     ngOnInit(): void {
-        this.authService.refreshToken();
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
         this.reactiveForm = new FormGroup({
             currentPassword: new FormControl(""),

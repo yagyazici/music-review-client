@@ -8,6 +8,7 @@ import { SpotifyrefreshService } from './spotifyrefresh.service';
 })
 export class SpotifyserviceService {
 
+    baseUrl = "https://api.spotify.com/v1"
     tokenSubject = new BehaviorSubject<string>("");
     headers: HttpHeaders;
     constructor(
@@ -28,62 +29,27 @@ export class SpotifyserviceService {
     
     currentSong(){
         const params = new HttpParams().set("market", "gb")
-        return this.http.get(
-            "https://api.spotify.com/v1/me/player/currently-playing", 
-            {
-                headers: this.headers,
-                params: params,
-                responseType: "text"
-            }
-        ); 
+        return this.http.get(`${this.baseUrl}/me/player/currently-playing`, {headers: this.headers, params: params, responseType: "text"}); 
     }
 
     searchAlbum(query: string){
         const params = new HttpParams().set("q", query).set("type", "album").set("market", "gb")
-        return this.http.get(
-            "https://api.spotify.com/v1/search",
-            {
-                headers: this.headers,
-                params: params,
-                responseType: "text"
-            }
-        );
+        return this.http.get(`${this.baseUrl}/search`, {headers: this.headers, params: params, responseType: "text"});
     }
 
     getAlbum(albumId: string){
         const params = new HttpParams().set("market", "gb")
-        return this.http.get(
-            `https://api.spotify.com/v1/albums/${albumId}`, 
-            {
-                headers: this.headers,
-                params: params, 
-                responseType: "text"
-            }
-        );
+        return this.http.get(`${this.baseUrl}/albums/${albumId}`, {headers: this.headers, params: params, responseType: "text"});
     }
 
     getArtist(artistId: string){
         const params = new HttpParams().set("market", "gb")
-        return this.http.get(
-            `https://api.spotify.com/v1/artists/${artistId}`, 
-            {
-                headers: this.headers,
-                params: params, 
-                responseType: "text"
-            }
-        );
+        return this.http.get(`${this.baseUrl}/artists/${artistId}`, {headers: this.headers, params: params, responseType: "text"});
     }
 
     getArtistAlbums(artistId: string, type: string){
         const params = new HttpParams().set("market", "gb").set("include_groups", type)
         // "album,single"
-        return this.http.get(
-            `https://api.spotify.com/v1/artists/${artistId}/albums`,
-            {
-                headers: this.headers,
-                params: params,
-                responseType: "text"
-            }
-        )
+        return this.http.get(`${this.baseUrl}/artists/${artistId}/albums`, {headers: this.headers, params: params, responseType: "text"});
     }
 }

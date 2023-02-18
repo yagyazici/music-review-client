@@ -25,7 +25,6 @@ export class SearchpageComponent implements OnInit {
     ) { }
 
     async ngOnInit(){
-        this.authService.refreshToken()
         this.reactiveForm = new FormGroup({
             query: new FormControl("")
         });

@@ -9,10 +9,8 @@ import { AuthService } from 'src/app/services/ModelServices/auth.service';
 export class ProfilepageComponent implements OnInit {
 
     constructor(
-        private authService: AuthService
     ) { }
 
     async ngOnInit() {
-        this.authService.refreshToken()
     }    
 }

@@ -29,7 +29,6 @@ export class FeedpageComponent implements OnInit {
      }
 
     ngOnInit(): void {
-        this.authService.refreshToken();
         this.dataService.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
         this.getUserFeed();

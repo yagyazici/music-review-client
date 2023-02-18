@@ -7,7 +7,7 @@ import { RegisterpageComponent } from 'src/app/pages/registerpage/registerpage.c
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PartialsModule } from 'src/app/partials/partials.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrentsongComponent } from 'src/app/pages/homepage/currentsong/currentsong.component';
 import { ArtistsNamesPipe } from 'src/app/pipes/artists-names.pipe';
@@ -61,6 +61,7 @@ import { DeleteImageComponent } from 'src/app/pages/settingspage/profile-picture
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { GenericSignalrService } from 'src/app/services/SignalR/generic.signalr.service';
+import { CustomInterceptorService } from 'src/app/services/ProvideServices/custom-interceptor.service';
 
 
 @NgModule({
@@ -150,7 +151,8 @@ import { GenericSignalrService } from 'src/app/services/SignalR/generic.signalr.
             horizontalPosition: "center",
             verticalPosition: "bottom",
             duration: 1500
-        }}
+        }},
+        { provide: HTTP_INTERCEPTORS, useClass: CustomInterceptorService, multi: true}
     ]
 })
 

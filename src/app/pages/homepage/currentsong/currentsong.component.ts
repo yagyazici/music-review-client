@@ -17,7 +17,7 @@ export class CurrentsongComponent implements OnInit {
     loaded: boolean = false;
     
     async ngOnInit(){
-        await this.spotify.getToken()
+        await this.spotify.getToken();
         this.currentSong()
     }
     

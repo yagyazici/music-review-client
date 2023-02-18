@@ -35,8 +35,6 @@ export class AlbumpageComponent implements OnInit {
     async ngOnInit() {
         await this.spotifyService.getToken();
 
-        this.authService.refreshToken();
-
         this.dataService.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
 
         this.activatedRoute.paramMap.subscribe(params => {
