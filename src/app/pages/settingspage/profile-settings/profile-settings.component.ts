@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserDTO } from 'src/app/models/userDTO';
 import { firstValueFrom } from 'rxjs';
 import { formatDate } from '@angular/common';
 import { DataService } from 'src/app/services/dataservice.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
+import { UserDTO } from 'src/app/models/Auth/userDTO';
 
 export class Options {
     value: string;

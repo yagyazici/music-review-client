@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { Router } from '@angular/router';
-import { Notification } from 'src/app/models/notification';
+import { Notification } from 'src/app/models/Auth/notification';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 export interface DialogData {

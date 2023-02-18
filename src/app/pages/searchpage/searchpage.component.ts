@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
-import { Album } from 'src/app/models/album';
-import { UserDTO } from 'src/app/models/userDTO';
+import { UserDTO } from 'src/app/models/Auth/userDTO';
+import { Album } from 'src/app/models/Music/album';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
 
@@ -16,7 +16,7 @@ export class SearchpageComponent implements OnInit {
     reactiveForm: FormGroup;
     query: string
     albums: Album[];
-    users: UserDTO [];
+    users: UserDTO[];
     albumsError: any;
     usersError: any;
     constructor(

@@ -4,13 +4,13 @@ import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { SearchFavoriteAlbumComponent } from './search-favorite-album/search-favorite-album.component';
 import { firstValueFrom } from 'rxjs';
-import { Album } from 'src/app/models/album';
-import { UserDTO } from 'src/app/models/userDTO';
+import { Album } from 'src/app/models/Music/album';
 import { DataService } from 'src/app/services/dataservice.service';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { Router } from '@angular/router';
 import { UserHubService } from 'src/app/services/SignalR/user.hub.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
+import { UserDTO } from 'src/app/models/Auth/userDTO';
 
 
 @Component({

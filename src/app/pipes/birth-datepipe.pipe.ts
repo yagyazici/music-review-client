@@ -14,4 +14,3 @@ export class BirthDatePipe implements PipeTransform {
     }
 
 }
-// October 17, 2000

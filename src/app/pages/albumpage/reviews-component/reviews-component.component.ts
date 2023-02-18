@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
-import { Review } from 'src/app/models/review';
 import * as moment from 'moment';
 import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
+import { Review } from 'src/app/models/Music/review';
 
 @Component({
     selector: 'app-reviews-component',
@@ -13,7 +13,7 @@ import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 })
 export class ReviewsComponentComponent implements OnInit {
 
-    albumReviews: Review [];
+    albumReviews: Review[];
     albumId: string;
     constructor(
         private activated_route: ActivatedRoute,

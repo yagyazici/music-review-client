@@ -1,4 +1,4 @@
-import { Album } from "./album";
+import { Album } from "../Music/album";
 
 export class UserDTO{
     Id: string;

@@ -1,7 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserDTO } from 'src/app/models/userDTO';
 import { DataService } from 'src/app/services/dataservice.service';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { NotificationComponent } from '../notification/notification.component';
@@ -9,6 +8,7 @@ import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 import { UserHubService } from 'src/app/services/SignalR/user.hub.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
+import { UserDTO } from 'src/app/models/Auth/userDTO';
 
 @Component({
     selector: 'app-header',

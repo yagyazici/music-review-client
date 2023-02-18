@@ -1,4 +1,4 @@
-import { UserDTO } from "./userDTO";
+import { UserDTO } from "../Auth/userDTO";
 
 export class Review {
     Id: string;

@@ -2,17 +2,17 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom, Observable } from 'rxjs';
-import { Album } from 'src/app/models/album';
-import { AuthToken } from 'src/app/models/auth-token';
-import { CustomResponse } from 'src/app/models/custom-response';
-import { Follingers } from 'src/app/models/follingers';
-import { LoginRespose } from 'src/app/models/login.respose';
-import { User } from 'src/app/models/user';
-import { UserDTO } from 'src/app/models/userDTO';
-import { Notification } from 'src/app/models/notification';
+import { Album } from 'src/app/models/Music/album';
+import { AuthToken } from 'src/app/models/Auth/auth-token';
+import { LoginRespose } from 'src/app/models/Responses/login.respose';
 import { DataService } from '../dataservice.service';
 import { MusicHubService } from '../SignalR/music.hub.service';
 import { UserHubService } from '../SignalR/user.hub.service';
+import { CustomResponse } from 'src/app/models/Responses/custom-response';
+import { User } from 'src/app/models/Auth/user';
+import { UserDTO } from 'src/app/models/Auth/userDTO';
+import { Notification } from 'src/app/models/Auth/notification';
+import { Follingers } from 'src/app/models/Auth/follingers';
 
 @Injectable({
 	providedIn: 'root'

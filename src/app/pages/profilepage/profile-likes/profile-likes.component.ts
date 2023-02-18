@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Album } from 'src/app/models/album';
+import { Album } from 'src/app/models/Music/album';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 @Component({

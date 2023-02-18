@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
-import { Album } from 'src/app/models/album';
+import { Album } from 'src/app/models/Music/album';
 import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
 
 export interface DialogData {

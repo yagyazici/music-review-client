@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Notification } from '../models/notification';
+import { Notification } from 'src/app/models/Auth/notification';
 
 @Pipe({
     name: 'notif'

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Album } from 'src/app/models/album';
-import { UserDTO } from 'src/app/models/userDTO';
+import { UserDTO } from 'src/app/models/Auth/userDTO';
+import { Album } from 'src/app/models/Music/album';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 @Component({
