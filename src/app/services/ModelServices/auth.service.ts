@@ -172,5 +172,13 @@ export class AuthService {
 	public deleteImage(): Observable<CustomResponse<string>> {
 		return this.http.delete<CustomResponse<string>>(`${this.baseUrl}DeleteProfileImage`)
 	}
+
+	public deleteNotification(notification: Notification): Observable<CustomResponse<Notification[]>> {
+		return this.http.delete<CustomResponse<Notification[]>>(`${this.baseUrl}DeleteNotification`, {body: notification});
+	}
+
+	public deleteAllNotifications(): Observable<CustomResponse<Notification[]>> {
+		return this.http.delete<CustomResponse<Notification[]>>(`${this.baseUrl}DeleteAllNotifications`);
+	}
 }
 

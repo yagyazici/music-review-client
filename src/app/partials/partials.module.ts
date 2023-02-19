@@ -11,6 +11,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { NotifPipe } from '../pipes/notif.pipe';
 
+
 @NgModule({
     declarations: [
         HeaderComponent,

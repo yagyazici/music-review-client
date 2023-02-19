@@ -57,3 +57,17 @@
         position: static;
     }
 }
+
+.delete-all {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-icon {
+    cursor: pointer;
+}
+
+.notifications {
+    display: flex;
+    align-items: center;
+}

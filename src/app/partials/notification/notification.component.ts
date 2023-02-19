@@ -52,4 +52,16 @@ export class NotificationComponent implements OnInit {
     getImage(profilePicture: string): string {
         return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
     }
+
+    deleteAllNotifications() {
+        this.authService.deleteAllNotifications().subscribe(data => {
+            this.notifications = [];
+        })
+    }
+
+    deleteNotification(notification: Notification) {
+        this.authService.deleteNotification(notification).subscribe(data => {
+            this.notifications = data.response;
+        })
+    }
 }

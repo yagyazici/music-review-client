@@ -62,6 +62,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { GenericSignalrService } from 'src/app/services/SignalR/generic.signalr.service';
 import { CustomInterceptorService } from 'src/app/services/ProvideServices/custom-interceptor.service';
+import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
 
 
 @NgModule({
@@ -139,7 +140,7 @@ import { CustomInterceptorService } from 'src/app/services/ProvideServices/custo
         MatTabsModule,
         MatSnackBarModule,
         MatExpansionModule,
-        NgxMasonryModule
+        MatMenuModule
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

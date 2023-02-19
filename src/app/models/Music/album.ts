@@ -24,7 +24,7 @@ class Image{
     width: number;
 }
 
-class Copyright{
+export class Copyright{
     text: string ;
     type:string;
 }

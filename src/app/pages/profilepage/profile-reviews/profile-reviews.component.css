@@ -30,6 +30,13 @@
         gap: 1rem;
     }
 
+    .review {
+        display: flex;
+        flex-direction: column;
+        break-inside: avoid;
+        position: relative;
+    }
+
     .inner-review {
         display: flex;
         flex-direction: column;
@@ -106,6 +113,7 @@
         display: flex;
         flex-direction: column;
         break-inside: avoid;
+        position: relative;
     }
 
     .review-user-img {
@@ -208,4 +216,9 @@
     display: flex;
     align-items: center;
     gap: 0.25vw;
+}
+
+.horiz-btn {
+    display: flex;
+    justify-content: flex-end;
 }

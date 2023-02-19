@@ -1,10 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
-export class Copyright{
-    text: string ;
-    type:string;
-}
-
+import { Copyright } from '../models/Music/album';
 @Pipe({
     name: 'copyrightPipe'
 })
