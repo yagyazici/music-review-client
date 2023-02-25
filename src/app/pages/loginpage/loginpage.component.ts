@@ -5,6 +5,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { User } from 'src/app/models/Auth/user';
+import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
     selector: 'app-loginpage',
@@ -25,7 +27,8 @@ export class LoginpageComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private router: Router,
-        private data: DataService
+        private data: DataService,
+        private spotifyService: SpotifyService
     ) { }
 
     ngOnInit(): void {
@@ -46,7 +49,7 @@ export class LoginpageComponent implements OnInit {
     login() {
         this.user.Username = this.reactiveForm.value.username;
         this.user.Password = this.reactiveForm.value.password;
-        this.authService.login(this.user).subscribe(response => {
+        this.authService.login(this.user).subscribe(async response => {
             if (response.status) {
                 this.isLoading = false;
                 localStorage.setItem('authToken', response.response.AuthToken.Token);
@@ -54,6 +57,7 @@ export class LoginpageComponent implements OnInit {
                 localStorage.setItem("refreshToken", response.response.RefreshToken.Token);
                 var user = <UserDTO>response.response.CurrentUser;
                 localStorage.setItem("user", JSON.stringify(user));
+                await this.spotifyService.createRefreshToken();
                 this.data.changeCurrentUser(user);
                 this.data.changeIsAuthenticated(true);
                 this.router.navigate(["/"]);

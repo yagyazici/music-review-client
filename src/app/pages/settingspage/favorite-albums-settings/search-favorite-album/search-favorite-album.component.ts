@@ -3,7 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Album } from 'src/app/models/Music/album';
-import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
+import { SearchItem } from 'src/app/models/Spotify/Search/SearchItem';
+import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 
 export interface DialogData {
     albumName: string;
@@ -19,20 +20,20 @@ export interface DialogData {
 export class SearchFavoriteAlbumComponent implements OnInit {
 
     reactiveForm: FormGroup;
-    albums: Album[];
+    albums: SearchItem[];
     albumsError: any;
 
     constructor(
         public dialogRef: MatDialogRef<SearchFavoriteAlbumComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
-        private spotify: SpotifyserviceService,
+        private spotifyService: SpotifyService,
     ) { }
 
     async ngOnInit() {
         this.reactiveForm = new FormGroup({
             query: new FormControl("")
         });
-        await this.spotify.getToken()
+        
         this.reactiveForm.get("query")?.valueChanges.pipe(
             debounceTime(500),
             distinctUntilChanged()
@@ -48,27 +49,21 @@ export class SearchFavoriteAlbumComponent implements OnInit {
     }
 
     albumSearchUpdate(query: string){
-        this.spotify.searchAlbum(query).subscribe({
-            next: (data: any) => {
-                var items = <Album[]>JSON.parse(data).albums.items
-                this.albums = this.reduceAlbums(items);
-            },
-            error: (error: any) => {
-                this.albumsError = error;
-            }
+        this.spotifyService.searchAlbum(query).subscribe(data => {
+            this.albums = data;
         });
     }
 
-    getAlbumId(album: Album): Album{
+    getAlbumId(album: SearchItem): SearchItem{
         return album;
     }
 
-    removeAlbum(): Album{
-        return new Album();
+    removeAlbum(): SearchItem{
+        return new SearchItem();
     }
 
-    reduceAlbums(arr : Album[]): Album[] {
-        return arr.reduce((albums: Album[], first) => {
+    reduceAlbums(arr : SearchItem[]): SearchItem[] {
+        return arr.reduce((albums: SearchItem[], first) => {
             if(!albums.some(second => second.name === first.name)) albums.push(first)
             return albums;
         },[]);

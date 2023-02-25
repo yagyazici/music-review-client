@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Artist } from 'src/app/models/Music/artist';
-import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
+import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 
 @Component({
     selector: 'app-artistpage',
@@ -17,7 +17,7 @@ export class ArtistpageComponent implements OnInit {
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private spotifyService: SpotifyserviceService,
+        private spotifyService: SpotifyService,
         private router: Router,
     ) { }
 
@@ -26,23 +26,13 @@ export class ArtistpageComponent implements OnInit {
             this.artistId = params.get("artist-id") || "";
         });
 
-        await this.spotifyService.getToken();
-
         this.getArtist(this.artistId);
-
         this.currentUrl = this.router.url;
-        
     }
 
     getArtist(artistId: string){
-        this.spotifyService.getArtist(artistId).subscribe({
-            next: next => {
-                var parsed = <Artist>JSON.parse(next);
-                this.artist = parsed;
-            },
-            error: error => {
-                this.error = error;
-            }
-        })
+        this.spotifyService.getArtist(artistId).subscribe(data => {
+            this.artist = data;
+        });
     }
 }

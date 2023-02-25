@@ -4,9 +4,9 @@ import { DataService } from 'src/app/services/ProvideServices/dataservice.servic
 import { Album } from 'src/app/models/Music/album';
 import { firstValueFrom } from 'rxjs';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
-import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
+import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 
 @Component({
     selector: 'app-albumpage',
@@ -26,16 +26,13 @@ export class AlbumpageComponent implements OnInit {
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private spotifyService: SpotifyserviceService,
+        private spotifyService: SpotifyService,
         private dataService: DataService,
         private authService: AuthService,
         private reviewService: ReviewService
     ) { }
 
-    async ngOnInit() {
-        await this.spotifyService.getToken();
-
-        this.dataService.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
+    async ngOnInit() {this.dataService.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
 
         this.activatedRoute.paramMap.subscribe(params => {
             this.albumId = params.get("album-id") || "";
@@ -51,16 +48,10 @@ export class AlbumpageComponent implements OnInit {
     }
 
     getAlbum(id: any) {
-        this.spotifyService.getAlbum(id).subscribe({
-            next: (data: any) => {
-                var parsed = <Album>JSON.parse(data)
-                this.album = parsed;
-            },
-            error: error => {
-                this.error = error;
-                console.log(error);
-            }
+        this.spotifyService.getAlbum(id).subscribe(data => {
+            this.album = data;
         })
+        
     }
 
     likeButton() {

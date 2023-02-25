@@ -7,10 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class CustomInterceptorService implements HttpInterceptor{
 
+    urlList: string[] = ["UserAuth", "MusicReview"];
     constructor() { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.url.startsWith("https://localhost:7172")){
-            var token = localStorage.getItem("authToken");
+        var url = new URL(req.url);
+        var path = this.getPath(url.pathname);
+        var token = localStorage.getItem("authToken");
+        if (this.urlList.includes(path)){
             let authReq = req.clone({
                 setHeaders: {
                     "Authorization": `bearer ${token}` 
@@ -18,6 +21,27 @@ export class CustomInterceptorService implements HttpInterceptor{
             })
             return next.handle(authReq);
         }
-        return next.handle(req)
+        if (url.pathname.includes("RefreshToken")){
+            let authReq = req.clone({
+                setHeaders: {
+                    "Authorization": `bearer ${token}` 
+                }
+            })
+            return next.handle(authReq);
+        }
+        else {
+            var accessToken = localStorage.getItem("accessToken");
+            let spotifyRequest = req.clone({
+                setParams: {
+                    "accessToken": `${accessToken}` 
+                },
+                setHeaders: {
+                    "Authorization": `bearer ${token}` 
+                }
+            });
+            return next.handle(spotifyRequest)
+        }
     }
+
+    private getPath = (url: string): string => url.split("/")[1];
 }

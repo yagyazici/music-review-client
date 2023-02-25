@@ -9,6 +9,7 @@ import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 import { UserHubService } from 'src/app/services/SignalR/user.hub.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
+import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 
 @Component({
     selector: 'app-header',
@@ -37,7 +38,8 @@ export class HeaderComponent implements OnInit {
         private authService: AuthService,
         public dialog: MatDialog,
         private musicHub: MusicHubService,
-        private userHub: UserHubService
+        private userHub: UserHubService,
+        private spotifyService: SpotifyService
     ) {
 
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -48,6 +50,7 @@ export class HeaderComponent implements OnInit {
         if (this.isAuthenticated) {
             this.getUserNotificationsCount();
             this.authService.refreshToken();
+            this.spotifyService.updateRefreshToken();
             this.musicHub.start();
             this.userHub.start();
             this.userHub.on(ReceiveFunctions.UserSendNotificitionMessage, message => {

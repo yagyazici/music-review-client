@@ -3,8 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Album } from 'src/app/models/Music/album';
+import { SearchItem } from 'src/app/models/Spotify/Search/SearchItem';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
-import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
+import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 
 @Component({
     selector: 'app-searchpage',
@@ -15,12 +16,12 @@ export class SearchpageComponent implements OnInit {
 
     reactiveForm: FormGroup;
     query: string
-    albums: Album[];
+    albums: SearchItem[];
     users: UserDTO[];
     albumsError: any;
     usersError: any;
     constructor(
-        private spotify: SpotifyserviceService,
+        private spotifyService: SpotifyService,
         private authService: AuthService
     ) { }
 
@@ -28,8 +29,6 @@ export class SearchpageComponent implements OnInit {
         this.reactiveForm = new FormGroup({
             query: new FormControl("")
         });
-        
-        await this.spotify.getToken()
 
         this.reactiveForm.get("query")?.valueChanges.pipe(
             debounceTime(500),
@@ -49,15 +48,9 @@ export class SearchpageComponent implements OnInit {
     }
 
     albumSearchUpdate(query: string){
-        this.spotify.searchAlbum(query).subscribe({
-            next: (data: any) => {
-                var items = <Album[]>JSON.parse(data).albums.items
-                this.albums = this.reduceAlbums(items);
-            },
-            error: (error: any) => {
-                this.albumsError = error;
-            }
-        });
+        this.spotifyService.searchAlbum(query).subscribe(data => {
+            this.albums = data;
+        })
     }
 
     userSearchUpdate(query: string){

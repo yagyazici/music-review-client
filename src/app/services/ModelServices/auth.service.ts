@@ -29,31 +29,22 @@ export class AuthService {
 	) {
 	}
 
-	public register(user: User): Observable<CustomResponse<User & string[]>> {
-		return this.http.post<CustomResponse<User & string[]>>(`${this.baseUrl}Register`, user);
-	}
+	register = (user: User): Observable<CustomResponse<User & string[]>> =>
+		this.http.post<CustomResponse<User & string[]>>(`${this.baseUrl}Register`, user);
 
-	public login(user: User): Observable<CustomResponse<LoginRespose & string>> {
-		return this.http.post<CustomResponse<LoginRespose & string>>(`${this.baseUrl}Login`, user);
-	}
+	login = (user: User): Observable<CustomResponse<LoginRespose & string>> =>
+		this.http.post<CustomResponse<LoginRespose & string>>(`${this.baseUrl}Login`, user);
 
 	public logout() {
-		localStorage.removeItem("authToken");
-		localStorage.removeItem("user");
-		localStorage.removeItem("tokenExpires");
-		localStorage.removeItem("refreshToken");
-		if (localStorage.hasOwnProperty("currentlyPlaying")) {
-			localStorage.removeItem("currentlyPlaying");
-		}
+		localStorage.clear();
 		this.router.navigate(["login"]);
 		this.data.changeIsAuthenticated(false);
 		this.userHub.off();
 		this.musicHub.off();
 	}
 
-	public GetMeUser(): Observable<UserDTO> {
-		return this.http.get<UserDTO>(`${this.baseUrl}GetMeUser`);
-	}
+	GetMeUser = (): Observable<UserDTO> =>
+		this.http.get<UserDTO>(`${this.baseUrl}GetMeUser`);
 
 	public GetUser(userId: string): Observable<UserDTO> {
 		const params = new HttpParams().set("userId", userId)
@@ -83,18 +74,16 @@ export class AuthService {
 		return this.http.get<UserDTO[]>(`${this.baseUrl}SearchUserProfile`, {params: params});
 	}
 
-	public getCurrentUserFavoriteAlbums(): Observable<Album[]> {
-		return this.http.get<Album[]>(`${this.baseUrl}GetCurrentUserFavoriteAlbums`);
-	}
+	getCurrentUserFavoriteAlbums = (): Observable<Album[]> => 
+		this.http.get<Album[]>(`${this.baseUrl}GetCurrentUserFavoriteAlbums`);
 
 	public getUserFavoriteAlbums(userId: string): Observable<Album[]> {
 		const params = new HttpParams().set("userId", userId)
 		return this.http.get<Album[]>(`${this.baseUrl}GetUsersFavoriteAlbums`, {params: params});
 	}
 
-	public updateUserFavoriteAlbums(favoriteAlbums: Album[]): Observable<CustomResponse<boolean>> {
-		return this.http.post<CustomResponse<boolean>>(`${this.baseUrl}AddUserFavoriteAlbums`, favoriteAlbums);
-	}
+	updateUserFavoriteAlbums = (favoriteAlbums: Album[]): Observable<CustomResponse<boolean>> => 
+		this.http.post<CustomResponse<boolean>>(`${this.baseUrl}AddUserFavoriteAlbums`, favoriteAlbums);
 
 	public refreshToken() {
 		var refreshToken = localStorage.getItem("refreshToken");
@@ -111,7 +100,6 @@ export class AuthService {
 			firstValueFrom(this.http.post<CustomResponse<AuthToken & boolean>>(`${this.baseUrl}RefreshToken`, null, {
 				params: params
 			})).then(data => {
-				console.log(data.response);
 				localStorage.setItem('authToken', data.response.Token);
 				localStorage.setItem("tokenExpires", data.response.Expires.toString())
 			})
@@ -119,9 +107,8 @@ export class AuthService {
 		else return;
 	}
 
-	public likeAlbum(likeAlbum: Album): Observable<CustomResponse<boolean>> {
-		return this.http.post<CustomResponse<boolean>>(`${this.baseUrl}ToggleUserLikedAlbum`, likeAlbum)
-	}
+	likeAlbum = (likeAlbum: Album): Observable<CustomResponse<boolean>> =>
+		this.http.post<CustomResponse<boolean>>(`${this.baseUrl}ToggleUserLikedAlbum`, likeAlbum)
 
 	public checkUserLikedAlbum(albumId: string): Observable<boolean> {
 		const params = new HttpParams().set("albumId", albumId)
@@ -133,9 +120,8 @@ export class AuthService {
 		return this.http.get<Album[]>(`${this.baseUrl}GetUserLikedAlbums`, {params: params});
 	}
 
-	public followUser(followedUser: UserDTO): Observable<CustomResponse<boolean>> {
-		return this.http.post<CustomResponse<boolean>>(`${this.baseUrl}ToggleUserFollowedUser`, followedUser);
-	}
+	followUser = (followedUser: UserDTO): Observable<CustomResponse<boolean>> =>
+		this.http.post<CustomResponse<boolean>>(`${this.baseUrl}ToggleUserFollowedUser`, followedUser);
 
 	public checkUserFollowed(userId: string): Observable<boolean> {
 		const params = new HttpParams().set("userId", userId);
@@ -157,28 +143,22 @@ export class AuthService {
 		return this.http.get<UserDTO[]>(`${this.baseUrl}GetUserFollowers`, { params: params });
 	}
 
-	public getUserNotifications(): Observable<Notification[]> {
-		return this.http.get<Notification[]>(`${this.baseUrl}GetUserNotifications`);
-	}
+	getUserNotifications = (): Observable<Notification[]> => 
+		this.http.get<Notification[]>(`${this.baseUrl}GetUserNotifications`);
 
-	public getUserNotificationsCount(): Observable<number> {
-		return this.http.get<number>(`${this.baseUrl}GetUserNotificationCount`);
-	}
+	getUserNotificationsCount = (): Observable<number> => 
+		this.http.get<number>(`${this.baseUrl}GetUserNotificationCount`);
 
-	public getImage(): Observable<Blob> {
-		return this.http.get("https://localhost:7172/Recourses/Images/63c824cca81836c19713059b.jpeg", { responseType: "blob" })
-	}
+	getImage = (): Observable<Blob> =>
+		this.http.get("https://localhost:7172/Recourses/Images/63c824cca81836c19713059b.jpeg", { responseType: "blob" })
 
-	public deleteImage(): Observable<CustomResponse<string>> {
-		return this.http.delete<CustomResponse<string>>(`${this.baseUrl}DeleteProfileImage`)
-	}
+	deleteImage = (): Observable<CustomResponse<string>> => 
+		this.http.delete<CustomResponse<string>>(`${this.baseUrl}DeleteProfileImage`)
 
-	public deleteNotification(notification: Notification): Observable<CustomResponse<Notification[]>> {
-		return this.http.delete<CustomResponse<Notification[]>>(`${this.baseUrl}DeleteNotification`, {body: notification});
-	}
+	deleteNotification = (notification: Notification): Observable<CustomResponse<Notification[]>> => 
+		this.http.delete<CustomResponse<Notification[]>>(`${this.baseUrl}DeleteNotification`, {body: notification});
 
-	public deleteAllNotifications(): Observable<CustomResponse<Notification[]>> {
-		return this.http.delete<CustomResponse<Notification[]>>(`${this.baseUrl}DeleteAllNotifications`);
-	}
+	deleteAllNotifications = (): Observable<CustomResponse<Notification[]>> => 
+		this.http.delete<CustomResponse<Notification[]>>(`${this.baseUrl}DeleteAllNotifications`);
 }
 

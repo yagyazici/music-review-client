@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.service';
-
+import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 
 @Component({
     selector: 'app-currentsong',
@@ -10,25 +9,23 @@ import { SpotifyserviceService } from 'src/app/services/Spotify/spotifyservice.s
 export class CurrentsongComponent implements OnInit {
 
     constructor(
-        private spotify: SpotifyserviceService
+        private spotifyService: SpotifyService
     ) { }
     currentlyPlaying: any;
     @Input() toCurrentSong: boolean;
     loaded: boolean = false;
     
     async ngOnInit(){
-        await this.spotify.getToken();
-        this.currentSong()
+        this.currentSong();
     }
-    
-    currentSong(){
-        this.spotify.currentSong().subscribe({
-            next: (data: any) => {
+
+    currentSong() {
+        this.spotifyService.currentSong().subscribe({
+            next: data => {
                 if (data) {
                     this.loaded = true;
                 }
-                var parsed = JSON.parse(data);
-                this.currentlyPlaying = parsed;
+                this.currentlyPlaying = data;
             },
             error: error => {
                 console.log(error);

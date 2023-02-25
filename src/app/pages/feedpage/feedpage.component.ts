@@ -45,12 +45,8 @@ export class FeedpageComponent implements OnInit {
     }
 
     likeButton(reviewId: string) {
-        this.reviewService.likeReview(reviewId).subscribe({
-            next: next => {
-                console.log(next);
-            },
-            error: error => {
-            }
+        this.reviewService.likeReview(reviewId).subscribe(data => {
+            console.log(data);
         })
     }
 

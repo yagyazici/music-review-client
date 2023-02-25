@@ -53,12 +53,10 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
     onResize() {
         this.innerWidth = window.innerWidth;
         if (this.innerWidth < 992){
-            console.log("992 den küçük");
             this.listOrientation = "vertical"
             this.lockAxis = "y"
         }
         else if (this.innerWidth >=  992) {
-            console.log("992 den büyük");
             this.listOrientation = "horizontal"
             this.lockAxis = "x"
         }
