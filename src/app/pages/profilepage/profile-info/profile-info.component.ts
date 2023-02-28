@@ -5,8 +5,8 @@ import { firstValueFrom } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
-import { FollowersComponent } from './followers/followers.component';
-import { FollowingComponent } from './following/following.component';
+import { FollowersComponent } from '../../../dialogs/followers/followers.component';
+import { FollowingComponent } from 'src/app/dialogs/following/following.component';
 
 @Component({
     selector: 'app-profile-info',

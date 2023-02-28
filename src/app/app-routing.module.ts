@@ -7,7 +7,7 @@ import { ReviewsComponentComponent } from './pages/albumpage/reviews-component/r
 import { CurrentsongComponent } from './pages/homepage/currentsong/currentsong.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
-import { DeleteReviewComponent } from './pages/profilepage/profile-reviews/delete-review/delete-review.component';
+import { DeleteReviewComponent } from './dialogs/delete-review/delete-review.component';
 import { ProfileReviewsComponent } from './pages/profilepage/profile-reviews/profile-reviews.component';
 import { ProfilepageComponent } from './pages/profilepage/profilepage.component';
 import { RegisterpageComponent } from './pages/registerpage/registerpage.component';
@@ -15,7 +15,6 @@ import { SearchpageComponent } from './pages/searchpage/searchpage.component';
 import { FavoriteAlbumsSettingsComponent } from './pages/settingspage/favorite-albums-settings/favorite-albums-settings.component';
 import { ProfilePictureSettingsComponent } from './pages/settingspage/profile-picture-settings/profile-picture-settings.component';
 import { ProfileSettingsComponent } from './pages/settingspage/profile-settings/profile-settings.component';
-import { EditReviewComponent } from './pages/profilepage/profile-reviews/edit-review/edit-review.component';
 import { SearchFavoriteAlbumComponent } from './pages/settingspage/favorite-albums-settings/search-favorite-album/search-favorite-album.component';
 import { ProfileLikesComponent } from './pages/profilepage/profile-likes/profile-likes.component';
 import { ArtistpageComponent } from './pages/artistpage/artistpage.component';
@@ -23,9 +22,10 @@ import { ArtistAlbumsComponent } from './pages/artistpage/artist-albums/artist-a
 import { ArtistSinglesComponent } from './pages/artistpage/artist-singles/artist-singles.component';
 import { FeedpageComponent } from './pages/feedpage/feedpage.component';
 import { ChangePasswordComponent } from './pages/settingspage/change-password/change-password.component';
-import { DeleteImageComponent } from './pages/settingspage/profile-picture-settings/delete-image/delete-image.component';
+import { DeleteImageComponent } from './dialogs/delete-image/delete-image.component';
 import { SettingsNavbarComponent } from './pages/settingspage/settings-navbar/settings-navbar.component';
 import { AuthenticationGuard } from './services/ProvideServices/authentication.guard';
+import { EditReviewComponent } from './dialogs/edit-review/edit-review.component';
 
 const routes: Routes = [
 	{

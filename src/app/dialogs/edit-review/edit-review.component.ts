@@ -6,10 +6,7 @@ import { firstValueFrom } from 'rxjs';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { Review } from 'src/app/models/Music/review';
-
-export interface DialogData {
-    reviewId: string;
-}
+import { IReviewData } from 'src/app/interfaces/IReviewData';
 
 @Component({
     selector: 'app-edit-review',
@@ -24,7 +21,7 @@ export class EditReviewComponent implements OnInit{
 
     constructor(
         public dialogRef: MatDialogRef<EditReviewComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData,
+        @Inject(MAT_DIALOG_DATA) public data: IReviewData,
         private reviewService: ReviewService,
         private snackBar: MatSnackBar,
     ) {}

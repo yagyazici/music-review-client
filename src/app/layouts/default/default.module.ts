@@ -31,8 +31,6 @@ import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/lega
 import { ProfilePictureSettingsComponent } from 'src/app/pages/settingspage/profile-picture-settings/profile-picture-settings.component';
 import { SettingsNavbarComponent } from 'src/app/pages/settingspage/settings-navbar/settings-navbar.component';
 import { FavoriteAlbumsSettingsComponent } from 'src/app/pages/settingspage/favorite-albums-settings/favorite-albums-settings.component';
-import { DeleteReviewComponent } from 'src/app/pages/profilepage/profile-reviews/delete-review/delete-review.component';
-import { EditReviewComponent } from 'src/app/pages/profilepage/profile-reviews/edit-review/edit-review.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SearchFavoriteAlbumComponent } from 'src/app/pages/settingspage/favorite-albums-settings/search-favorite-album/search-favorite-album.component';
 import { ProfileFavoriteAlbumsComponent } from 'src/app/pages/profilepage/profile-info/profile-favorite-albums/profile-favorite-albums.component';
@@ -40,8 +38,7 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileLikesComponent } from 'src/app/pages/profilepage/profile-likes/profile-likes.component';
 import { AutoFocusDirective } from 'src/app/directives/auto-focus.directive';
-import { FollowersComponent } from 'src/app/pages/profilepage/profile-info/followers/followers.component';
-import { FollowingComponent } from 'src/app/pages/profilepage/profile-info/following/following.component';
+import { FollowersComponent } from 'src/app/dialogs/followers/followers.component';
 import { ArtistpageComponent } from 'src/app/pages/artistpage/artistpage.component';
 import { GenresPipe } from 'src/app/pipes/genres.pipe';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
@@ -57,12 +54,13 @@ import { ArtistSinglesComponent } from 'src/app/pages/artistpage/artist-singles/
 import { FeedpageComponent } from 'src/app/pages/feedpage/feedpage.component';
 import { ChangePasswordComponent } from 'src/app/pages/settingspage/change-password/change-password.component';
 import { ErrorsPipe } from 'src/app/pipes/errors.pipe';
-import { DeleteImageComponent } from 'src/app/pages/settingspage/profile-picture-settings/delete-image/delete-image.component';
+import { DeleteImageComponent } from 'src/app/dialogs/delete-image/delete-image.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { NgxMasonryModule } from 'ngx-masonry';
-import { GenericSignalrService } from 'src/app/services/SignalR/generic.signalr.service';
 import { CustomInterceptorService } from 'src/app/services/ProvideServices/custom-interceptor.service';
 import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
+import { FollowingComponent } from 'src/app/dialogs/following/following.component';
+import { EditReviewComponent } from 'src/app/dialogs/edit-review/edit-review.component';
+import { DeleteReviewComponent } from 'src/app/dialogs/delete-review/delete-review.component';
 
 
 @NgModule({

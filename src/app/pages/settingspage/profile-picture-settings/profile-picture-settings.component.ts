@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
-import { DeleteImageComponent } from './delete-image/delete-image.component';
+import { DeleteImageComponent } from '../../../dialogs/delete-image/delete-image.component';
 
 @Component({
     selector: 'app-profile-picture-settings',

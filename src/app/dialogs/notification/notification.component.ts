@@ -4,10 +4,6 @@ import { Router } from '@angular/router';
 import { Notification } from 'src/app/models/Auth/notification';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
-export interface DialogData {
-    reviewId: string;
-}
-
 @Component({
     selector: 'app-notification',
     templateUrl: './notification.component.html',

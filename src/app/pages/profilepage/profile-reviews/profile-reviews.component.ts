@@ -10,8 +10,8 @@ import { DataService } from 'src/app/services/ProvideServices/dataservice.servic
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
-import { DeleteReviewComponent } from './delete-review/delete-review.component';
-import { EditReviewComponent } from './edit-review/edit-review.component';
+import { DeleteReviewComponent } from '../../../dialogs/delete-review/delete-review.component';
+import { EditReviewComponent } from 'src/app/dialogs/edit-review/edit-review.component';
 
 @Component({
     selector: 'app-profile-reviews',

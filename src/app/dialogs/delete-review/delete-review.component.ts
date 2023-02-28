@@ -4,10 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Review } from 'src/app/models/Music/review';
-
-export interface DialogData {
-    reviewId: string;
-}
+import { IReviewData } from 'src/app/interfaces/IReviewData';
 
 @Component({
     selector: 'app-delete-review',
@@ -19,7 +16,7 @@ export class DeleteReviewComponent implements OnInit {
     albumReview: Review;
     constructor(
         public dialogRef: MatDialogRef<DeleteReviewComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData,
+        @Inject(MAT_DIALOG_DATA) public data: IReviewData,
         private reviewService: ReviewService,
         private snackBar: MatSnackBar
     ) {}
