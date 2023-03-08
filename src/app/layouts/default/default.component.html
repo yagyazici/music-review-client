@@ -1,6 +1,5 @@
 <div class="d-flex flex-column min-vh-100">
     <app-header></app-header>
-
     <div *ngIf="currentRoute.url == '/login' || currentRoute.url == '/register';then not_auth else auth"></div>
     <ng-template #not_auth>
         <div class="centered min-vh-100">

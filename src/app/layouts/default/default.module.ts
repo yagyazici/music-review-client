@@ -62,7 +62,6 @@ import { FollowingComponent } from 'src/app/dialogs/following/following.componen
 import { EditReviewComponent } from 'src/app/dialogs/edit-review/edit-review.component';
 import { DeleteReviewComponent } from 'src/app/dialogs/delete-review/delete-review.component';
 
-
 @NgModule({
     declarations: [
         DefaultComponent,

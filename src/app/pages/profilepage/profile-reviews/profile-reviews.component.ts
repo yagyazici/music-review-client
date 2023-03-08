@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, interval } from 'rxjs';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Review } from 'src/app/models/Music/review';
@@ -23,14 +23,14 @@ export class ProfileReviewsComponent implements OnInit {
     userId: string;
     userAlbumReviews: Review[];
     currentUser: UserDTO;
-    reviewId: string = "";
+    reviewId: string;
     liked = "full-heart";
+    loading = true;
 
     constructor(
         private reviewService: ReviewService,
         private data: DataService,
         public dialog: MatDialog,
-        private authService: AuthService,
         private activatedRoute: ActivatedRoute,
         private musicHub: MusicHubService
     ) { }
@@ -57,6 +57,9 @@ export class ProfileReviewsComponent implements OnInit {
 
     async getUserAlbumReviews(userId: string) {
         await firstValueFrom(this.reviewService.getUserAlbumReviews(userId)).then(data => {
+            if (data){
+                this.loader();
+            }
             this.userAlbumReviews = data.reverse();
         });
     }
@@ -111,5 +114,9 @@ export class ProfileReviewsComponent implements OnInit {
 
     checkLiked(likes: string[], userId: string): string {
         return likes.includes(userId)  ? this.liked : '';
+    }
+
+    async loader(){
+        this.loading = false;
     }
 }
