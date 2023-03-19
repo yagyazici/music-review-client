@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 import { AlbumpageComponent } from './pages/albumpage/albumpage.component';
-import { ReviewFormComponentComponent } from './pages/albumpage/review-form-component/review-form-component.component';
+import { ReviewFormComponent } from './pages/albumpage/review-form-component/review-form.component';
 import { ReviewsComponentComponent } from './pages/albumpage/reviews-component/reviews-component.component';
 import { CurrentsongComponent } from './pages/homepage/currentsong/currentsong.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
-import { DeleteReviewComponent } from './dialogs/delete-review/delete-review.component';
+import { DeleteReviewComponent } from './common/delete-review/delete-review.component';
 import { ProfileReviewsComponent } from './pages/profilepage/profile-reviews/profile-reviews.component';
 import { ProfilepageComponent } from './pages/profilepage/profilepage.component';
 import { RegisterpageComponent } from './pages/registerpage/registerpage.component';
@@ -22,10 +22,10 @@ import { ArtistAlbumsComponent } from './pages/artistpage/artist-albums/artist-a
 import { ArtistSinglesComponent } from './pages/artistpage/artist-singles/artist-singles.component';
 import { FeedpageComponent } from './pages/feedpage/feedpage.component';
 import { ChangePasswordComponent } from './pages/settingspage/change-password/change-password.component';
-import { DeleteImageComponent } from './dialogs/delete-image/delete-image.component';
+import { DeleteImageComponent } from './common/delete-image/delete-image.component';
 import { SettingsNavbarComponent } from './pages/settingspage/settings-navbar/settings-navbar.component';
 import { AuthenticationGuard } from './services/ProvideServices/authentication.guard';
-import { EditReviewComponent } from './dialogs/edit-review/edit-review.component';
+import { EditReviewComponent } from './common/edit-review/edit-review.component';
 
 const routes: Routes = [
 	{
@@ -42,7 +42,7 @@ const routes: Routes = [
 			{ path: "search", component: SearchpageComponent, canActivate: [AuthenticationGuard] },
 			{
 				path: "album/:album-id", component: AlbumpageComponent, canActivate: [AuthenticationGuard], children: [
-					{ path: "", component: ReviewFormComponentComponent },
+					{ path: "", component: ReviewFormComponent },
 					{ path: "", component: ReviewsComponentComponent }
 				]
 			},

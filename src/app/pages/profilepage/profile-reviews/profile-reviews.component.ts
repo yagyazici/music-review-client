@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ActivatedRoute } from '@angular/router';
-import * as moment from 'moment';
-import { firstValueFrom, interval } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Review } from 'src/app/models/Music/review';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
-import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
-import { DeleteReviewComponent } from '../../../dialogs/delete-review/delete-review.component';
-import { EditReviewComponent } from 'src/app/dialogs/edit-review/edit-review.component';
 
 @Component({
     selector: 'app-profile-reviews',
@@ -52,7 +48,6 @@ export class ProfileReviewsComponent implements OnInit {
                 this.getUserAlbumReviews(this.userId);
             }
         });
-        this.userAlbumReviews.sort((a, b) => new Date(a.EditedDate).getTime() - new Date(b.EditedDate).getTime())
     }
 
     async getUserAlbumReviews(userId: string) {
@@ -62,58 +57,6 @@ export class ProfileReviewsComponent implements OnInit {
             }
             this.userAlbumReviews = data.reverse();
         });
-    }
-
-    editDialog(id: string): void {
-        const dialogRef = this.dialog.open(EditReviewComponent, {
-            data: { reviewId: id },
-            autoFocus: false,
-            panelClass: "edit-panel"
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            this.reviewId = result;
-        });
-    }
-
-    deleteDialog(id: string): void {
-        const dialogRef = this.dialog.open(DeleteReviewComponent, {
-            data: { reviewId: id },
-            autoFocus: false,
-            width: "450px",
-            maxHeight: "750px",
-            panelClass: "delete-dialog"
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            this.reviewId = result;
-        });
-    }
-
-    likeReview(event: any, review: Review) {
-        let reviewId = review.Id;
-        this.reviewService.likeReview(reviewId).subscribe({
-            next: next => {
-                next.responseText == "added" ? review.Likes.length += 1 : review.Likes.length -= 1;
-            },
-            error: error => {
-            }
-        })
-        event.target.classList.toggle(this.liked);
-    }
-
-    likeText(likeTotal: number): string {
-        return likeTotal > 0 ? `${likeTotal} likes` : "like"
-    }
-
-    editedText(review: Review): string {
-        if (review.Edited)
-        {
-            return `${moment(review.EditedDate).fromNow()} [edited]`
-        }
-        return `${moment(review.PublishedDate).fromNow()}`
-    }
-
-    checkLiked(likes: string[], userId: string): string {
-        return likes.includes(userId)  ? this.liked : '';
     }
 
     async loader(){

@@ -6,7 +6,6 @@ import { UserDTO } from '../../models/Auth/userDTO';
     providedIn: 'root'
 })
 export class DataService {
-
     constructor() { }
 
     isAuthenticated = localStorage.hasOwnProperty("authToken")
@@ -17,7 +16,6 @@ export class DataService {
         this.is_AuthenticatedSource.next(isAuthenticated)
     }
 
-    
     get_user = JSON.parse(localStorage.getItem("user") || "{}");
     final_user: UserDTO = <UserDTO>this.get_user;
     private user = new BehaviorSubject<UserDTO>(this.final_user);

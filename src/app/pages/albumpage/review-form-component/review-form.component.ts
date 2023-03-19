@@ -10,10 +10,10 @@ import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 
 @Component({
     selector: 'app-review-form-component',
-    templateUrl: './review-form-component.component.html',
-    styleUrls: ['./review-form-component.component.css']
+    templateUrl: './review-form.component.html',
+    styleUrls: ['./review-form.component.css']
 })
-export class ReviewFormComponentComponent implements OnInit {
+export class ReviewFormComponent implements OnInit {
 
     @Input() albumForm: any;
     @Input() currentFormUser: UserDTO;
@@ -57,7 +57,8 @@ export class ReviewFormComponentComponent implements OnInit {
             PublishedDate: new Date(),
             Edited: false,
             EditedDate: new Date(),
-            Likes: this.likes
+            Likes: this.likes,
+            Replies: []
         }
         if (this.reactiveForm.valid) {
             this.reviewService.postReview(review).subscribe();

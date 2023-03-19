@@ -149,8 +149,8 @@ export class AuthService {
 	getUserNotificationsCount = (): Observable<number> => 
 		this.http.get<number>(`${this.baseUrl}GetUserNotificationCount`);
 
-	getImage = (): Observable<Blob> =>
-		this.http.get("https://localhost:7172/Recourses/Images/63c824cca81836c19713059b.jpeg", { responseType: "blob" })
+	getProfileImage = (userId: string): Observable<Blob> =>
+		this.http.get(`https://localhost:7172/Recourses/Images/${userId}.jpeg`, { responseType: "blob" })
 
 	deleteImage = (): Observable<CustomResponse<string>> => 
 		this.http.delete<CustomResponse<string>>(`${this.baseUrl}DeleteProfileImage`)

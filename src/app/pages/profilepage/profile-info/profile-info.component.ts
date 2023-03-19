@@ -5,8 +5,8 @@ import { firstValueFrom } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
-import { FollowersComponent } from '../../../dialogs/followers/followers.component';
-import { FollowingComponent } from 'src/app/dialogs/following/following.component';
+import { FollowersComponent } from '../../../common/followers/followers.component';
+import { FollowingComponent } from 'src/app/common/following/following.component';
 
 @Component({
     selector: 'app-profile-info',
@@ -51,7 +51,6 @@ export class ProfileInfoComponent implements OnInit {
             this.userInfo = data;
         });
     }
-
 
     createImgPath(serverPath: string) {
         return `https://localhost:7172/${serverPath}`;

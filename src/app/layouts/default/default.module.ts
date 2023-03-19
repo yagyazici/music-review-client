@@ -19,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StarRatingModule } from 'angular-star-rating';
 import { DateAgoPipe } from 'src/app/pipes/date-ago.pipe';
 import { ReviewsComponentComponent } from 'src/app/pages/albumpage/reviews-component/reviews-component.component';
-import { ReviewFormComponentComponent } from 'src/app/pages/albumpage/review-form-component/review-form-component.component';
+import { ReviewFormComponent } from 'src/app/pages/albumpage/review-form-component/review-form.component';
 import { GetYearPipe } from 'src/app/pipes/getyear.pipe';
 import { ProfilepageComponent } from 'src/app/pages/profilepage/profilepage.component';
 import { ProfileInfoComponent } from 'src/app/pages/profilepage/profile-info/profile-info.component';
@@ -38,7 +38,7 @@ import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/lega
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileLikesComponent } from 'src/app/pages/profilepage/profile-likes/profile-likes.component';
 import { AutoFocusDirective } from 'src/app/directives/auto-focus.directive';
-import { FollowersComponent } from 'src/app/dialogs/followers/followers.component';
+import { FollowersComponent } from 'src/app/common/followers/followers.component';
 import { ArtistpageComponent } from 'src/app/pages/artistpage/artistpage.component';
 import { GenresPipe } from 'src/app/pipes/genres.pipe';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
@@ -54,13 +54,16 @@ import { ArtistSinglesComponent } from 'src/app/pages/artistpage/artist-singles/
 import { FeedpageComponent } from 'src/app/pages/feedpage/feedpage.component';
 import { ChangePasswordComponent } from 'src/app/pages/settingspage/change-password/change-password.component';
 import { ErrorsPipe } from 'src/app/pipes/errors.pipe';
-import { DeleteImageComponent } from 'src/app/dialogs/delete-image/delete-image.component';
+import { DeleteImageComponent } from 'src/app/common/delete-image/delete-image.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CustomInterceptorService } from 'src/app/services/ProvideServices/custom-interceptor.service';
 import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
-import { FollowingComponent } from 'src/app/dialogs/following/following.component';
-import { EditReviewComponent } from 'src/app/dialogs/edit-review/edit-review.component';
-import { DeleteReviewComponent } from 'src/app/dialogs/delete-review/delete-review.component';
+import { FollowingComponent } from 'src/app/common/following/following.component';
+import { EditReviewComponent } from 'src/app/common/edit-review/edit-review.component';
+import { DeleteReviewComponent } from 'src/app/common/delete-review/delete-review.component';
+import { ReplyComponent } from 'src/app/common/inner-review-dialog/reply/reply.component';
+import { InnerReviewDialog } from 'src/app/common/inner-review-dialog/inner-review-dialog.component';
+import { ReviewComponent } from 'src/app/common/review/review.component';
 
 @NgModule({
     declarations: [
@@ -78,7 +81,7 @@ import { DeleteReviewComponent } from 'src/app/dialogs/delete-review/delete-revi
         // album page 
         AlbumpageComponent,
         ReviewsComponentComponent,
-        ReviewFormComponentComponent,
+        ReviewFormComponent,
         // artist page
         ArtistpageComponent,
         ArtistAlbumsComponent,
@@ -112,7 +115,11 @@ import { DeleteReviewComponent } from 'src/app/dialogs/delete-review/delete-revi
         CopyrightPipe,
         ErrorsPipe,
         // directives
-        AutoFocusDirective
+        AutoFocusDirective,
+        //review
+        ReplyComponent,
+        InnerReviewDialog,
+        ReviewComponent
     ],
     imports: [
         CommonModule,

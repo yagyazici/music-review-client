@@ -1,50 +1,5 @@
 <div class="review-wrapper" *ngIf="userAlbumReviews">
-    <div *ngFor="let review of userAlbumReviews" class="review border border-dark px-3 py-1 light-blue rounded-3">
-        <div>
-            <div class="horiz-btn">
-                <button mat-icon-button [matMenuTriggerFor]="menu">
-                    <mat-icon>more_horiz</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="editDialog(review.Id)">
-                        <mat-icon class="text-white">edit</mat-icon>
-                        <span>Edit</span>
-                    </button>
-                    <button mat-menu-item (click)="deleteDialog(review.Id)">
-                        <mat-icon class="text-white">delete</mat-icon>
-                        <span>Delete</span>
-                    </button>
-                </mat-menu>
-            </div>
-            <div class="inner-review">
-                <img src="{{review.AlbumImage}}" class="album-img rounded-3">
-            </div>
-            <div class="artist-album-text">
-                <a [routerLink]="['/album', review.AlbumId]"
-                    class="anchor-color m-0 p-0 text-start text-decoration-none">
-                    <strong>{{review.AlbumName}}</strong>
-                </a>
-                <a [routerLink]="['/artist', review.ArtistId]"
-                    class="anchor-color m-0 p-0 text-start text-decoration-none">
-                    <small>{{review.ArtistName}}</small>
-                </a>
-            </div>
-        </div>
-        <div class="review-info">
-            <div class="star-text">
-                <star-rating-control [size]="'medium'" [starType]="'svg'" [readOnly]="true" [rating]="review.AlbumRate">
-                </star-rating-control>
-                <small class="edited-text muted-color m-0 p-0">
-                    {{editedText(review)}}
-                </small>
-            </div>
-            <div class="heart-text" *ngIf="review">
-                <i (click)="likeReview($event, review)"
-                    class="{{checkLiked(review.Likes, currentUser.Id)}} fa-regular fa-heart heart-btn"></i>
-                <small>{{likeText(review.Likes.length)}}</small>
-            </div>
-        </div>
-        
-        <p class="review-text">{{review.AlbumThoughts}}</p>
+    <div *ngFor="let review of userAlbumReviews" class="border border-dark px-3 py-1 light-blue rounded-3">
+        <app-review [review]="review" [currentUser]="currentUser" [userId]="userId"></app-review>
     </div>
 </div>

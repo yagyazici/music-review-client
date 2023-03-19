@@ -1,3 +1,4 @@
+import { Reply } from "../Auth/reply";
 import { UserDTO } from "../Auth/userDTO";
 
 export class Review {
@@ -14,4 +15,5 @@ export class Review {
     Edited: boolean;
     EditedDate: Date;
     Likes: string[];
+    Replies: Reply[];
 }

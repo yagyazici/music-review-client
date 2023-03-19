@@ -157,3 +157,9 @@ body{
     color: white;
     border-color: white;
 }
+
+app-review {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}

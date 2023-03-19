@@ -1,0 +1,19 @@
+<div class="replies">
+    <div class="inner-reply border border-color rounded-3 p-1" *ngFor="let reply of replies">
+        <img *ngIf="reply && reply.User" [src]="getImage(reply.User.ProfilePicture)" class="rounded-circle profile-img">
+        <div class="reply-info">
+            <a (click)="navigateProfile(reply.User.Id)" [ngStyle]="{'cursor': 'pointer'}" class="text-decoration-none p-0 m-0">{{reply.User.Username}}</a>
+            <small class="p-0 m-0">{{reply.Comment}}</small>
+        </div>
+    </div>
+</div>
+<form *ngIf="reactiveForm" [formGroup]="reactiveForm" class="reply-form"
+    (ngSubmit)="sendReply(reactiveForm.value.reply)">
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Reply</mat-label>
+        <input matInput placeholder="Add your thoughts" formControlName="reply" [spellcheck]="false">
+        <button matSuffix mat-icon-button [type]="'submit'">
+            <mat-icon [ngStyle]="{'color':'white'}">send</mat-icon>
+        </button>
+    </mat-form-field>
+</form>

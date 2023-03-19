@@ -9,9 +9,9 @@
         <mat-form-field appearance="outline" class="w-100">
             <mat-label>Review</mat-label>
             <input matInput placeholder="Add your thoughts" formControlName="albumThoughts" [spellcheck]="false">
+            <button matSuffix mat-icon-button [type]="'submit'">
+                <mat-icon [ngStyle]="{'color':'white'}">send</mat-icon>
+            </button>
         </mat-form-field>
-        <div class="d-flex justify-content-end">
-            <button type="submit" class="main-btn">Save</button>
-        </div>
     </form>
 </div>

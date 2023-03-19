@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { NotificationComponent } from '../../dialogs/notification/notification.component';
+import { NotificationComponent } from '../../common/notification/notification.component';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 import { UserHubService } from 'src/app/services/SignalR/user.hub.service';

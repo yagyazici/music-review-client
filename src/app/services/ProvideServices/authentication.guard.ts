@@ -9,6 +9,7 @@ export class AuthenticationGuard implements CanActivate {
     constructor(
         private router: Router
     ) { }
+    
     canActivate() {
         let isAuth = localStorage.getItem("authToken") !== null
         if (!isAuth) {

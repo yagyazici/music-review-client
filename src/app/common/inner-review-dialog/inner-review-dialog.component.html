@@ -1,0 +1,40 @@
+<div class="review">
+    <div class="inner-review p-3" *ngIf="review">
+        <div class="album">
+            <img [src]="review.AlbumImage" class="album-img rounded-3">
+        </div>
+        <div class="artist-album-text">
+            <a [routerLink]="['/album', review.AlbumId]" (click)="closeDialog()" class="anchor-color m-0 p-0 text-start text-decoration-none">
+                <strong>{{review.AlbumName}}</strong>
+            </a>
+            <a [routerLink]="['/artist', review.ArtistId]" (click)="closeDialog()" class="anchor-color m-0 p-0 text-start text-decoration-none">
+                <small>{{review.ArtistName}}</small>
+            </a>
+        </div>
+        <div class="user-info">
+            <a class="inner-info" [routerLink]="['/profile', review.Author.Id]" (click)="closeDialog()">
+                <img *ngIf="review && review.Author" [src]="getImage(review.Author.ProfilePicture)"
+                    class="rounded-circle profile-img">
+                <p class="m-0 p-0">{{review.Author.Username}}</p>
+            </a>
+            <div class="inner-info gap-3">
+                <div class="heart-text">
+                    <i (click)="likeReview($event, review)"
+                        class="{{checkLiked(review.Likes, currentUser.Id) ? liked : ''}} fa-regular fa-heart heart-btn"></i>
+                    <small>{{likeText(review.Likes.length)}}</small>
+                </div>
+            </div>
+        </div>
+        <div class="star-info">
+            <star-rating-control [size]="'medium'" [starType]="'svg'" [readOnly]="true" [rating]="review.AlbumRate">
+            </star-rating-control>
+            <small class="edited-text muted-color m-0 p-0">
+                {{editedText(review)}}
+            </small>
+        </div>
+        <p class="review-text">{{review.AlbumThoughts}}</p>
+    </div>
+    <div class="reply p-3">
+        <app-reply [replies]="review.Replies" [reviewId]="review.Id" [currentUser]="currentUser"></app-reply>
+    </div>
+</div>

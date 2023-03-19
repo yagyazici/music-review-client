@@ -4,8 +4,9 @@ import * as moment from 'moment';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Review } from 'src/app/models/Music/review';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
-import { AuthService } from 'src/app/services/ModelServices/auth.service';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
+import { InnerReviewDialog } from 'src/app/common/inner-review-dialog/inner-review-dialog.component';
 
 @Component({
     selector: 'app-feedpage',
@@ -20,13 +21,13 @@ export class FeedpageComponent implements OnInit {
     liked = "full-heart";
 
     constructor(
-        private authService: AuthService,
         private reviewService: ReviewService,
-        private router: Router, 
+        public dialog: MatDialog,
+        private router: Router,
         private dataService: DataService,
     ) {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-     }
+    }
 
     ngOnInit(): void {
         this.dataService.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
@@ -66,6 +67,10 @@ export class FeedpageComponent implements OnInit {
         return likeTotal > 0 ? `${likeTotal} likes` : "like"
     }
 
+    replyText(replyTotal: number): string {
+        return replyTotal > 0 ? `${replyTotal}` : ""
+    }
+
     editedText(review: Review): string {
         if (review.Edited) {
             return `${moment(review.EditedDate).fromNow()} [edited]`
@@ -78,6 +83,14 @@ export class FeedpageComponent implements OnInit {
     }
 
     getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
+        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg";
+    }
+
+    replyDialog(reviewId: string) {
+        var dialogRef = this.dialog.open(InnerReviewDialog, {
+            data: { reviewId: reviewId },
+            autoFocus: false,
+            panelClass: "reply-dialog"
+        });
     }
 }

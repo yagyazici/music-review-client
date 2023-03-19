@@ -1,4 +1,4 @@
-::ng-deep .mat-dialog-container{
+::ng-deep .notification-panel .mat-dialog-container{
     background-color: #64B7FC;
     color: white;
 }
