@@ -1,5 +1,6 @@
 <div class="mx-auto w-75 d-flex flex-column gap-1">
-    <div class="feed-wrapper" *ngIf="reviews">
+    <app-review-placeholder *ngIf="loading"></app-review-placeholder>
+    <div class="feed-wrapper" *ngIf="!loading && reviews">
         <div *ngFor="let review of reviews" class="border border-dark px-3 py-1 light-blue rounded-3">
             <app-review [review]="review" [currentUser]="currentUser"></app-review>
         </div>

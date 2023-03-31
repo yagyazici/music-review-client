@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Album } from 'src/app/models/Music/album';
-import { SearchItem } from 'src/app/models/Spotify/Search/SearchItem';
+import { ArtistAlbumsItem } from 'src/app/models/Spotify/ArtistAlbums/ArtistAlbumsItem';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 
@@ -16,7 +16,7 @@ export class SearchpageComponent implements OnInit {
 
     reactiveForm: FormGroup;
     query: string
-    albums: SearchItem[];
+    albums: ArtistAlbumsItem[];
     users: UserDTO[];
     albumsError: any;
     usersError: any;
@@ -49,7 +49,7 @@ export class SearchpageComponent implements OnInit {
 
     albumSearchUpdate(query: string){
         this.spotifyService.searchAlbum(query).subscribe(data => {
-            this.albums = data;
+            this.albums = this.reduceAlbums(data);
         })
     }
 
@@ -63,8 +63,8 @@ export class SearchpageComponent implements OnInit {
         return `https://localhost:7172/${serverPath}`; 
     }
 
-    reduceAlbums(arr : Album[]): Album[] {
-        return arr.reduce((albums: Album[], first) => {
+    reduceAlbums(arr : ArtistAlbumsItem[]): ArtistAlbumsItem[] {
+        return arr.reduce((albums: ArtistAlbumsItem[], first) => {
             if(!albums.some(second => second.name === first.name)) albums.push(first)
             return albums;
         },[]);

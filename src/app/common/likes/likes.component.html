@@ -1,0 +1,9 @@
+<div class="inner-album">
+    <img src="{{album.images[0].url}}" class="album-img rounded-3">
+</div>
+<div class="artist-album-text">
+    <strong class="anchor-color">{{album.name}}</strong>
+    <a class="anchor-color m-0 p-0 text-start text-decoration-none" [routerLink]="['/artist', album.artists[0].id]">
+        <small>{{album.artists[0].name}}</small>
+    </a>
+</div>

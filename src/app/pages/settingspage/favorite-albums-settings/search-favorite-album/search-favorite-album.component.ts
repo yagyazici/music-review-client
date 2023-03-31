@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Album } from 'src/app/models/Music/album';
-import { SearchItem } from 'src/app/models/Spotify/Search/SearchItem';
+import { ArtistAlbumsItem } from 'src/app/models/Spotify/ArtistAlbums/ArtistAlbumsItem';
 import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 
 export interface DialogData {
@@ -20,7 +20,7 @@ export interface DialogData {
 export class SearchFavoriteAlbumComponent implements OnInit {
 
     reactiveForm: FormGroup;
-    albums: SearchItem[];
+    albums: ArtistAlbumsItem[];
     albumsError: any;
 
     constructor(
@@ -50,20 +50,20 @@ export class SearchFavoriteAlbumComponent implements OnInit {
 
     albumSearchUpdate(query: string){
         this.spotifyService.searchAlbum(query).subscribe(data => {
-            this.albums = data;
+            this.albums = this.reduceAlbums(data);
         });
     }
 
-    getAlbumId(album: SearchItem): SearchItem{
+    getAlbumId(album: ArtistAlbumsItem): ArtistAlbumsItem{
         return album;
     }
 
-    removeAlbum(): SearchItem{
-        return new SearchItem();
+    removeAlbum(): ArtistAlbumsItem{
+        return new ArtistAlbumsItem();
     }
 
-    reduceAlbums(arr : SearchItem[]): SearchItem[] {
-        return arr.reduce((albums: SearchItem[], first) => {
+    reduceAlbums(arr : ArtistAlbumsItem[]): ArtistAlbumsItem[] {
+        return arr.reduce((albums: ArtistAlbumsItem[], first) => {
             if(!albums.some(second => second.name === first.name)) albums.push(first)
             return albums;
         },[]);

@@ -71,7 +71,8 @@ export class FavoriteAlbumsSettingsComponent implements OnInit {
             data: { idx: idx, favoriteAlbum: favoriteAlbum },
             autoFocus: true,
             width: "750px",
-            maxHeight: "500px"
+            maxHeight: "500px",
+            panelClass: "search-dialog"
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result) {

@@ -31,8 +31,6 @@ export class InnerReviewDialog implements OnInit {
     async ngOnInit() {
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
         await this.getAlbumReview(this.data.reviewId);
-        console.log(this.review);
-        
     }
 
     reply(comment: string){

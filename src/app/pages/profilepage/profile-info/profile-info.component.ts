@@ -6,7 +6,6 @@ import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { FollowersComponent } from '../../../common/followers/followers.component';
-import { FollowingComponent } from 'src/app/common/following/following.component';
 
 @Component({
     selector: 'app-profile-info',
@@ -76,17 +75,9 @@ export class ProfileInfoComponent implements OnInit {
         })
     }
 
-    followingDialog(): void {
-        const dialogRef = this.dialog.open(FollowingComponent, {
-            data: { userId: this.userId },
-            autoFocus: false,
-            panelClass: "follow-panel"
-        });
-    }
-
-    followersDialog(): void {
-        const dialogRef = this.dialog.open(FollowersComponent, {
-            data: { userId: this.userId },
+    followersDialog(type: string) {
+        this.dialog.open(FollowersComponent, {
+            data: { userId: this.userId, type: type },
             autoFocus: false,
             panelClass: "follow-panel"
         });

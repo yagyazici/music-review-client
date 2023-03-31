@@ -1,4 +1,5 @@
-<div class="review-wrapper" *ngIf="userAlbumReviews">
+<app-review-placeholder *ngIf="loading"></app-review-placeholder>
+<div class="review-wrapper" *ngIf="!loading && userAlbumReviews">
     <div *ngFor="let review of userAlbumReviews" class="border border-dark px-3 py-1 light-blue rounded-3">
         <app-review [review]="review" [currentUser]="currentUser" [userId]="userId"></app-review>
     </div>

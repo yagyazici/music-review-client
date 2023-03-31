@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { firstValueFrom } from 'rxjs';
-import { IUserData } from 'src/app/interfaces/IUserData';
+import { IFollowingData } from 'src/app/interfaces/IUserData';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
@@ -15,7 +15,7 @@ export class FollowersComponent implements OnInit {
     followers: UserDTO[];
     constructor(
         public dialogRef: MatDialogRef<FollowersComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: IUserData,
+        @Inject(MAT_DIALOG_DATA) public data: IFollowingData,
         private authService: AuthService
     ) { }
 
@@ -28,16 +28,22 @@ export class FollowersComponent implements OnInit {
     }
 
     createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`; 
+        return `https://localhost:7172/${serverPath}`;
     }
 
-    async getUserFollowers(userId: string){
-        await firstValueFrom(this.authService.getUserFollowers(userId)).then(data => {
+    async getUserFollowers(userId: string) {
+        if (this.data.type === "followers") {
+            await firstValueFrom(this.authService.getUserFollowers(userId)).then(data => {
+                this.followers = data;
+            })
+            return;
+        }
+        await firstValueFrom(this.authService.getUserFollowings(userId)).then(data => {
             this.followers = data;
         })
     }
 
     getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
+        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg";
     }
 }

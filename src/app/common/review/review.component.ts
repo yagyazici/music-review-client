@@ -83,7 +83,7 @@ export class ReviewComponent implements OnInit {
         var dialogRef = this.dialog.open(InnerReviewDialog, {
             data: { reviewId: reviewId },
             autoFocus: false,
-            panelClass: "reply-dialog"
+            panelClass: "inner-review-dialog"
         });
     }
 

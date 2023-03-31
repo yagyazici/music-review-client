@@ -10,9 +10,10 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .inner-review {
+    .artist-album-text {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -22,11 +23,34 @@
         height: auto;
     }
 
-    .artist-album-text {
+    .inner-review {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
         flex-wrap: wrap;
         justify-content: space-between;
+    }
+
+    .inner-info {
+        display: flex;
         align-items: center;
+        gap: 0.15rem;
+        text-decoration: none;
+    }
+
+    .review-text {
+        overflow-wrap: break-word;
     }
 
     .edited-text {
@@ -64,12 +88,6 @@
         justify-content: flex-start;
     }
 
-    .profile-img {
-        width: 100%;
-        max-width: 32px;
-        height: auto;
-    }
-
     .user-info {
         display: flex;
         align-items: center;
@@ -93,6 +111,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+}
+
+.profile-img {
+    width: 100%;
+    max-width: 32px;
+    height: auto;
 }
 
 .heart-btn {

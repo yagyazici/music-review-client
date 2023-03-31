@@ -158,8 +158,35 @@ body{
     border-color: white;
 }
 
-app-review {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+.mat-dialog-container {
+    background-color: #64B7FC;
+}
+
+.inner-review-dialog .mat-dialog-container {
+    background-color: #64B7FC !important;
+    padding: 0 !important;
+}
+
+.follow-panel .mat-dialog-container {
+    color: white;
+}
+
+.delete-dialog .mat-dialog-container{
+    background-color: #135081;
+    color: white;
+}
+
+.edit-panel .mat-dialog-container {
+    background-color: #64B7FC;
+    color: white;
+}
+
+.notification-panel .mat-dialog-container{
+    background-color: #64B7FC;
+    color: white;
+}
+
+.search-dialog .mat-dialog-container{
+    background-color: #64B7FC;
+    color: white;
 }

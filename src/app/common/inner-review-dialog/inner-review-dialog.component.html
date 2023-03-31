@@ -1,3 +1,6 @@
+<button mat-icon-button class="return-btn" (click)="closeDialog()">
+    <mat-icon>chevron_left</mat-icon>
+</button>
 <div class="review">
     <div class="inner-review p-3" *ngIf="review">
         <div class="album">
@@ -35,6 +38,6 @@
         <p class="review-text">{{review.AlbumThoughts}}</p>
     </div>
     <div class="reply p-3">
-        <app-reply [replies]="review.Replies" [reviewId]="review.Id" [currentUser]="currentUser"></app-reply>
+        <app-reply *ngIf="review && review.Replies" [replies]="review.Replies" [reviewId]="review.Id" [currentUser]="currentUser"></app-reply>
     </div>
 </div>

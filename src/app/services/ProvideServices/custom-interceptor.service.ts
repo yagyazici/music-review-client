@@ -32,11 +32,9 @@ export class CustomInterceptorService implements HttpInterceptor{
         else {
             var accessToken = localStorage.getItem("accessToken");
             let spotifyRequest = req.clone({
-                setParams: {
-                    "accessToken": `${accessToken}` 
-                },
                 setHeaders: {
-                    "Authorization": `bearer ${token}` 
+                    "Authorization": `bearer ${token}`,
+                    "accessToken": `${accessToken}` 
                 }
             });
             return next.handle(spotifyRequest)

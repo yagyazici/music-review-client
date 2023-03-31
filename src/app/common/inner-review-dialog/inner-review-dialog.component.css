@@ -3,52 +3,53 @@
     height: 100%;
 }
 
-::ng-deep .mat-dialog-container {
-    background-color: #64B7FC;
-    padding: 0;
-}
-
 @media only screen and (max-width: 600px) {
-    ::ng-deep .reply-dialog {
+    ::ng-deep .inner-review-dialog {
         height: 100vh;
         width: 100vw;
         max-width: 100% !important;
         max-height: 100%;
+    }
+
+    .return-btn {
+        display: block;
     }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    ::ng-deep .reply-dialog {
+    ::ng-deep .inner-review-dialog {
         height: 100vh;
         width: 100vw;
         max-width: 100% !important;
         max-height: 100%;
+    }
+
+    .return-btn {
+        display: block;
     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    ::ng-deep .reply-dialog {
+    ::ng-deep .inner-review-dialog {
         height: 100vh;
         width: 100vw;
         max-width: 100% !important;
         max-height: 100%;
     }
+
+    .return-btn {
+        display: block;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    ::ng-deep .reply-dialog {
-        width: 400px;
-        max-width: 80vw;
-        max-height: 400px;
-        position: static;
+    .return-btn {
+        display: none;
     }
-}
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
     .review {
         display: flex;
         max-height: 95vh;
@@ -78,12 +79,6 @@
         justify-content: center;
     }
 
-    .album-img {
-        width: 100%;
-        max-width: 325px;
-        height: auto;
-    }
-
     .artist-album-text {
         display: flex;
         flex-wrap: wrap;
@@ -104,26 +99,17 @@
         text-decoration: none;
     }
 
-    .full-heart {
-        font-weight: 900;
-        color: rgba(220, 53, 69, 1);
-    }
-
     .star-info {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-    ::ng-deep .reply-dialog {
+    ::ng-deep .inner-review-dialog {
         width: 800px;
         max-width: 80vw;
         max-height: 95vh;
         position: static;
-    }
-
-    .review-text {
-        overflow-wrap: anywhere;
     }
 }
 
@@ -144,4 +130,19 @@
     display: flex;
     align-items: center;
     gap: 0.25vw;
+}
+
+.review-text {
+    overflow-wrap: anywhere;
+}
+
+.album-img {
+    width: 100%;
+    max-width: 325px;
+    height: auto;
+}
+
+.full-heart {
+    font-weight: 900;
+    color: rgba(220, 53, 69, 1);
 }

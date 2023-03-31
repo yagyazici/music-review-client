@@ -10,11 +10,13 @@
                     </div>
                     <div class="following-buttons">
                         <p class="text-white m-0"
-                            style="cursor: pointer;text-decoration: none;" (click)="followers>0 ? followersDialog() : '';">
+                            style="cursor: pointer;text-decoration: none;"
+                            (click)="followings>0 ? followersDialog('followers') : ''">
                             <strong>{{followers}}</strong><small> followers</small>
                         </p>
                         <p class="text-white m-0"
-                            style="cursor: pointer;text-decoration: none;" (click)="followings>0 ? followingDialog() : ''">
+                            style="cursor: pointer;text-decoration: none;" 
+                            (click)="followings>0 ? followersDialog('followings') : ''">
                             <strong>{{followings}}</strong><small> following</small>
                         </p>
                     </div>

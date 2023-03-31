@@ -18,9 +18,9 @@ export class SpotifyService {
 
     currentSong = (): Observable<SpotifyCurrentSong> =>  this.http.get<SpotifyCurrentSong>(`${this.baseUrl}CurrentSong`);
 
-    searchAlbum(query: string): Observable<SearchItem[]> {
+    searchAlbum(query: string): Observable<ArtistAlbumsItem[]> {
         const params = new HttpParams().set("query", query);
-        return this.http.get<SearchItem[]>(`${this.baseUrl}SearchAlbum`, { params: params });
+        return this.http.get<ArtistAlbumsItem[]>(`${this.baseUrl}SearchAlbum`, { params: params });
     }
 
     getAlbum(albumId: string): Observable<Album> {

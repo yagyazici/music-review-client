@@ -58,12 +58,14 @@ import { DeleteImageComponent } from 'src/app/common/delete-image/delete-image.c
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CustomInterceptorService } from 'src/app/services/ProvideServices/custom-interceptor.service';
 import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
-import { FollowingComponent } from 'src/app/common/following/following.component';
 import { EditReviewComponent } from 'src/app/common/edit-review/edit-review.component';
 import { DeleteReviewComponent } from 'src/app/common/delete-review/delete-review.component';
 import { ReplyComponent } from 'src/app/common/inner-review-dialog/reply/reply.component';
 import { InnerReviewDialog } from 'src/app/common/inner-review-dialog/inner-review-dialog.component';
 import { ReviewComponent } from 'src/app/common/review/review.component';
+import { ReviewPlaceholderComponent } from 'src/app/common/review-placeholder/review-placeholder.component';
+import { LikesComponent } from 'src/app/common/likes/likes.component';
+import { AlbumComponent } from 'src/app/common/album/album.component';
 
 @NgModule({
     declarations: [
@@ -95,7 +97,6 @@ import { ReviewComponent } from 'src/app/common/review/review.component';
         DeleteReviewComponent,
         ProfileLikesComponent,
         FollowersComponent,
-        FollowingComponent,
         //settings page
         ProfileSettingsComponent,
         ProfilePictureSettingsComponent,
@@ -119,7 +120,10 @@ import { ReviewComponent } from 'src/app/common/review/review.component';
         //review
         ReplyComponent,
         InnerReviewDialog,
-        ReviewComponent
+        ReviewComponent,
+        ReviewPlaceholderComponent,
+        LikesComponent,
+        AlbumComponent
     ],
     imports: [
         CommonModule,

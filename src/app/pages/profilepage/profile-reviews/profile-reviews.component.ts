@@ -59,7 +59,7 @@ export class ProfileReviewsComponent implements OnInit {
         });
     }
 
-    async loader(){
+    loader(){
         this.loading = false;
     }
 }

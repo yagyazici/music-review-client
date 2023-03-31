@@ -19,6 +19,7 @@ export class FeedpageComponent implements OnInit {
     isAuthenticated: boolean;
     reviews: Review[];
     liked = "full-heart";
+    loading = true;
 
     constructor(
         private reviewService: ReviewService,
@@ -37,6 +38,9 @@ export class FeedpageComponent implements OnInit {
 
     getUserFeed() {
         this.reviewService.getUserFeed().subscribe(data => {
+            if (data) {
+                this.loader();
+            }
             this.reviews = data.reverse();
         })
     }
@@ -90,7 +94,11 @@ export class FeedpageComponent implements OnInit {
         var dialogRef = this.dialog.open(InnerReviewDialog, {
             data: { reviewId: reviewId },
             autoFocus: false,
-            panelClass: "reply-dialog"
+            panelClass: "inner-review-dialog"
         });
+    }
+
+    loader(){
+        this.loading = false;
     }
 }

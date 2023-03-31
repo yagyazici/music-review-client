@@ -1,0 +1,52 @@
+@media (max-width: 600px) {
+    .album-img {
+        width: 100%;
+        max-width: 100px;
+        height: auto;
+    }
+
+    .artist-album-text {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex: 1;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .album-img {
+        width: 100%;
+        max-width: 100px;
+        height: auto;
+    }
+
+    .artist-album-text {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex: 1 1 0;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .inner-album {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .album-img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+    }
+
+    .artist-album-text {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        flex: unset;
+    }
+}

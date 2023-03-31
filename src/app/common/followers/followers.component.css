@@ -17,11 +17,6 @@
     border-bottom: none !important;
 }
 
-::ng-deep .mat-dialog-container {
-    background-color: #64B7FC;
-    color: white;
-}
-
 .username:hover {
     text-decoration: underline !important;
 }

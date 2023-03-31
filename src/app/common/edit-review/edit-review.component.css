@@ -63,11 +63,6 @@
     width: 250px;
 }
 
-::ng-deep .edit-panel .mat-dialog-container {
-    background-color: #64B7FC;
-    color: white;
-}
-
 @media only screen and (max-width: 600px) {
     ::ng-deep .edit-panel {
         display: flex;

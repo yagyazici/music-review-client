@@ -1,0 +1,66 @@
+::ng-deep :root {
+    --placeholder-color : black;
+}
+
+@media only screen and (max-width: 600px) {
+    .placeholder-wrapper {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(150px, 1fr));
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .placeholder-wrapper {
+        display: grid;
+        align-items: self-start;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1rem;
+    }
+}
+
+.placeholder-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.inner-placeholder {
+    display: flex;
+    justify-content: center;
+}
+
+.placeholder-img {
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 275px;
+    height: 275px;
+    animation: placeholder-animation 2s ease-in-out infinite;
+}
+
+.artist-album-placeholder {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.album-placeholder {
+    background-color: var(--placeholder-color);
+    min-height: 1rem;
+    animation: placeholder-animation 2s ease-in-out infinite;
+}
+
+.artist-placeholder {
+    background-color: var(--placeholder-color);
+    min-height: 1rem;
+    animation: placeholder-animation 2s ease-in-out infinite;
+}
+
+
+@keyframes placeholder-animation {
+    50% {
+        opacity: .2;
+    }
+}
