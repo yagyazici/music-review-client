@@ -3,9 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { formatDate } from '@angular/common';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 
 export class Options {
     value: string;
@@ -35,7 +35,7 @@ export class ProfileSettingsComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private dataService: DataService,
-        private router: Router,
+        private commonService: CommonService
     ) {}
 
     async ngOnInit() {
@@ -71,12 +71,7 @@ export class ProfileSettingsComponent implements OnInit {
         var email = this.reactiveForm.get("email")?.value;
         if (this.reactiveForm.valid) {
             this.authService.updateProfile(username, bio, birthDate, email).subscribe({
-                next: next => {
-                    const currentUrl = this.router.url;
-                    this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
-                        this.router.navigate([currentUrl]);
-                    });
-                },
+                next: next => this.reloadPage(),
                 error: error => {
                     var parsed = JSON.parse(error.error);
                     this.errors = parsed;
@@ -140,10 +135,5 @@ export class ProfileSettingsComponent implements OnInit {
         return formatDate(birthDay, "dd-MM-yyyy", "en_US");
     }
 
-    cancel(){
-        const currentUrl = this.router.url;
-        this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
-            this.router.navigate([currentUrl]);
-        });
-    }
+    reloadPage = () => this.commonService.reloadPage();
 }

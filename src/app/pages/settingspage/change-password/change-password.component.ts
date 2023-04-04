@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 
 @Component({
     selector: 'app-change-password',
@@ -23,7 +23,7 @@ export class ChangePasswordComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private dataService: DataService,
-        private router: Router,
+        private commonService: CommonService
     ){}
     
     ngOnInit(): void {
@@ -60,10 +60,5 @@ export class ChangePasswordComponent implements OnInit {
         });
     }
 
-    cancel(){
-        const currentUrl = this.router.url;
-        this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
-            this.router.navigate([currentUrl]);
-        });
-    }
+    reloadPage = () => this.commonService.reloadPage();
 }

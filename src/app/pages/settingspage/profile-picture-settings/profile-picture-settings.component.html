@@ -29,7 +29,7 @@
         <span (click)="deleteDialog()" class="middle-green-btn">Delete</span>
     </div>
     <div mat-dialog-actions class="d-flex justify-content-between">
-        <button [style.display]="showCropper ? null : 'none'" (click)="cancelUploadFile();" class="cancel-btn">Cancel</button>
+        <button [style.display]="showCropper ? null : 'none'" (click)="reloadPage();" class="cancel-btn">Cancel</button>
         <button [style.display]="showCropper ? null : 'none'" (click)="uploadFile(croppedImage);" class="main-btn">Save</button>
     </div>
 </div>

@@ -1,8 +1,6 @@
-import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { Router } from '@angular/router';
-import { base64ToFile, Dimensions, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
+import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 import { firstValueFrom } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
@@ -29,7 +27,6 @@ export class ProfilePictureSettingsComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private dataService: DataService,
-        private router: Router,
         public dialog: MatDialog,
         private commonService: CommonService
     ) { }
@@ -46,12 +43,7 @@ export class ProfilePictureSettingsComponent implements OnInit {
         })
     }
 
-    cancelUploadFile() {
-        const currentUrl = this.router.url;
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate([currentUrl]);
-        });
-    }
+    reloadPage = () => this.commonService.reloadPage();
 
     fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;

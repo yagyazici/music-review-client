@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 @Component({
@@ -14,16 +15,13 @@ export class DeleteImageComponent {
     constructor(
         public dialogRef: MatDialogRef<DeleteImageComponent>,
         private authService: AuthService,
-        private router: Router,
+        private commonService: CommonService
     ) { }
 
     deleteImage() {
         this.authService.deleteImage().subscribe(response => {
             if (response.status) {
-                const currentUrl = this.router.url;
-                this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
-                    this.router.navigate([currentUrl]);
-                });
+                this.commonService.reloadPage();
                 this.closeDialog();
             }
         });

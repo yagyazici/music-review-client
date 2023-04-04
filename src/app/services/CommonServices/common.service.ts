@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Review } from 'src/app/models/Music/review';
+import { ArtistAlbumsItem } from 'src/app/models/Spotify/ArtistAlbums/ArtistAlbumsItem';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +12,9 @@ export class CommonService {
 
     liked = "full-heart";
 
-    constructor() { }
+    constructor(
+        private router: Router,
+    ) { }
 
     editedText = (review: Review): string =>
         review.Edited ? `${moment(review.EditedDate).fromNow()} [edited]` : `${moment(review.PublishedDate).fromNow()}`
@@ -32,5 +36,18 @@ export class CommonService {
         return review;
     }
 
+    reduceAlbums = (arr: ArtistAlbumsItem[]): ArtistAlbumsItem[] => {
+        return arr.reduce((albums: ArtistAlbumsItem[], first) => {
+            if (!albums.some(second => second.name === first.name)) albums.push(first)
+            return albums;
+        }, []);
+    }
+
+    reloadPage = () => {
+        const currentUrl = this.router.url;
+        this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+        });
+    }
     private createImgPath = (serverPath: string) => `https://localhost:7172/${serverPath}`;
 }

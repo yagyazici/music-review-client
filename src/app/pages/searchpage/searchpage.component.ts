@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
-import { Album } from 'src/app/models/Music/album';
 import { ArtistAlbumsItem } from 'src/app/models/Spotify/ArtistAlbums/ArtistAlbumsItem';
 import { CommonService } from 'src/app/services/CommonServices/common.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
@@ -38,7 +37,7 @@ export class SearchpageComponent implements OnInit {
         ).subscribe(query => {
             if (query) {
                 this.albumSearchUpdate(query);
-                this.userSearchUpdate(query);
+                this.userSearchUpdate(query); 
             }
             else{
                 this.albums = [];
@@ -51,7 +50,7 @@ export class SearchpageComponent implements OnInit {
 
     albumSearchUpdate(query: string){
         this.spotifyService.searchAlbum(query).subscribe(data => {
-            this.albums = this.reduceAlbums(data);
+            this.albums = this.commonService.reduceAlbums(data);
         })
     }
 
@@ -59,13 +58,6 @@ export class SearchpageComponent implements OnInit {
         this.authService.SearchUser(query).subscribe(data => {
             this.users = data;
         })
-    }
-
-    reduceAlbums(arr : ArtistAlbumsItem[]): ArtistAlbumsItem[] {
-        return arr.reduce((albums: ArtistAlbumsItem[], first) => {
-            if(!albums.some(second => second.name === first.name)) albums.push(first)
-            return albums;
-        },[]);
     }
 
     getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
