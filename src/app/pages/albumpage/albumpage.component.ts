@@ -51,7 +51,6 @@ export class AlbumpageComponent implements OnInit {
         this.spotifyService.getAlbum(id).subscribe(data => {
             this.album = data;
         })
-        
     }
 
     likeButton() {

@@ -1,11 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog'; 
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import * as moment from 'moment';
 import { firstValueFrom } from 'rxjs';
-import { IReviewData } from 'src/app/interfaces/IReviewData';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Review } from 'src/app/models/Music/review';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 
@@ -16,25 +15,23 @@ import { DataService } from 'src/app/services/ProvideServices/dataservice.servic
 })
 export class InnerReviewDialog implements OnInit {
 
-    review: Review;
+    @Input() review: Review;
     liked = "full-heart";
     currentUser: UserDTO;
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: IReviewData,
         public dialogRef: MatDialogRef<InnerReviewDialog>,
-        private router: Router,
         private dataService: DataService,
         private reviewService: ReviewService,
-    ) {}
+        private commonService: CommonService
+    ) { }
 
     async ngOnInit() {
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
-        await this.getAlbumReview(this.data.reviewId);
     }
 
-    reply(comment: string){
-        this.reviewService.Reply(comment, this.data.reviewId).subscribe(data => {
+    reply(comment: string) {
+        this.reviewService.Reply(comment, this.review.Id).subscribe(data => {
             console.log(data.status);
         });
     }
@@ -45,42 +42,21 @@ export class InnerReviewDialog implements OnInit {
         });
     }
 
-    likeText(likeTotal: number): string {
-        return likeTotal > 0 ? `${likeTotal}` : ""
-    }
+    likeText = (likeTotal: number): string => this.commonService.likeText(likeTotal);
 
-    editedText(review: Review): string {
-        if (review.Edited) {
-            return `${moment(review.EditedDate).fromNow()} [edited]`
-        }
-        return `${moment(review.PublishedDate).fromNow()}`
-    }
+    editedText = (review: Review): string => this.commonService.editedText(review)
 
-    checkLiked(likes: string[], userId: string): string {
-        return likes.includes(userId) ? this.liked : '';
-    }
+    checkLiked = (likes: string[], userId: string): string => this.commonService.checkLiked(likes, userId);
 
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`;
-    }
-
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
-    }
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 
     likeReview(event: any, review: Review) {
-        let reviewId = review.Id;
-        this.reviewService.likeReview(reviewId).subscribe({
-            next: next => {
-                next.responseText == "added" ? review.Likes.length += 1 : review.Likes.length -= 1;
-            },
-            error: error => {
-            }
+        this.reviewService.likeReview(this.review.Id).subscribe({
+            next: next => this.review = this.commonService.toggleLike(this.review, this.currentUser),
+            error: error => { }
         })
         event.target.classList.toggle(this.liked);
     }
 
-    closeDialog() {
-        this.dialogRef.close();
-    }
+    closeDialog = () => this.dialogRef.close();
 }

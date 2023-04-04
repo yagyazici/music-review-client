@@ -88,10 +88,6 @@ export class ProfileSettingsComponent implements OnInit {
         }
     }
 
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`; 
-    }
-
     range = (min: number, max: number) => Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
     createDays(){

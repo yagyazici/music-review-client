@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between" style="overflow: auto;">
-    <h4>{{data.type | titlecase }}</h4>
-    <h4 style="cursor: pointer;text-decoration: none;" (click)="onNoClick()"><i class="fa-solid fa-xmark"></i></h4>
+    <h4>{{type | titlecase }}</h4>
+    <h4 style="cursor: pointer;text-decoration: none;" (click)="closeDialog()"><i class="fa-solid fa-xmark"></i></h4>
 </div>
 <div *ngIf="followers && followers.length > 0">
     <hr>

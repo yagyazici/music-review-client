@@ -2,7 +2,9 @@
     <div class="inner-reply border border-color rounded-3 p-1" *ngFor="let reply of replies">
         <img *ngIf="reply && reply.User" [src]="getImage(reply.User.ProfilePicture)" class="rounded-circle profile-img">
         <div class="reply-info">
-            <a (click)="navigateProfile(reply.User.Id)" [ngStyle]="{'cursor': 'pointer'}" class="text-decoration-none p-0 m-0">{{reply.User.Username}}</a>
+            <a (click)="navigateProfile(reply.User.Id)" [ngStyle]="{'cursor': 'pointer'}" class="text-decoration-none p-0 m-0">
+                {{reply.User.Username}}
+            </a>
             <small class="p-0 m-0">{{reply.Comment}}</small>
         </div>
     </div>

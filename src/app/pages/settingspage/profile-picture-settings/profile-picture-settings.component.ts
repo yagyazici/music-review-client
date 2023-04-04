@@ -8,6 +8,7 @@ import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { DeleteImageComponent } from '../../../common/delete-image/delete-image.component';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 
 @Component({
     selector: 'app-profile-picture-settings',
@@ -30,61 +31,46 @@ export class ProfilePictureSettingsComponent implements OnInit {
         private dataService: DataService,
         private router: Router,
         public dialog: MatDialog,
+        private commonService: CommonService
     ) { }
-    
 
-    async ngOnInit(){
+    async ngOnInit() {
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
         await this.getUser();
     }
 
     uploadFile(files: any) {
         this.authService.uploadFile(files)?.subscribe({
-            next: (event) => {
-                if (event.type == HttpEventType.UploadProgress) {
-                    this.progress = Math.round(100 * event.loaded / event.total)
-                }
-                else if (event.type == HttpEventType.Response) {
-                    this.message = "Upload success";
-                    location.reload();
-                }
-            },
-            error: error => {
-                console.log(error);
-            }
+            next: (event) => location.reload(),
+            error: error => { }
         })
     }
 
-    cancelUploadFile(){
+    cancelUploadFile() {
         const currentUrl = this.router.url;
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.router.navigate([currentUrl]);
         });
     }
+
     fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;
     }
+
     imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
         const imgFile = new File([base64ToFile(this.croppedImage)], `${this.currentUser.Id}.jpeg`);
         this.croppedImage = imgFile
     }
+
     imageLoaded() {
         this.showCropper = true;
-    }
-    cropperReady(sourceImageDimensions: Dimensions) {
-    }
-    loadImageFailed() {
-        // show message
     }
 
     async getUser() {
         await firstValueFrom(this.authService.GetUser(this.currentUser.Id)).then(data => {
             this.dataService.changeCurrentUser(data);
         });
-    }
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`; 
     }
 
     deleteDialog() {
@@ -96,7 +82,5 @@ export class ProfilePictureSettingsComponent implements OnInit {
         });
     }
 
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
-    }
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 }

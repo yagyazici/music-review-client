@@ -6,6 +6,7 @@ import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { DataService } from 'src/app/services/ProvideServices/dataservice.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { FollowersComponent } from '../../../common/followers/followers.component';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 
 @Component({
     selector: 'app-profile-info',
@@ -24,12 +25,14 @@ export class ProfileInfoComponent implements OnInit {
     followed: boolean = false;
     followers: number;
     followings: number;
+
     constructor(
         private authService: AuthService,
         private dataService: DataService,
         private activatedRoute: ActivatedRoute,
         private router: Router,
         public dialog: MatDialog,
+        private commonService: CommonService
     ) { }
 
     async ngOnInit() {
@@ -49,10 +52,6 @@ export class ProfileInfoComponent implements OnInit {
         await firstValueFrom(this.authService.GetUser(userId)).then(data => {
             this.userInfo = data;
         });
-    }
-
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`;
     }
 
     followButton(followUser: UserDTO) {
@@ -76,16 +75,16 @@ export class ProfileInfoComponent implements OnInit {
     }
 
     followersDialog(type: string) {
-        this.dialog.open(FollowersComponent, {
-            data: { userId: this.userId, type: type },
+        const dialogRef = this.dialog.open(FollowersComponent, {
             autoFocus: false,
             panelClass: "follow-panel"
         });
+        let instance = dialogRef.componentInstance;
+        instance.type = type;
+        instance.userId = this.userId;
     }
 
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg";
-    }
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 
     followedText(followed: boolean): string {
         return !followed ? "Follow" : "Unfollow";

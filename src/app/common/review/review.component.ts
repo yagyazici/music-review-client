@@ -8,94 +8,74 @@ import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import * as moment from 'moment';
 import { InnerReviewDialog } from '../inner-review-dialog/inner-review-dialog.component';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 
 @Component({
     selector: 'app-review',
     templateUrl: './review.component.html',
     styleUrls: ['./review.component.css']
 })
-export class ReviewComponent implements OnInit {
+export class ReviewComponent {
 
     @Input() review: Review;
     @Input() currentUser: UserDTO;
     @Input() userId: string;
-
     liked = "full-heart";
 
     constructor(
         private reviewService: ReviewService,
         private router: Router,
         public dialog: MatDialog,
+        private commonService: CommonService
     ) { }
-
-    ngOnInit(): void {}
 
     likeReview(event: any, review: Review) {
         let reviewId = review.Id;
         this.reviewService.likeReview(reviewId).subscribe({
-            next: next => {
-                next.responseText == "added" ? review.Likes.length += 1 : review.Likes.length -= 1;
-            },
-            error: error => {
-            }
+            next: next => this.review = this.commonService.toggleLike(this.review, this.currentUser),
+            error: error => { }
         })
         event.target.classList.toggle(this.liked);
     }
 
-    likeText(likeTotal: number): string {
-        return likeTotal > 0 ? `${likeTotal}` : ""
-    }
+    likeText = (likeTotal: number): string => this.commonService.likeText(likeTotal);
 
-    editedText(review: Review): string {
-        if (review.Edited) {
-            return `${moment(review.EditedDate).fromNow()} [edited]`
-        }
-        return `${moment(review.PublishedDate).fromNow()}`
-    }
+    editedText = (review: Review): string => this.commonService.editedText(review);
 
-    checkLiked(likes: string[], userId: string): string {
-        return likes.includes(userId) ? this.liked : '';
-    }
+    checkLiked = (likes: string[], userId: string): string => this.commonService.checkLiked(likes, userId);
 
-    horizontalButtons(): boolean{
-        return this.router.url.includes("profile") && this.currentUser.Id == this.userId;
-    }
+    horizontalButtons = (): boolean => this.router.url.includes("profile") && this.currentUser.Id == this.userId;
 
-    editDialog(id: string): void {
+    editDialog(reviewId: string): void {
         const dialogRef = this.dialog.open(EditReviewComponent, {
-            data: { reviewId: id },
             autoFocus: false,
             panelClass: "edit-panel"
         });
+        let instance = dialogRef.componentInstance;
+        instance.reviewId = reviewId;
     }
 
-    deleteDialog(id: string): void {
+    deleteDialog(reviewId: string): void {
         const dialogRef = this.dialog.open(DeleteReviewComponent, {
-            data: { reviewId: id },
             autoFocus: false,
             width: "450px",
             maxHeight: "750px",
             panelClass: "delete-dialog"
         });
+        let instance = dialogRef.componentInstance;
+        instance.reviewId = reviewId;
     }
 
-    replyDialog(reviewId: string) {
+    replyDialog() {
         var dialogRef = this.dialog.open(InnerReviewDialog, {
-            data: { reviewId: reviewId },
             autoFocus: false,
             panelClass: "inner-review-dialog"
         });
+        var instance = dialogRef.componentInstance;
+        instance.review = this.review;
     }
 
-    replyText(replyTotal: number): string {
-        return replyTotal > 0 ? `${replyTotal}` : ""
-    }
+    replyText = (replyTotal: number): string => this.commonService.replyText(replyTotal);
 
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg";
-    }
-
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`;
-    }
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 }

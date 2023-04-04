@@ -1,10 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { firstValueFrom } from 'rxjs';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Review } from 'src/app/models/Music/review';
-import { IReviewData } from 'src/app/interfaces/IReviewData';
 
 @Component({
     selector: 'app-delete-review',
@@ -13,16 +12,17 @@ import { IReviewData } from 'src/app/interfaces/IReviewData';
 })
 export class DeleteReviewComponent implements OnInit {
 
+    @Input() reviewId: string;
     albumReview: Review;
+
     constructor(
         public dialogRef: MatDialogRef<DeleteReviewComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: IReviewData,
         private reviewService: ReviewService,
         private snackBar: MatSnackBar
     ) {}
 
     async ngOnInit() {
-        await this.getAlbumReview(this.data.reviewId);
+        await this.getAlbumReview(this.reviewId);
     }
 
     async getAlbumReview(id: string) {
@@ -31,13 +31,11 @@ export class DeleteReviewComponent implements OnInit {
         });
     }
 
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
+    closeDialog = () => this.dialogRef.close();
 
     onSubmit(){
-        this.reviewService.DeleteAlbumReview(this.data.reviewId).subscribe();
-        this.dialogRef.close();
+        this.reviewService.DeleteAlbumReview(this.reviewId).subscribe();
+        this.closeDialog();
         this.openSnackBar();
     }
 

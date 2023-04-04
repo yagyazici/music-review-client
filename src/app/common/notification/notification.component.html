@@ -1,7 +1,7 @@
 <div class="p-3">
     <div class="d-flex justify-content-between" style="overflow: auto;">
         <h4>Notifications</h4>
-        <h4 style="cursor: pointer;text-decoration: none;" (click)="onNoClick()"><i class="fa-solid fa-xmark"></i></h4>
+        <h4 style="cursor: pointer;text-decoration: none;" (click)="closeDialog()"><i class="fa-solid fa-xmark"></i></h4>
     </div>
     <div class="delete-all" *ngIf="notifications && notifications.length>0">
         <p>Delete all notifications</p>

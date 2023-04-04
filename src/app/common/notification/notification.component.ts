@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { Router } from '@angular/router';
 import { Notification } from 'src/app/models/Auth/notification';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 @Component({
@@ -18,15 +19,14 @@ export class NotificationComponent implements OnInit {
         public dialogRef: MatDialogRef<NotificationComponent>,
         public authService: AuthService,
         private router: Router,
+        private commonService: CommonService
     ) { }
 
     ngOnInit() {
         this.getNotifications();
     }
 
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
+    closeDialog = () => this.dialogRef.close();
 
     getNotifications() {
         this.authService.getUserNotifications().subscribe(data => {
@@ -34,20 +34,14 @@ export class NotificationComponent implements OnInit {
         })
     }
 
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`;
-    }
-
     navigateProfile(userId: string) {
         const currentUrl = this.router.url;
         this.router.navigateByUrl(`/profile/${userId}`, { skipLocationChange: true }).then(_ => {
-            this.dialogRef.close();
+            this.closeDialog();
         });
     }
 
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
-    }
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 
     deleteAllNotifications() {
         this.authService.deleteAllNotifications().subscribe(data => {

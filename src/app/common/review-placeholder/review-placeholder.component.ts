@@ -6,10 +6,8 @@ import { Component } from '@angular/core';
     styleUrls: ['./review-placeholder.component.css']
 })
 export class ReviewPlaceholderComponent {
-
     createRange(number: number) {
         return new Array(number).fill(0)
             .map((n, index) => index + 1);
     }
-
 }

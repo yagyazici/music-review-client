@@ -85,10 +85,6 @@ export class HeaderComponent implements OnInit {
         })
     }
 
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`;
-    }
-
     notificationDialog() {
         var dialog = this.dialog.open(NotificationComponent, {
             autoFocus: false,

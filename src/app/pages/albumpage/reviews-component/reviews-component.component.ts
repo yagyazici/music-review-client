@@ -5,6 +5,7 @@ import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import * as moment from 'moment';
 import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 import { Review } from 'src/app/models/Music/review';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 
 @Component({
     selector: 'app-reviews-component',
@@ -18,7 +19,8 @@ export class ReviewsComponentComponent implements OnInit {
     constructor(
         private activated_route: ActivatedRoute,
         private reviewService: ReviewService,
-        private musicHub: MusicHubService
+        private musicHub: MusicHubService,
+        private commonService: CommonService
     ) { }
 
     ngOnInit(){
@@ -43,18 +45,7 @@ export class ReviewsComponentComponent implements OnInit {
         });
     }
 
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`; 
-    }
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
-    }
-
-    editedText(review: Review): string {
-        if (review.Edited) {
-            return `${moment(review.EditedDate).fromNow()} [edited]`
-        }
-        return `${moment(review.PublishedDate).fromNow()}`
-    }
+    editedText = (review: Review): string => this.commonService.editedText(review);
 }

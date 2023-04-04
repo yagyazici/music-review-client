@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { firstValueFrom } from 'rxjs';
-import { IFollowingData } from 'src/app/interfaces/IUserData';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 
 @Component({
@@ -12,27 +12,24 @@ import { AuthService } from 'src/app/services/ModelServices/auth.service';
 })
 export class FollowersComponent implements OnInit {
 
+    @Input() type: string;
+    @Input() userId: string;
     followers: UserDTO[];
+
     constructor(
         public dialogRef: MatDialogRef<FollowersComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: IFollowingData,
-        private authService: AuthService
+        private authService: AuthService,
+        private commonService: CommonService
     ) { }
 
     async ngOnInit() {
-        await this.getUserFollowers(this.data.userId);
+        await this.getUserFollowers(this.userId);
     }
 
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
-
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`;
-    }
+    closeDialog = () => this.dialogRef.close();
 
     async getUserFollowers(userId: string) {
-        if (this.data.type === "followers") {
+        if (this.type === "followers") {
             await firstValueFrom(this.authService.getUserFollowers(userId)).then(data => {
                 this.followers = data;
             })
@@ -43,7 +40,5 @@ export class FollowersComponent implements OnInit {
         })
     }
 
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg";
-    }
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 }

@@ -1,12 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { HoverRatingChangeEvent } from 'angular-star-rating/lib/interfaces/hover-rating-change-event.interface';
 import { firstValueFrom } from 'rxjs';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { Review } from 'src/app/models/Music/review';
-import { IReviewData } from 'src/app/interfaces/IReviewData';
 
 @Component({
     selector: 'app-edit-review',
@@ -15,19 +14,19 @@ import { IReviewData } from 'src/app/interfaces/IReviewData';
 })
 export class EditReviewComponent implements OnInit{
 
+    @Input() reviewId: string;
     reactiveForm: FormGroup;
-    rating: any;
+    rating: number;
     albumReview: Review;
 
     constructor(
         public dialogRef: MatDialogRef<EditReviewComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: IReviewData,
         private reviewService: ReviewService,
         private snackBar: MatSnackBar,
     ) {}
 
     async ngOnInit() {
-        await this.getAlbumReview(this.data.reviewId);
+        await this.getAlbumReview(this.reviewId);
         this.rating = this.albumReview.AlbumRate;
         this.reactiveForm = new FormGroup({
             albumRate: new FormControl(this.albumReview.AlbumRate),
@@ -35,15 +34,13 @@ export class EditReviewComponent implements OnInit{
         })
     }
 
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
+    closeDialog = () => this.dialogRef.close();
 
     onSubmit(){
         var newRate = this.reactiveForm.get("albumRate")?.value;
         var newThoughts = this.reactiveForm.get("albumThoughts")?.value;
-        this.reviewService.UpdateAlbumReview(this.data.reviewId, newRate, newThoughts).subscribe();
-        this.dialogRef.close();
+        this.reviewService.UpdateAlbumReview(this.reviewId, newRate, newThoughts).subscribe();
+        this.closeDialog();
         this.openSnackBar();
     }
 

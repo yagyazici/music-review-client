@@ -7,6 +7,7 @@ import { DataService } from 'src/app/services/ProvideServices/dataservice.servic
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { InnerReviewDialog } from 'src/app/common/inner-review-dialog/inner-review-dialog.component';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 
 @Component({
     selector: 'app-feedpage',
@@ -18,7 +19,6 @@ export class FeedpageComponent implements OnInit {
     currentUser: UserDTO;
     isAuthenticated: boolean;
     reviews: Review[];
-    liked = "full-heart";
     loading = true;
 
     constructor(
@@ -26,6 +26,7 @@ export class FeedpageComponent implements OnInit {
         public dialog: MatDialog,
         private router: Router,
         private dataService: DataService,
+        private commonService: CommonService
     ) {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
@@ -38,67 +39,10 @@ export class FeedpageComponent implements OnInit {
 
     getUserFeed() {
         this.reviewService.getUserFeed().subscribe(data => {
-            if (data) {
-                this.loader();
-            }
+            if (data) this.loader();
             this.reviews = data.reverse();
         })
     }
 
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`;
-    }
-
-    likeButton(reviewId: string) {
-        this.reviewService.likeReview(reviewId).subscribe(data => {
-            console.log(data);
-        })
-    }
-
-    likeReview(event: any, review: Review) {
-        let reviewId = review.Id;
-        this.reviewService.likeReview(reviewId).subscribe({
-            next: next => {
-                next.responseText == "added" ? review.Likes.length += 1 : review.Likes.length -= 1;
-            },
-            error: error => {
-            }
-        })
-        event.target.classList.toggle(this.liked);
-    }
-
-    likeText(likeTotal: number): string {
-        return likeTotal > 0 ? `${likeTotal} likes` : "like"
-    }
-
-    replyText(replyTotal: number): string {
-        return replyTotal > 0 ? `${replyTotal}` : ""
-    }
-
-    editedText(review: Review): string {
-        if (review.Edited) {
-            return `${moment(review.EditedDate).fromNow()} [edited]`
-        }
-        return `${moment(review.PublishedDate).fromNow()}`
-    }
-
-    checkLiked(likes: string[], userId: string): string {
-        return likes.includes(userId) ? this.liked : '';
-    }
-
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg";
-    }
-
-    replyDialog(reviewId: string) {
-        var dialogRef = this.dialog.open(InnerReviewDialog, {
-            data: { reviewId: reviewId },
-            autoFocus: false,
-            panelClass: "inner-review-dialog"
-        });
-    }
-
-    loader(){
-        this.loading = false;
-    }
+    loader = () => this.loading = false;
 }

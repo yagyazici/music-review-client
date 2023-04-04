@@ -4,6 +4,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Album } from 'src/app/models/Music/album';
 import { ArtistAlbumsItem } from 'src/app/models/Spotify/ArtistAlbums/ArtistAlbumsItem';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 import { AuthService } from 'src/app/services/ModelServices/auth.service';
 import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 
@@ -22,7 +23,8 @@ export class SearchpageComponent implements OnInit {
     usersError: any;
     constructor(
         private spotifyService: SpotifyService,
-        private authService: AuthService
+        private authService: AuthService,
+        private commonService: CommonService
     ) { }
 
     async ngOnInit(){
@@ -59,10 +61,6 @@ export class SearchpageComponent implements OnInit {
         })
     }
 
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`; 
-    }
-
     reduceAlbums(arr : ArtistAlbumsItem[]): ArtistAlbumsItem[] {
         return arr.reduce((albums: ArtistAlbumsItem[], first) => {
             if(!albums.some(second => second.name === first.name)) albums.push(first)
@@ -70,7 +68,5 @@ export class SearchpageComponent implements OnInit {
         },[]);
     }
 
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg"; 
-    }
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 }

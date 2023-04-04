@@ -19,8 +19,6 @@ export class ProfileReviewsComponent implements OnInit {
     userId: string;
     userAlbumReviews: Review[];
     currentUser: UserDTO;
-    reviewId: string;
-    liked = "full-heart";
     loading = true;
 
     constructor(

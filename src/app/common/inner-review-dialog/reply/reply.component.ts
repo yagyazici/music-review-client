@@ -4,6 +4,7 @@ import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dia
 import { Router } from '@angular/router';
 import { Reply } from 'src/app/models/Auth/reply';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
+import { CommonService } from 'src/app/services/CommonServices/common.service';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class ReplyComponent implements OnInit {
         public dialogRef: MatDialogRef<ReplyComponent>,
         private router: Router,
         private musicService: ReviewService,
+        private commonService: CommonService
     ) { }
 
     ngOnInit(): void {
@@ -46,18 +48,14 @@ export class ReplyComponent implements OnInit {
         })
     }
 
-    getImage(profilePicture: string): string {
-        return profilePicture != "" ? this.createImgPath(profilePicture) : "/assets/images/profile_vector.jpg";
-    }
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 
-    createImgPath(serverPath: string) {
-        return `https://localhost:7172/${serverPath}`;
-    }
+    closeDialog = () => this.dialogRef.close();
 
     navigateProfile(userId: string) {
         const currentUrl = this.router.url;
         this.router.navigateByUrl(`/profile/${userId}`, { skipLocationChange: true }).then(_ => {
-            this.dialogRef.close();
+            this.closeDialog();
         });
     }
 }

@@ -37,7 +37,7 @@
             <small>{{likeText(review.Likes.length)}}</small>
         </div>
         <div class="comment-text">
-            <i (click)="replyDialog(review.Id)" class="fa-regular fa-comment comment-btn"></i>
+            <i (click)="replyDialog()" class="fa-regular fa-comment comment-btn"></i>
             <small *ngIf="review.Replies">{{replyText(review.Replies.length)}}</small>
         </div>
     </div>

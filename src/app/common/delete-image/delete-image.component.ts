@@ -9,15 +9,13 @@ import { AuthService } from 'src/app/services/ModelServices/auth.service';
     templateUrl: './delete-image.component.html',
     styleUrls: ['./delete-image.component.css']
 })
-export class DeleteImageComponent implements OnInit {
+export class DeleteImageComponent {
 
     constructor(
         public dialogRef: MatDialogRef<DeleteImageComponent>,
         private authService: AuthService,
         private router: Router,
     ) { }
-
-    ngOnInit(): void {}
 
     deleteImage() {
         this.authService.deleteImage().subscribe(response => {
@@ -26,12 +24,10 @@ export class DeleteImageComponent implements OnInit {
                 this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
                     this.router.navigate([currentUrl]);
                 });
-                this.dialogRef.close();
+                this.closeDialog();
             }
         });
     }
 
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
+    closeDialog = () => this.dialogRef.close();
 }
