@@ -32,15 +32,10 @@ export class RegisterpageComponent implements OnInit {
             password: new FormControl(""),
         });
         this.data.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
-        if (localStorage.hasOwnProperty("currentlyPlaying")) {
-            localStorage.removeItem("currentlyPlaying")
-        }
         if (this.isAuthenticated) {
             this.router.navigate(["/"]);
         }
-        else {
-            return;
-        }
+        else return;
     }
 
     register() {

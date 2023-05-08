@@ -17,11 +17,8 @@ export class ProfilePictureSettingsComponent implements OnInit {
 
     showCropper = false;
     currentUser: UserDTO;
-    message: string;
-    progress: number;
     imageChangedEvent: any = "";
     croppedImage: any = "";
-    scale = 1;
     transform: ImageTransform = {};
 
     constructor(
@@ -38,16 +35,14 @@ export class ProfilePictureSettingsComponent implements OnInit {
 
     uploadFile(files: any) {
         this.authService.uploadFile(files)?.subscribe({
-            next: (event) => location.reload(),
+            next: (event) => this.commonService.reloadPage(),
             error: error => { }
         })
     }
 
     reloadPage = () => this.commonService.reloadPage();
 
-    fileChangeEvent(event: any): void {
-        this.imageChangedEvent = event;
-    }
+    fileChangeEvent = (event: any): void => this.imageChangedEvent = event;
 
     imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
@@ -55,9 +50,7 @@ export class ProfilePictureSettingsComponent implements OnInit {
         this.croppedImage = imgFile
     }
 
-    imageLoaded() {
-        this.showCropper = true;
-    }
+    imageLoaded = () => this.showCropper = true;
 
     async getUser() {
         await firstValueFrom(this.authService.GetUser(this.currentUser.Id)).then(data => {

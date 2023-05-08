@@ -23,7 +23,7 @@ export class ProfileReviewsComponent implements OnInit {
 
     constructor(
         private reviewService: ReviewService,
-        private data: DataService,
+        private dataService: DataService,
         public dialog: MatDialog,
         private activatedRoute: ActivatedRoute,
         private musicHub: MusicHubService
@@ -34,7 +34,7 @@ export class ProfileReviewsComponent implements OnInit {
             this.userId = params.get("user-id") || "";
         });
         await this.getUserAlbumReviews(this.userId);
-        this.data.currentUser.subscribe(currentUser => this.currentUser = currentUser);
+        this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
         this.musicHub.on(ReceiveFunctions.MusicReviewUpdatedMessageReceiveFunction, message => {
             var check = this.userAlbumReviews.filter(review => review.Id == message);
             if (check) {
@@ -50,14 +50,10 @@ export class ProfileReviewsComponent implements OnInit {
 
     async getUserAlbumReviews(userId: string) {
         await firstValueFrom(this.reviewService.getUserAlbumReviews(userId)).then(data => {
-            if (data){
-                this.loader();
-            }
+            if (data) this.loader();
             this.userAlbumReviews = data.reverse();
         });
     }
 
-    loader(){
-        this.loading = false;
-    }
+    loader = () => this.loading = false
 }

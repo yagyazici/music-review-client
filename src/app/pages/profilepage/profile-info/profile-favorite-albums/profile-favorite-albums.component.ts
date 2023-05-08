@@ -11,9 +11,10 @@ import { AuthService } from 'src/app/services/ModelServices/auth.service';
 export class ProfileFavoriteAlbumsComponent implements OnInit {
 
     @Input() userId: string;
-    userFavoriteAlbums: Album[];
     @Input() userInfo: UserDTO;
     @Input() currentUser: UserDTO;
+    userFavoriteAlbums: Album[];
+    
     constructor(
         private authService: AuthService
     ) { }

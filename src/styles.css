@@ -3,39 +3,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import '~css-star-rating/css/star-rating.css';
 
-body{
+body {
     background-color: #122953;
     font-family: 'Poppins', sans-serif;
 }
 
-.light-blue{
+.light-blue {
     background-color: #64B7FC !important;
 }
 
-.anchor-color{
+.anchor-color {
     color: #0043c1;
 }
 
-.middle-green-btn{
+.middle-green-btn {
     background-color: rgb(92, 184, 0) !important;
     color: white !important;
 }
 
-.middle-green{
+.middle-green {
     color: #157737 !important;
 }
 
-.spotify-btn{
+.spotify-btn {
     background-color: white !important;
     color: #3ae47b !important;
 }
 
-.spotify-btn:hover{
+.spotify-btn:hover {
     background-color: white !important;
     box-shadow: none !important;
 }
 
-.muted-color{
+.muted-color {
     color: #404448 !important;
 }
 
@@ -47,6 +47,7 @@ body{
     border: solid 1px white;
     fill: #3ae47b !important;
 }
+
 .rating.color-negative .star-container .star i {
     color: #3ae47b !important;
 }
@@ -54,6 +55,7 @@ body{
 .rating.color-ok .star-container .star svg {
     fill: #3ae47b !important;
 }
+
 .rating.color-ok .star-container .star i {
     color: #3ae47b !important;
 }
@@ -61,6 +63,7 @@ body{
 .rating.color-positive .star-container .star svg {
     fill: #3ae47b !important;
 }
+
 .rating.color-positive .star-container .star i {
     color: #3ae47b !important;
 }
@@ -68,22 +71,23 @@ body{
 .rating.color-default .star-container .star svg {
     fill: #3ae47b !important;
 }
+
 .rating.color-default .star-container .star i {
     color: #3ae47b !important;
 }
 
-.star-container{
+.star-container {
     margin-left: 0;
 }
 
-.cancel-btn{
+.cancel-btn {
     color: white;
     border: none;
     transition: transform 0.2s ease;
     display: inline-block;
 }
 
-.cancel-btn:hover{
+.cancel-btn:hover {
     color: white;
     transform: scale(1.1);
 }
@@ -95,13 +99,13 @@ body{
     border: 1px solid transparent;
     border-radius: 0.25rem;
     font-size: 0.875rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
 }
 
-.main-btn:hover{
+.main-btn:hover {
     color: white;
     border-color: white;
 }
@@ -113,7 +117,7 @@ body{
     border: 1px solid transparent;
     border-radius: 0.25rem;
     font-size: 0.875rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -124,7 +128,7 @@ body{
     border-color: white;
 }
 
-.cancel-btn{
+.cancel-btn {
     background-color: transparent;
     color: white;
     border: none;
@@ -135,7 +139,7 @@ body{
     text-align: center;
 }
 
-.cancel-btn:hover{
+.cancel-btn:hover {
     color: white;
     transform: scale(1.1);
 }
@@ -150,7 +154,7 @@ body{
     cursor: pointer;
     text-decoration: none;
     text-align: center;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .empty-btn:hover {
@@ -171,7 +175,7 @@ body{
     color: white;
 }
 
-.delete-dialog .mat-dialog-container{
+.delete-dialog .mat-dialog-container {
     background-color: #135081;
     color: white;
 }
@@ -181,12 +185,12 @@ body{
     color: white;
 }
 
-.notification-panel .mat-dialog-container{
+.notification-panel .mat-dialog-container {
     background-color: #64B7FC;
     color: white;
 }
 
-.search-dialog .mat-dialog-container{
+.search-dialog .mat-dialog-container {
     background-color: #64B7FC;
     color: white;
 }

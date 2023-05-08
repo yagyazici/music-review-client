@@ -21,9 +21,6 @@ export class ProfileSettingsComponent implements OnInit {
 
     loggedUser: UserDTO;
     reactiveForm: FormGroup;
-    message: string;
-    progress: number;
-    loggedUserId: string;
     errors: string[] = [];
     days: Options[];
     selectedDay: string;
@@ -78,9 +75,7 @@ export class ProfileSettingsComponent implements OnInit {
                 }
             })
         }
-        else {
-            return;
-        }
+        else return;
     }
 
     range = (min: number, max: number) => Array.from({ length: max - min + 1 }, (_, i) => min + i);

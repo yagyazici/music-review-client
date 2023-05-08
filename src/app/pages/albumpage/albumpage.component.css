@@ -2,14 +2,33 @@
     text-decoration: underline !important;
 }
 
+.outer-album-page{
+    margin: auto;
+    width: 75%;
+}
+
 .sticky {
     position: sticky;
     top: 0;
     z-index: 1;
 }
 
+.content {
+    max-height: 32.50vh;
+    overflow: auto;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    .album-page {
+        display: flex;
+        flex-direction: column;
+        align-items: unsafe;
+        justify-content: unsafe;
+        gap: 0.5vw;
+        height: 100%;
+    }
+
     .album-box {
         display: flex;
         flex-direction: column;
@@ -20,11 +39,36 @@
         width: 100%;
         max-width: 320px;
         height: auto;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .album-info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .album-info>* {
+        display: flex;
+        gap: 0.25vw;
     }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+    .album-page {
+        display: flex;
+        flex-direction: column;
+        align-items: unsafe;
+        justify-content: unsafe;
+        gap: 0.5vw;
+        height: 100%;
+    }
+
     .album-box {
         display: flex;
         flex-direction: column;
@@ -35,45 +79,27 @@
         width: 100%;
         max-width: 320px;
         height: auto;
+    }
+    
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .album-info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .album-info>* {
+        display: flex;
+        gap: 0.25vw;
     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    .album-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .album-img {
-        width: 100%;
-        max-width: 320px;
-        height: auto;
-    }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    .album-box {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .album-img {
-        width: 100%;
-        max-width: 640px;
-        height: auto;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    .outer-album-page{
-        margin: auto;
-        width: 75%;
-    }
-
     .album-page {
         display: flex;
         flex-direction: row;
@@ -83,13 +109,10 @@
         height: 100%;
     }
 
-    .album-page>* {
-        flex: 1 0 0%;
-    }
-
     .album-box {
         display: flex;
         flex-direction: column;
+        flex: 1;
     }
 
     .inner-album {
@@ -99,13 +122,11 @@
         width: 100%;
     }
 
-    .album-box>* {
-        flex: 0 1 0%;
-    }
-
     .album-img {
+        display: flex;
+        justify-content: center;
         width: 100%;
-        max-width: 25vh;
+        max-width: 320px;
         height: auto;
     }
 
@@ -121,13 +142,9 @@
 
     .image-box {
         display: flex;
+        flex-direction: column;
         width: 100%;
-        align-items: flex-end;
         gap: 0.5em;
-    }
-
-    .image-box>* {
-        flex: 1 0 auto;
     }
 
     .inner-img {
@@ -148,7 +165,6 @@
 
     .album-text {
         white-space: break-spaces;
-        width: 20rem;
         font-size: 1.20rem;
     }
 

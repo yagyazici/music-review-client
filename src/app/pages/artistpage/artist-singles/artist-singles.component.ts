@@ -13,7 +13,6 @@ export class ArtistSinglesComponent implements OnInit {
 
     artistId: string;
     albums: ArtistAlbumsItem[];
-    panelOpenState = false;
 
     constructor(
         private activatedRoute: ActivatedRoute,

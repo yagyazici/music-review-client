@@ -47,15 +47,15 @@ export class ReplyComponent implements OnInit {
             }
         })
     }
-
-    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
-
-    closeDialog = () => this.dialogRef.close();
-
+    
     navigateProfile(userId: string) {
         const currentUrl = this.router.url;
         this.router.navigateByUrl(`/profile/${userId}`, { skipLocationChange: true }).then(_ => {
             this.closeDialog();
         });
     }
+    
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
+
+    closeDialog = () => this.dialogRef.close();
 }

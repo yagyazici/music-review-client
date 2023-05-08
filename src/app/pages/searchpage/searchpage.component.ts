@@ -19,7 +19,9 @@ export class SearchpageComponent implements OnInit {
     albums: ArtistAlbumsItem[];
     users: UserDTO[];
     albumsError: any;
-    usersError: any;
+    usersError: string;
+    loading = true
+
     constructor(
         private spotifyService: SpotifyService,
         private authService: AuthService,
@@ -61,4 +63,6 @@ export class SearchpageComponent implements OnInit {
     }
 
     getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
+
+    loader = () => this.loading = false;
 }

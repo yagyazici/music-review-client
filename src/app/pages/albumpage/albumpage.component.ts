@@ -32,7 +32,8 @@ export class AlbumpageComponent implements OnInit {
         private reviewService: ReviewService
     ) { }
 
-    async ngOnInit() {this.dataService.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
+    async ngOnInit() {
+        this.dataService.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
 
         this.activatedRoute.paramMap.subscribe(params => {
             this.albumId = params.get("album-id") || "";
@@ -47,7 +48,7 @@ export class AlbumpageComponent implements OnInit {
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
     }
 
-    getAlbum(id: any) {
+    getAlbum(id: string) {
         this.spotifyService.getAlbum(id).subscribe(data => {
             this.album = data;
         })
@@ -55,13 +56,8 @@ export class AlbumpageComponent implements OnInit {
 
     likeButton() {
         this.liked = !this.liked
-        this.authService.likeAlbum(this.album).subscribe({
-            next: (data: any) => {
-                this.liked ? this.likeCount += 1 : this.likeCount -= 1;
-            },
-            error: error => {
-                console.log(error);
-            }
+        this.authService.likeAlbum(this.album).subscribe(data => {
+            if (data) this.liked ? this.likeCount += 1 : this.likeCount -= 1
         })
     }
 

@@ -15,10 +15,7 @@ export class SettingsNavbarComponent implements OnInit {
 
     ngOnInit(): void {
         this.currentUrl = this.router.url;
-        
     }
 
-    navbarClass(route: string): string {
-        return this.currentUrl == route ? "main-btn" : "empty-btn"
-    }
+    navbarClass = (route: string): string => this.currentUrl == route ? "main-btn" : "empty-btn";
 }

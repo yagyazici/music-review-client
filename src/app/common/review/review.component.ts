@@ -38,14 +38,6 @@ export class ReviewComponent {
         event.target.classList.toggle(this.liked);
     }
 
-    likeText = (likeTotal: number): string => this.commonService.likeText(likeTotal);
-
-    editedText = (review: Review): string => this.commonService.editedText(review);
-
-    checkLiked = (likes: string[], userId: string): string => this.commonService.checkLiked(likes, userId);
-
-    horizontalButtons = (): boolean => this.router.url.includes("profile") && this.currentUser.Id == this.userId;
-
     editDialog(reviewId: string): void {
         const dialogRef = this.dialog.open(EditReviewComponent, {
             autoFocus: false,
@@ -74,6 +66,14 @@ export class ReviewComponent {
         var instance = dialogRef.componentInstance;
         instance.review = this.review;
     }
+
+    likeText = (likeTotal: number): string => this.commonService.likeText(likeTotal);
+
+    editedText = (review: Review): string => this.commonService.editedText(review);
+
+    checkLiked = (likes: string[], userId: string): string => this.commonService.checkLiked(likes, userId);
+
+    horizontalButtons = (): boolean => this.router.url.includes("profile") && this.currentUser.Id == this.userId;
 
     replyText = (replyTotal: number): string => this.commonService.replyText(replyTotal);
 

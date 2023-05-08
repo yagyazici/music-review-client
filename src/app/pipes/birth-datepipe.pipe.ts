@@ -12,5 +12,4 @@ export class BirthDatePipe implements PipeTransform {
         }
         return moment(value).format("MMMM D, YYYY");
     }
-
 }

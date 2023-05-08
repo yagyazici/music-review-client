@@ -8,5 +8,4 @@ export class UserDTO{
     Bio: string;
     BirthDate: string;
     FavoriteAlbums: Album[];
-    TokenExpires: Date;
 }

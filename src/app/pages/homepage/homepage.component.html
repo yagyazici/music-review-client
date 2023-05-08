@@ -1,6 +1,9 @@
-<div class="d-grid-gap 3">
-    <h1 class="text-white text-center">Welcome back
+<div class="d-grid gap-3">
+    <h1 class="text-white text-center">
+        Welcome back
         <a [routerLink]="['/profile',currentUser.Id]" class="user-text">{{currentUser && currentUser.Username}}</a>
+        :&#41;
     </h1>
     <app-currentsong [toCurrentSong]="isAuthenticated"></app-currentsong>
+    <app-new-releases></app-new-releases>
 </div>

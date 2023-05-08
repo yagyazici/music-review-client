@@ -49,5 +49,6 @@ export class CommonService {
             this.router.navigate([currentUrl]);
         });
     }
+    
     private createImgPath = (serverPath: string) => `https://localhost:7172/${serverPath}`;
 }

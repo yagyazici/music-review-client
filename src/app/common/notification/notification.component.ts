@@ -26,8 +26,6 @@ export class NotificationComponent implements OnInit {
         this.getNotifications();
     }
 
-    closeDialog = () => this.dialogRef.close();
-
     getNotifications() {
         this.authService.getUserNotifications().subscribe(data => {
             this.notifications = data.reverse();
@@ -41,8 +39,6 @@ export class NotificationComponent implements OnInit {
         });
     }
 
-    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
-
     deleteAllNotifications() {
         this.authService.deleteAllNotifications().subscribe(data => {
             this.notifications = [];
@@ -54,4 +50,8 @@ export class NotificationComponent implements OnInit {
             this.notifications = data.response;
         })
     }
+
+    closeDialog = () => this.dialogRef.close();
+
+    getImage = (profilePicture: string): string => this.commonService.getImage(profilePicture);
 }

@@ -1,16 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/ModelServices/auth.service';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-profilepage',
     templateUrl: './profilepage.component.html',
     styleUrls: ['./profilepage.component.css']
 })
-export class ProfilepageComponent implements OnInit {
-
-    constructor(
-    ) { }
-
-    async ngOnInit() {
-    }    
+export class ProfilepageComponent {
 }

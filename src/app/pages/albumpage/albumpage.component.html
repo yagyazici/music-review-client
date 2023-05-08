@@ -1,6 +1,6 @@
 <div *ngIf="!error && album; else not_found" class="outer-album-page my-3">
     <div class="album-page">
-        <div class="light-blue border rounded-3 border-dark album-box p-1 deneme" #deneme>
+        <div class="light-blue border rounded-3 border-dark album-box p-1">
             <div class="image-box">
                 <img src="{{album.images[0].url}}" title="{{album.name}}" class="rounded-3 album-img">
                 <h3 class="anchor-color my-0 album-text">{{album.name}}</h3>
@@ -9,9 +9,9 @@
                 <div class="buttons">
                     <div class="heart-btn">
                         <button (click)="likeButton()" mat-icon-button>
-                            <h3 class="m-0">
+                            <h4 class="m-0">
                                 <i [class]="likedClass(liked)"></i>
-                            </h3>
+                            </h4>
                         </button>
                         <p *ngIf="likeCount > 0" class="my-auto">{{likeCount}} likes</p>
                     </div>

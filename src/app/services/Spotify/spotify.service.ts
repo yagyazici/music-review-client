@@ -6,7 +6,6 @@ import { Artist } from 'src/app/models/Music/artist';
 import { ArtistAlbumsItem } from 'src/app/models/Spotify/ArtistAlbums/ArtistAlbumsItem';
 import { SpotifyCurrentSong } from 'src/app/models/Spotify/CurrentSong/SpotifyCurrentSong';
 import { RefreshToken } from 'src/app/models/Spotify/RefreshToken/RefreshToken';
-import { SearchItem } from 'src/app/models/Spotify/Search/SearchItem';
 
 @Injectable({
     providedIn: 'root'
@@ -16,12 +15,14 @@ export class SpotifyService {
     baseUrl = "https://localhost:7172/Spotify/";
     constructor(private http: HttpClient) { }
 
-    currentSong = (): Observable<SpotifyCurrentSong> =>  this.http.get<SpotifyCurrentSong>(`${this.baseUrl}CurrentSong`);
+    currentSong = (): Observable<SpotifyCurrentSong> => this.http.get<SpotifyCurrentSong>(`${this.baseUrl}CurrentSong`);
 
     searchAlbum(query: string): Observable<ArtistAlbumsItem[]> {
         const params = new HttpParams().set("query", query);
         return this.http.get<ArtistAlbumsItem[]>(`${this.baseUrl}SearchAlbum`, { params: params });
     }
+
+    getNewReleases = (): Observable<ArtistAlbumsItem[]> => this.http.get<ArtistAlbumsItem[]>(`${this.baseUrl}GetNewReleases`)
 
     getAlbum(albumId: string): Observable<Album> {
         const params = new HttpParams().set("albumId", albumId);
@@ -45,7 +46,7 @@ export class SpotifyService {
         if (now > expirationDate) {
             await firstValueFrom(this.refreshToken()).then(data => {
                 var accessToken = data.access_token
-                var expiresIn =  data.expires_in
+                var expiresIn = data.expires_in
                 now.setSeconds(now.getSeconds() + expiresIn);
                 localStorage.setItem("accessToken", accessToken);
                 localStorage.setItem("expiresIn", now.toString());
@@ -59,7 +60,7 @@ export class SpotifyService {
         var now = new Date();
         await firstValueFrom(this.refreshToken()).then(data => {
             var accessToken = data.access_token
-            var expiresIn =  data.expires_in
+            var expiresIn = data.expires_in
             now.setSeconds(now.getSeconds() + expiresIn);
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("expiresIn", now.toString());

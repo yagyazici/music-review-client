@@ -7,7 +7,5 @@ import { Album } from 'src/app/models/Music/album';
     styleUrls: ['./likes.component.css']
 })
 export class LikesComponent {
-
     @Input() album: Album
-
 }

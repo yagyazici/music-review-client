@@ -14,11 +14,11 @@ import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
 })
 export class SearchFavoriteAlbumComponent implements OnInit {
 
-    reactiveForm: FormGroup;
-    albums: ArtistAlbumsItem[];
     @Input() albumName: string;
     @Input() idx: number;
     @Input() favoriteAlbum: Album;
+    reactiveForm: FormGroup;
+    albums: ArtistAlbumsItem[];
 
     constructor(
         public dialogRef: MatDialogRef<SearchFavoriteAlbumComponent>,

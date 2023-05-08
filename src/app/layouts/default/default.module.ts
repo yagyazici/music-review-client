@@ -10,14 +10,12 @@ import { PartialsModule } from 'src/app/partials/partials.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrentsongComponent } from 'src/app/pages/homepage/currentsong/currentsong.component';
-import { ArtistsNamesPipe } from 'src/app/pipes/artists-names.pipe';
 import { SearchpageComponent } from 'src/app/pages/searchpage/searchpage.component';
 import { SearchArtistNamesPipe } from 'src/app/pipes/search-artist-names.pipe';
 import { AlbumpageComponent } from 'src/app/pages/albumpage/albumpage.component';
 import { TimehumanizePipe } from 'src/app/pipes/timehumanize.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StarRatingModule } from 'angular-star-rating';
-import { DateAgoPipe } from 'src/app/pipes/date-ago.pipe';
 import { ReviewsComponentComponent } from 'src/app/pages/albumpage/reviews-component/reviews-component.component';
 import { ReviewFormComponent } from 'src/app/pages/albumpage/review-form-component/review-form.component';
 import { GetYearPipe } from 'src/app/pipes/getyear.pipe';
@@ -25,7 +23,6 @@ import { ProfilepageComponent } from 'src/app/pages/profilepage/profilepage.comp
 import { ProfileInfoComponent } from 'src/app/pages/profilepage/profile-info/profile-info.component';
 import { ProfileReviewsComponent } from 'src/app/pages/profilepage/profile-reviews/profile-reviews.component';
 import { ProfileSettingsComponent } from 'src/app/pages/settingspage/profile-settings/profile-settings.component';
-import { BirthDatePipe } from 'src/app/pipes/birth-datepipe.pipe';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { ProfilePictureSettingsComponent } from 'src/app/pages/settingspage/profile-picture-settings/profile-picture-settings.component';
@@ -66,6 +63,9 @@ import { ReviewComponent } from 'src/app/common/review/review.component';
 import { ReviewPlaceholderComponent } from 'src/app/common/review-placeholder/review-placeholder.component';
 import { LikesComponent } from 'src/app/common/likes/likes.component';
 import { AlbumComponent } from 'src/app/common/album/album.component';
+import { BirthDatePipe } from 'src/app/pipes/birth-datepipe.pipe';
+import { NewReleasesComponent } from 'src/app/pages/homepage/new-releases/new-releases.component';
+import { ReleasePipe } from 'src/app/pipes/release.pipe';
 
 @NgModule({
     declarations: [
@@ -73,6 +73,7 @@ import { AlbumComponent } from 'src/app/common/album/album.component';
         // homepage
         HomepageComponent,
         CurrentsongComponent,
+        NewReleasesComponent,
         // authorization pages
         LoginpageComponent,
         RegisterpageComponent,
@@ -106,15 +107,14 @@ import { AlbumComponent } from 'src/app/common/album/album.component';
         SearchFavoriteAlbumComponent,
         ChangePasswordComponent,
         // pipes
-        ArtistsNamesPipe,
         SearchArtistNamesPipe,
         TimehumanizePipe,
-        DateAgoPipe,
         GetYearPipe,
-        BirthDatePipe,
         GenresPipe,
         CopyrightPipe,
         ErrorsPipe,
+        BirthDatePipe,
+        ReleasePipe,
         // directives
         AutoFocusDirective,
         //review

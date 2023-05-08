@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
-import * as moment from 'moment';
 import { MusicHubService } from 'src/app/services/SignalR/music.hub.service';
 import { Review } from 'src/app/models/Music/review';
 import { CommonService } from 'src/app/services/CommonServices/common.service';
@@ -16,6 +15,7 @@ export class ReviewsComponentComponent implements OnInit {
 
     albumReviews: Review[];
     albumId: string;
+
     constructor(
         private activated_route: ActivatedRoute,
         private reviewService: ReviewService,

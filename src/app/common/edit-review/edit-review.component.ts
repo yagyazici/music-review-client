@@ -12,7 +12,7 @@ import { Review } from 'src/app/models/Music/review';
     templateUrl: './edit-review.component.html',
     styleUrls: ['./edit-review.component.css']
 })
-export class EditReviewComponent implements OnInit{
+export class EditReviewComponent implements OnInit {
 
     @Input() reviewId: string;
     reactiveForm: FormGroup;
@@ -23,7 +23,7 @@ export class EditReviewComponent implements OnInit{
         public dialogRef: MatDialogRef<EditReviewComponent>,
         private reviewService: ReviewService,
         private snackBar: MatSnackBar,
-    ) {}
+    ) { }
 
     async ngOnInit() {
         await this.getAlbumReview(this.reviewId);
@@ -34,9 +34,7 @@ export class EditReviewComponent implements OnInit{
         })
     }
 
-    closeDialog = () => this.dialogRef.close();
-
-    onSubmit(){
+    onSubmit() {
         var newRate = this.reactiveForm.get("albumRate")?.value;
         var newThoughts = this.reactiveForm.get("albumThoughts")?.value;
         this.reviewService.UpdateAlbumReview(this.reviewId, newRate, newThoughts).subscribe();
@@ -62,4 +60,6 @@ export class EditReviewComponent implements OnInit{
     openSnackBar() {
         this.snackBar.open('Review edited successfully!', 'Close');
     }
+    
+    closeDialog = () => this.dialogRef.close();
 }

@@ -12,6 +12,7 @@ export class ProfileLikesComponent implements OnInit {
 
     userId: string;
     userLikedAlbums: Album[];
+    
     constructor(
         private authService: AuthService,
         private activatedRoute: ActivatedRoute

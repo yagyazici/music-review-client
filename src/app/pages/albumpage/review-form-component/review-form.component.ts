@@ -20,11 +20,9 @@ export class ReviewFormComponent implements OnInit {
     @Input() currentFormUser: UserDTO;
     @Input() albumId: string;
     reactiveForm: FormGroup;
-    rating: any;
-    currentUser: UserDTO;
+    rating: number;
     reviewExists: boolean;
     likes: string[];
-    onHoverRatingChangeResult: HoverRatingChangeEvent;
 
     constructor(
         private reviewService: ReviewService,

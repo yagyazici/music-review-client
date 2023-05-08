@@ -1,0 +1,21 @@
+<div *ngIf="newReleases" class="new-releases">
+    <h1 class="text-white">New Releases</h1>
+    <div *ngFor="let newRelease of newReleases.reverse()" class="new-release light-blue p-1 border border-dark rounded-3 w-50">
+        <img [src]="newRelease.images[0].url" class="album-img rounded-3">
+        <div>
+            <div class="name-date-text">
+                <h5 class="m-0">
+                    <a [routerLink]="['/album', newRelease.id]"
+                        class="anchor-color m-0 p-0 text-start text-decoration-none">
+                        <strong>{{newRelease.name}}</strong>
+                    </a>
+                </h5>
+                <small class="anchor-color">{{newRelease.release_date | release}}</small>
+            </div>
+            <a [routerLink]="['/artist', newRelease.artists[0].id]"
+                class="anchor-color m-0 p-0 text-start text-decoration-none">
+                <small>{{newRelease.artists[0].name}}</small>
+            </a>
+        </div>
+    </div>
+</div>

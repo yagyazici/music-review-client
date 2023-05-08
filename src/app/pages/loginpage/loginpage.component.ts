@@ -18,7 +18,6 @@ export class LoginpageComponent implements OnInit {
     user = new User();
     reactiveForm: FormGroup;
     isAuthenticated: boolean;
-    error: string;
     currentUser: UserDTO;
     hide = true;
     isLoading: boolean;
@@ -41,9 +40,6 @@ export class LoginpageComponent implements OnInit {
             this.router.navigate(["/"]);
         }
         this.data.currentUser.subscribe(currentUser => this.currentUser = currentUser);
-        if (localStorage.hasOwnProperty("currentlyPlaying")) {
-            localStorage.removeItem("currentlyPlaying")
-        }
     }
 
     login() {

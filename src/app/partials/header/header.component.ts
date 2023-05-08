@@ -22,7 +22,8 @@ import { SpotifyService } from 'src/app/services/Spotify/spotify.service';
             transition('rotated => default', animate('200ms ease-out')),
             transition('default => rotated', animate('200ms ease-in'))
         ])
-    ]
+    ],
+    
 })
 export class HeaderComponent implements OnInit {
 
@@ -41,7 +42,6 @@ export class HeaderComponent implements OnInit {
         private userHub: UserHubService,
         private spotifyService: SpotifyService
     ) {
-
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
             this.musicHub.start();
             this.userHub.start();
             this.userHub.on(ReceiveFunctions.UserSendNotificitionMessage, message => {
-                if (message == this.currentUser.Id){
+                if (message == this.currentUser.Id) {
                     this.getUserNotificationsCount();
                 }
             })
@@ -62,26 +62,10 @@ export class HeaderComponent implements OnInit {
         this.data.currentUser.subscribe(currentUser => this.currentUser = currentUser);
     }
 
-    logout() {
-        this.authService.logout();
-    }
-
-    onClose() {
-        this.state = "default";
-    }
-
-    onOpen() {
-        this.state = "rotated";
-    }
-
     getUserNotificationsCount() {
         this.authService.getUserNotificationsCount().subscribe({
-            next: (next: any) => {
-                this.notificationsCount = next;
-            },
-            error: error => {
-                console.log(error);
-            }
+            next: (next: number) => this.notificationsCount = next,
+            error: error => { }
         })
     }
 
@@ -94,4 +78,10 @@ export class HeaderComponent implements OnInit {
             this.notificationsCount = 0;
         })
     }
+
+    logout = () => this.authService.logout();
+
+    onClose = () => this.state = "default";
+
+    onOpen = () => this.state = "rotated";
 }

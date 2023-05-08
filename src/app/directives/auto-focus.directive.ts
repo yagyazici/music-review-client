@@ -15,5 +15,4 @@ export class AutoFocusDirective {
     @Input() set autofocus(condition: boolean) {
         this._autofocus = condition != false;
     }
-
 }

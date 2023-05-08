@@ -16,11 +16,8 @@ import { CommonService } from 'src/app/services/CommonServices/common.service';
 export class ProfileInfoComponent implements OnInit {
 
     userId: string;
-    message: string;
-    progress: number;
     userInfo: UserDTO;
     currentUser: UserDTO;
-    profilePicture: string;
     currentUrl: string;
     followed: boolean = false;
     followers: number;
