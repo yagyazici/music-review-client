@@ -19,8 +19,8 @@ export class ProfileLikesComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.activatedRoute.parent?.paramMap.subscribe(params => {
-            this.userId = params.get("user-id") || "";
+        this.activatedRoute.parent?.params.subscribe(params => {
+            this.userId = params["user-id"];
         });
         this.getUserLikedAlbums(this.userId);
     }

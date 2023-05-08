@@ -34,8 +34,8 @@ export class ProfileInfoComponent implements OnInit {
 
     async ngOnInit() {
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
-        this.activatedRoute.paramMap.subscribe(params => {
-            this.userId = params.get("user-id") || "";
+        this.activatedRoute.params.subscribe(params => {
+            this.userId = params["user-id"];
         });
         await this.getUser(this.userId);
         if (this.currentUser.Id != this.userId) {

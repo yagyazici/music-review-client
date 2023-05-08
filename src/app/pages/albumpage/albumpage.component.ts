@@ -35,8 +35,8 @@ export class AlbumpageComponent implements OnInit {
     async ngOnInit() {
         this.dataService.currentIsAuthenticated.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
 
-        this.activatedRoute.paramMap.subscribe(params => {
-            this.albumId = params.get("album-id") || "";
+        this.activatedRoute.params.subscribe(params => {
+            this.albumId = params["album-id"];
         });
 
         this.getAlbum(this.albumId);

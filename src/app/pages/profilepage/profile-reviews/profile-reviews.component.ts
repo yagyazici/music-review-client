@@ -30,8 +30,8 @@ export class ProfileReviewsComponent implements OnInit {
     ) { }
 
     async ngOnInit() {
-        this.activatedRoute.parent?.paramMap.subscribe(params => {
-            this.userId = params.get("user-id") || "";
+        this.activatedRoute.parent?.params.subscribe(params => {
+            this.userId = params["user-id"];
         });
         await this.getUserAlbumReviews(this.userId);
         this.dataService.currentUser.subscribe(currentUser => this.currentUser = currentUser);

@@ -21,9 +21,9 @@ export class ArtistSinglesComponent implements OnInit {
     ) { }
 
     async ngOnInit() {
-        this.activatedRoute.parent?.paramMap.subscribe(params => {
-            this.artistId = params.get("artist-id") || "";
-        });
+        this.activatedRoute.parent?.params.subscribe(params => {
+            this.artistId = params["artist-id"];  
+        })
         this.getArtistAlbums(this.artistId, "single");
     }
 

@@ -22,8 +22,8 @@ export class ArtistpageComponent implements OnInit {
     ) { }
 
     async ngOnInit() {
-        this.activatedRoute.paramMap.subscribe(params => {
-            this.artistId = params.get("artist-id") || "";
+        this.activatedRoute.params.subscribe(params => {
+            this.artistId = params["artist-id"];
         });
 
         this.getArtist(this.artistId);

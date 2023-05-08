@@ -1,4 +1,4 @@
-<div *ngIf="albumReviews && albumReviews.length>0;else noAlbumReview">
+<div *ngIf="albumReviews && albumReviews.length>0">
     <ul class="border border-dark rounded-3 list-group list-group-flush light-blue">
         <li *ngFor="let albumReview of albumReviews" class="border-dark list-group-item light-blue">
             <div class="d-flex flex-row gap-3">
@@ -34,6 +34,3 @@
         </li>
     </ul>
 </div>
-<ng-template #noAlbumReview>
-    <h4 class="text-center text-white m-0">There is no review for this album. Be the first one!</h4>
-</ng-template>
