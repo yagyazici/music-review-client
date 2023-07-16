@@ -20,7 +20,7 @@ export class LoginpageComponent implements OnInit {
     isAuthenticated: boolean;
     currentUser: UserDTO;
     hide = true;
-    isLoading: boolean;
+    loading = false;
     errorText: string;
 
     constructor(
@@ -45,9 +45,9 @@ export class LoginpageComponent implements OnInit {
     login() {
         this.user.Username = this.reactiveForm.value.username;
         this.user.Password = this.reactiveForm.value.password;
+        this.loading = true
         this.authService.login(this.user).subscribe(async response => {
             if (response.status) {
-                this.isLoading = false;
                 localStorage.setItem('authToken', response.response.AuthToken.Token);
                 localStorage.setItem("tokenExpires", response.response.AuthToken.Expires.toString());
                 localStorage.setItem("refreshToken", response.response.RefreshToken.Token);
@@ -61,6 +61,9 @@ export class LoginpageComponent implements OnInit {
             else {
                 this.errorText = response.response;
             }
+            this.loader();
         });
     }
+
+    loader = () => this.loading = false
 }

@@ -49,16 +49,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-    .album {
-        display: flex;
-        flex-direction: column;
-        background-color: #64B7FC;
-        transition: background-color .2s ease;
-        text-decoration: none;
-        align-items: stretch;
-        gap: 0.5em;
-    }
-
     .inner-album {
         display: flex;
         flex-direction: column;

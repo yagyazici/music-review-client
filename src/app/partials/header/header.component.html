@@ -16,7 +16,8 @@
             </li>
             <li type="button" class="nav-item navbar-brand" (click)="notificationDialog()">
                 <a class="nav-link active text-white">
-                    <i [matBadge]="notificationsCount > 0 ? notificationsCount : ''" matBadgeSize="small" class="fa-solid fa-bell text-white"></i>
+                    <i [matBadge]="notificationsCount > 0 ? notificationsCount : ''" matBadgeSize="small"
+                        class="fa-solid fa-bell text-white"></i>
                 </a>
             </li>
             <button mat-button class="nav-item navbar-brand mx-auto" [matMenuTriggerFor]="profileMenu"

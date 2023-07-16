@@ -37,12 +37,6 @@ export abstract class GenericSignalrService {
         this._connection.onclose(error => console.log("Close connection"));
     }
 
-    invoke(procedureName: string, message: any, successCallBack?: (value: any) => void, errorCallBack?: (error: any) => void) {
-        this.connection.invoke(procedureName, message)
-            .then(successCallBack)
-            .catch(errorCallBack);
-    }
-
     on(procedureName: string, callBack: (...message: any) => void) {
         this.connection.on(procedureName, callBack);
     }

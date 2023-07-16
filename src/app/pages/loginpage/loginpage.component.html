@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-center" *ngIf="isLoading">
+<div class="d-flex justify-content-center" *ngIf="loading">
     <mat-spinner></mat-spinner>
 </div>
-<div class="w-50 mx-auto light-blue border rounded-3 border-dark p-5" *ngIf="!isLoading">
+<div class="w-50 mx-auto light-blue border rounded-3 border-dark p-5" *ngIf="!loading">
     <h1 class="pt-3 text-center text-white"><u>Login</u></h1>
     <small *ngIf="errorText" class="text-danger m-0 p-0">{{errorText}}</small>
     <form [formGroup]="reactiveForm" (submit)="login()" class="login-form">
@@ -15,10 +15,10 @@
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
         <div class="login-buttons">
-            <button class="middle-green-btn">Login</button>
             <p class="text-white m-0">Don't have account?
                 <a class="main-btn" routerLink="/register" role="button">Register</a>
             </p>
+            <button class="middle-green-btn">Login</button>
         </div>
     </form>
 </div>

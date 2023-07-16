@@ -55,6 +55,7 @@ import { DeleteImageComponent } from 'src/app/common/delete-image/delete-image.c
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CustomInterceptorService } from 'src/app/services/ProvideServices/custom-interceptor.service';
 import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
+import { MatLegacyProgressSpinnerModule as MatProgressSpinner } from '@angular/material/legacy-progress-spinner';
 import { EditReviewComponent } from 'src/app/common/edit-review/edit-review.component';
 import { DeleteReviewComponent } from 'src/app/common/delete-review/delete-review.component';
 import { ReplyComponent } from 'src/app/common/inner-review-dialog/reply/reply.component';
@@ -148,7 +149,8 @@ import { ReleasePipe } from 'src/app/pipes/release.pipe';
         MatTabsModule,
         MatSnackBarModule,
         MatExpansionModule,
-        MatMenuModule
+        MatMenuModule,
+        MatProgressSpinner
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

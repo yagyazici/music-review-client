@@ -1,10 +1,10 @@
-<div class="d-flex justify-content-center" *ngIf="isLoading">
+<div class="d-flex justify-content-center" *ngIf="loading">
     <mat-spinner></mat-spinner>
 </div>
-<div class="w-50 mx-auto light-blue border rounded-3 border-dark p-5" *ngIf="!isLoading">
+<div class="w-50 mx-auto light-blue border rounded-3 border-dark p-5" *ngIf="!loading">
     <h1 class="text-center text-white"><u>Register</u></h1>
     <small *ngIf="errorText" class="text-danger m-0 p-0">{{errorText | errors}}</small>
-    <form [formGroup]="reactiveForm" (submit)="register()">
+    <form [formGroup]="reactiveForm" (submit)="register()" class="register-form">
         <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
             <input matInput formControlName="username" [spellcheck]="false">
@@ -20,12 +20,12 @@
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
         <div class="register-buttons">
-            <button class="middle-green-btn">Register</button>
             <p class="text-white m-0">Already have account?
                 <a class="main-btn" routerLink="/login" role="button">
                     Login
                 </a>
             </p>
+            <button class="middle-green-btn">Register</button>
         </div>
     </form>
 </div>

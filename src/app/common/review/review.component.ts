@@ -1,11 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserDTO } from 'src/app/models/Auth/userDTO';
 import { Review } from 'src/app/models/Music/review';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { EditReviewComponent } from '../edit-review/edit-review.component';
 import { DeleteReviewComponent } from '../delete-review/delete-review.component';
 import { ReviewService } from 'src/app/services/ModelServices/review.service';
-import * as moment from 'moment';
 import { InnerReviewDialog } from '../inner-review-dialog/inner-review-dialog.component';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/services/CommonServices/common.service';

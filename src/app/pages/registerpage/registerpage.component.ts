@@ -16,7 +16,7 @@ export class RegisterpageComponent implements OnInit {
     isAuthenticated: boolean;
     reactiveForm: FormGroup;
     hide = true;
-    isLoading: boolean;
+    loading = false;
     errorText: string[];
     
     constructor(
@@ -42,14 +42,17 @@ export class RegisterpageComponent implements OnInit {
         this.user.Username = this.reactiveForm.value.username;
         this.user.Email = this.reactiveForm.value.email;
         this.user.Password = this.reactiveForm.value.password;
+        this.loading = true
         this.authService.register(this.user).subscribe(response => {
             if (response.status){
-                this.isLoading = false;
                 this.router.navigate(["login"]);
             }
             else{
                 this.errorText = response.response;
             }
+            this.loader();
         });
     }
+
+    loader = () => this.loading = false
 }

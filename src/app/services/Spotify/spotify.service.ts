@@ -67,5 +67,9 @@ export class SpotifyService {
         });
     }
 
+    deneme() {
+        
+    }
+
     refreshToken = (): Observable<RefreshToken> => this.http.get<RefreshToken>(`${this.baseUrl}RefreshToken`);
 }

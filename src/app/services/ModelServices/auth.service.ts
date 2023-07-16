@@ -26,8 +26,7 @@ export class AuthService {
 		private data: DataService,
 		private musicHub: MusicHubService,
 		private userHub: UserHubService
-	) {
-	}
+	) {	}
 
 	register = (user: User): Observable<CustomResponse<User & string[]>> =>
 		this.http.post<CustomResponse<User & string[]>>(`${this.baseUrl}Register`, user);

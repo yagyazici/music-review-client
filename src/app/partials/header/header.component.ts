@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
         if (this.isAuthenticated) {
             this.getUserNotificationsCount();
             this.authService.refreshToken();
-            this.spotifyService.updateRefreshToken();
+            await this.spotifyService.updateRefreshToken();
             this.musicHub.start();
             this.userHub.start();
             this.userHub.on(ReceiveFunctions.UserSendNotificitionMessage, message => {

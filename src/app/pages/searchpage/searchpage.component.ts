@@ -28,7 +28,7 @@ export class SearchpageComponent implements OnInit {
         private commonService: CommonService
     ) { }
 
-    async ngOnInit(){
+    async ngOnInit() {
         this.reactiveForm = new FormGroup({
             query: new FormControl("")
         });
@@ -39,9 +39,9 @@ export class SearchpageComponent implements OnInit {
         ).subscribe(query => {
             if (query) {
                 this.albumSearchUpdate(query);
-                this.userSearchUpdate(query); 
+                this.userSearchUpdate(query);
             }
-            else{
+            else {
                 this.albums = [];
                 this.users = [];
                 this.albumsError = "";
@@ -50,13 +50,13 @@ export class SearchpageComponent implements OnInit {
         })
     }
 
-    albumSearchUpdate(query: string){
+    albumSearchUpdate(query: string) {
         this.spotifyService.searchAlbum(query).subscribe(data => {
             this.albums = this.commonService.reduceAlbums(data);
         })
     }
 
-    userSearchUpdate(query: string){
+    userSearchUpdate(query: string) {
         this.authService.SearchUser(query).subscribe(data => {
             this.users = data;
         })

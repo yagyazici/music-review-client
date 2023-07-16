@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class CustomInterceptorService implements HttpInterceptor{
-
     urlList: string[] = ["UserAuth", "MusicReview"];
     constructor() { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
